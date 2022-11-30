@@ -1,0 +1,311 @@
+﻿ @model App.Models.ViewModels.Movie
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Quib - Share what you know and love about great movies</title>
+    <link href="Q_favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+   <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/js/movie.js"></script>
+    <script src="~/js/Common.js"></script>
+    <script src="~/lib/jquery/dist/jquery.touchSwipe.js"></script>
+ 
+
+    <style>
+        .quib-profile-header {
+            background-color: #FFFFCC;
+        }
+    </style>
+</head>
+<nav class="navbar navbar-default navbar-custom" style="margin-bottom: 8px">
+        <div class="container-fluid">
+            <div>
+                <a class="top-btnBack">
+                    <span id="backChooseMovie" class="glyphicon glyphicon-menu-left" aria-hidden="true" style="font-size: 36px; color: #990000" onclick="BackClick()"></span>
+                </a>
+            </div>
+            <div class=" chooseMovieTitle" style="padding-top: 7px; float: left; margin-left: 50px">
+                <span>What we're quibbing</span>
+</div>
+       
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="all">
+      <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80% ;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
+                <span>Recent Quibs</span>
+  </div>
+
+  <div class="container-fluid">
+        <div class="row">
+            @*loading overlay*@
+           <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+               <div class="recent-container" id="RecentMovieList" style="margin-top:5px">
+                           @*Adding the list of movies here dynamically*@
+                  </div>
+               </div>
+        </div>
+    </div>
+
+      <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80%;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
+         <span>Most Active Quibs</span>
+  </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            @*loading overlay*@
+           <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+                <div class="active-container" id="ActiveMovieList" style="margin-top:5px" >
+                           @*Adding the list of movies here dynamically*@
+                        </div>
+                  </div>
+            </div>
+        </div>
+          
+     <div class=" chooseMovieTitle" style="padding-top: 7px; float:right; margin-left: 80%;background-color: #CCCC99;color: #990000;width:100%;text-align:right; ">
+              <span>Alphabetical Order</span>
+  </div>
+  
+      <div class="container-fluid" id="xyz">
+        <div class="row">
+            @*loading overlay*@
+            <div class="popup_load" style="position: absolute; -moz-user-select: none; display: block">
+                <div class="fade12"></div>
+                <div>
+                    <img src="~/Images/loadingImg.gif" class="popup_busy" alt="Processing..." />
+                </div>
+            </div>
+            <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+                <div class="choose-movie-wrapper" style="padding: 0 10px">
+                    <div class="choose-movie-list" >
+                        <div class="movie-container" id="MovieList" style="height: calc(100% - 68px);">
+                            @*Adding the list of movies here dynamically*@
+                        </div>
+                    </div>
+                </div>
+                <div class="prev-arrows">
+                    <span class=" left" aria-hidden="true" style="left: 4px;">
+                        <img src=@Url.Content("~/Images/left-arrow.png") />
+                    </span>
+                </div>
+                <div class="next-arrows">
+                    <span class="right " aria-hidden="true" style="right: 2px;">
+                        <img src=@Url.Content("~/Images/right-arrow.png") />
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</html>
+
+@*Setting avatar image in header*@
+<script type="text/javascript">
+    var playQuib_01_imgPath = '@Url.Content("~/Images/playQuib_01.png")';
+    $(document).ready(function () {
+        $("#ImgAvtrLogo").attr("src", "data:image/jpeg;base64," + '@ViewBag.AvatarBase64Thumb');
+    });
+</script>
+<script src="~/js/chooseMovie.js"></script>
+<script>
+   $(document).ready(function () {
+    GetData().then(function (response) {
+        LoadAllMovies(response).then(function () {
+            StyleMovieList().then(function () {
+                $('.popup_load').css("display", "none");
+            })
+        });
+    });
+    GetRecentQuibs().then(function (response) {
+        LoadRecentMovies(response).then(function () {
+           RecentStyleMovieList().then(function () {
+              
+            })
+        });
+    });
+    GetActiveQuibs().then(function (response) {
+        LoadActiveMovies(response).then(function () {
+          ActiveStyleMovieList().then(function () {
+                $('.popup_load').css("display", "none");
+            })
+        });
+    });
+    $(window).resize(StyleMovieList);
+      $(window).resize(ActiveStyleMovieList);
+        $(window).resize(RecentStyleMovieList);
+})
+
+function GetData() {
+    var deferred = $.Deferred();
+    $.ajax({
+        url: "@Context.Request.PathBase" + "/Movies",
+        method: "GET",
+        success: function (res) {
+
+            if (res != undefined && res != null) {
+                deferred.resolve(res);
+            }
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+    return deferred.promise();
+}
+function LoadAllMovies(res) {
+    var deferred = $.Deferred();
+    $('#MovieList').empty();
+    var result = JSON.stringify(res);
+    var object = JSON.parse(result);
+
+    for (var obj in object) {
+        if (res.hasOwnProperty(obj)) {
+
+    $("#MovieList").append("<div class='movie-item' style='top: 0px; left: 0px;' onclick='RedirectToQuibStreamPage(" + object[obj].id + ")'>" +
+
+                       "<div class='panel panel-default movie-item-inner'>" +
+                                "<div class='panel-body' style='padding: 0'>" +
+
+                            "<div class='quib-profile-header'>" +
+                                "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" +
+                                "<div class='quib-profile-details'>" +
+                                    "<div>" + object[obj].title + "</div>" +
+                                    "<div>" + object[obj].releaseYear + "</div>" +
+                                    "<div>" + object[obj].director + "</div>" +
+                                "</div>" +
+                            "</div>" +
+
+                            "<div class='quib-profile-img'>" +
+                                "<div class='play-quibs-wrap'>" +
+                                    "<span class='play-quib-inner'>PLAY QUIBS</span>" +
+                                    "<img class='play-quib-img' src='" + localStorage.getItem('environment') + "/Images/play.png'>" +
+                                "</div>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>" +
+                        "</div>");
+        }
+    }
+    deferred.resolve('success');
+    return deferred.promise();
+}
+function GetRecentQuibs() {
+    var deferred = $.Deferred();
+    $.ajax({
+        url: "@Context.Request.PathBase" + "/RecentMovies",
+        method: "GET",
+        success: function (res) {
+
+            if (res != undefined && res != null) {
+                deferred.resolve(res);
+            }
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+    return deferred.promise();
+}
+function LoadRecentMovies(res) {
+    var deferred = $.Deferred();
+    $('#RecentMovieList').empty();
+    var result = JSON.stringify(res);
+    var object = JSON.parse(result);
+
+    for (var obj in object) {
+        if (res.hasOwnProperty(obj)) {
+
+            $("#RecentMovieList").append("<div class='recentmovie-item' style='top: 0px; left: 0px;' onclick='RedirectToQuibStreamPage(" + object[obj].id + ")'>" +
+
+                "<div class='panel panel-default movie-item-inner'>" +
+                "<div class='panel-body' style='padding: 0'>" +
+
+                "<div class='quib-profile-header'>" +
+                "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" +
+                "<div class='quib-profile-details'>" +
+                "<div>" + object[obj].title + "</div>" +
+                "<div>" + object[obj].releaseYear + "</div>" +
+                "<div>" + object[obj].director + "</div>" +
+                "</div>" +
+                "</div>" +
+
+                "<div class='quib-profile-img'>" +
+                "<div class='play-quibs-wrap'>" +
+                "<span class='play-quib-inner'>PLAY QUIBS</span>" +
+                "<img class='play-quib-img' src='" + localStorage.getItem('environment') + "/Images/play.png'>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>");
+        }
+    }
+    deferred.resolve('success');
+    return deferred.promise();
+}
+function GetActiveQuibs() {
+    var deferred = $.Deferred();
+    $.ajax({
+        url: "@Context.Request.PathBase" + "/ActiveMovies",
+        method: "GET",
+        success: function (res) {
+
+            if (res != undefined && res != null) {
+                deferred.resolve(res);
+            }
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+    return deferred.promise();
+}
+function LoadActiveMovies(res) {
+    var deferred = $.Deferred();
+    $('#ActiveMovieList').empty();
+    var result = JSON.stringify(res);
+    var object = JSON.parse(result);
+
+    for (var obj in object) {
+        if (res.hasOwnProperty(obj)) {
+
+            $("#ActiveMovieList").append("<div class='activemovie-item' style='top: 0px; left: 0px;' onclick='RedirectToQuibStreamPage(" + object[obj].id + ")'>" +
+
+                "<div class='panel panel-default movie-item-inner'>" +
+                "<div class='panel-body' style='padding: 0'>" +
+
+                "<div class='quib-profile-header'>" +
+                "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" +
+                "<div class='quib-profile-details'>" +
+                "<div>" + object[obj].title + "</div>" +
+                "<div>" + object[obj].releaseYear + "</div>" +
+                "<div>" + object[obj].director + "</div>" +
+                "</div>" +
+                "</div>" +
+
+                "<div class='quib-profile-img'>" +
+                "<div class='play-quibs-wrap'>" +
+                "<span class='play-quib-inner'>PLAY QUIBS</span>" +
+                "<img class='play-quib-img' src='" + localStorage.getItem('environment') + "/Images/play.png'>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>");
+        }
+    }
+    deferred.resolve('success');
+    return deferred.promise();
+}
+</script>

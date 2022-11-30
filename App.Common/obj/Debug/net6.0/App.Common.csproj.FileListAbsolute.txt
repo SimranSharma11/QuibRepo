@@ -1,0 +1,14 @@
+E:\AngularWith.netAPI\API\App.Common\App.Common\bin\Debug\net6.0\App.Common.deps.json
+E:\AngularWith.netAPI\API\App.Common\App.Common\bin\Debug\net6.0\App.Common.runtimeconfig.json
+E:\AngularWith.netAPI\API\App.Common\App.Common\bin\Debug\net6.0\App.Common.dll
+E:\AngularWith.netAPI\API\App.Common\App.Common\bin\Debug\net6.0\App.Common.pdb
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\App.Common.csproj.AssemblyReference.cache
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\App.Common.GeneratedMSBuildEditorConfig.editorconfig
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\App.Common.AssemblyInfoInputs.cache
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\App.Common.AssemblyInfo.cs
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\App.Common.csproj.CoreCompileInputs.cache
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\App.Common.dll
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\refint\App.Common.dll
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\App.Common.pdb
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\App.Common.genruntimeconfig.cache
+E:\AngularWith.netAPI\API\App.Common\App.Common\obj\Debug\net6.0\ref\App.Common.dll

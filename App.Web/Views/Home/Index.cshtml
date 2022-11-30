@@ -1,0 +1,186 @@
+﻿@{
+    ViewBag.Title = "Land";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quib - Share what you know and love about great movies</title>
+    <link href="Q_favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+ <link href="~/css/site.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.css" rel="stylesheet" />
+   <script src="https://code.jquery.com/jquery-1.9.1.js"  integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.js"></script>
+    <script src="~/js/Home.js"></script>
+     <script src="~/lib/jquery/dist/jquery.touchSwipe.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('.bxslider').bxSlider({
+            });
+        });
+
+        // LOCAL
+        localStorage.setItem('environment', '');
+        // CLOUD
+        //localStorage.setItem('environment', '/QUIB_Dev/');
+
+        localStorage.setItem("IsBackBtnClicked", "false");
+        var IsQuibZeroOpen = true;
+
+        $(document).ready(function () {
+            $('.slider1').bxSlider({
+                nextSelector: '#slider-next',
+                prevSelector: '#slider-prev',
+                infiniteLoop: false,
+                nextText: '<img src=@Url.Content("~/Images/nextArrow.png") /> ',
+                prevText: '<img src=@Url.Content("~/Images/backArrow.png") />'
+            });
+
+            $('#slider-prev').on('click', function () {
+                $(this).hide();
+                $('#slider-next').show();
+                var scrollval = $('.choose-movie-list').width();
+                $('.home-container').stop().scrollBy(scrollval);
+            });
+
+            $('#slider-next').on('click', function () {
+                $(this).hide();
+                $('#slider-prev').show();
+                var scrollval = $('.choose-movie-list').width();
+                $('.home-container').stop().scrollBy(-scrollval, 0);
+            });
+
+            $(".home-container").swipe({
+
+                swipeRight: function (event, direction, distance, duration, fingerCount, fingerData) {
+                    var scrollval = $('.choose-movie-list').width();
+                    $('.home-container').stop().scrollBy(-scrollval);
+                },
+                swipeLeft: function (event, direction, distance, duration, fingerCount, fingerData) {
+                    var scrollval = $('.choose-movie-list').width();
+                    $('.home-container').stop().scrollBy(scrollval, 0);
+                }
+            });
+        });
+
+
+        function StyleMovieList() {
+            //var deferred = $.Deferred();
+            //var Col = 0;
+            //var TotalHight = 0;
+            //var margin_bottom = 10;
+            //var margin_right = 0;
+            //var leftPos = 0;
+
+            //$(".home-container").children().each(function () {
+            //    TotalHight = TotalHight + margin_bottom + $(this).height();
+            //    var topPos = TotalHight - (margin_bottom + $(this).height());
+            //    if (TotalHight > $(".home-container").height()) {
+            //        Col = Col + 1;
+            //        leftPos = ($(this).width() + margin_right) * Col;
+            //        TotalHight = $(this).height() + margin_bottom;
+            //        topPos = 0;
+            //    }
+            //    $(this).css('top', topPos + 'px')
+            //    $(this).css('left', leftPos + 'px')
+
+            //})
+          
+        }
+        $(window).resize(StyleMovieList);
+
+        $(window).load(function () {
+            StyleMovieList();
+            $.fn.scrollBy = function (x) {
+                return this.animate({
+                    scrollLeft: '+=' + x,
+                }, 800);
+            };
+        });
+
+
+
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-custom" style="margin-bottom: 0">
+        <div class="container-fluid">
+            <div>
+                <a class="navbar-brand" href="#" style="margin-top: -5px">
+                    <img src=@Url.Content("~/Images/logo.png") width="77" height="34" />
+                </a>
+            </div>
+            <ul class="nav navbar-nav rightnav-align hidden-xs" style="margin-top: 12px; margin-right: -8px; float: right">
+                <li>
+                    <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="RedirectToLogin(event)">Log In</button>
+                </li>
+
+                <li>
+                    <button class="btn btn-default btn-burgandy" onclick="RedirectToRegister(event)">Join</button>
+                </li>
+                <li>
+                    <button class="btn btn-default btn-burgandy" onclick="RedirectToChooseMovie(event)">Visit</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid slider-wrapper">
+        <div class="hidden-xs">
+            <div class="choose-movie-list" style="overflow: hidden;">
+                <div class="home-container" >
+                    <div class="home-item">
+                        <img src=@Url.Content("~/Images/landingPage_middle.png") class="image-responsive"  style="width:100%"/>
+                    </div>
+                    <div class="home-item">
+                        <img src=@Url.Content("~/Images/landingPage_middle_02.png") class="image-responsive"  style="width:100%;cursor:pointer"  onclick="RedirectToChooseMovie(event)"/>
+                    </div>
+
+                    @*Adding the list of movies here dynamically*@
+                </div>
+            </div>
+            <div>
+            <div class="slogan-text">
+                <h2>Share what you know and love about great movies</h2>
+            </div>
+            <div class="outside" style="text-align: center">
+                <span id="slider-prev" >
+                    <img src="~/Images/nextArrow.png" /></span>
+                <span id="slider-next" style="display: none">
+                    <img src="~/Images/backArrow.png" /></span>
+            </div>
+                </div>
+        </div>
+
+        <div class="hidden-sm hidden-md hidden-lg" id="mobile-slider">
+            <div class="slogan-text">
+                <h3 style="font-size: 24px; background: white; font-weight:bold">Share what you know and love about great movies</h3>
+            </div>
+            <ul class="bxslider">
+                <li>
+                    <img src="~/Images/BirdmanQuib.png" /></li>
+                <li>
+                    <img src="~/Images/JawsQuibs.png" /></li>
+                <li>
+                    <img src="~/Images/TheConversationQuib.png" /></li>
+            </ul>
+            <div style="margin-top: -18px">
+                <div class="col-xs-6" style="text-align: center">
+                    <button class="btn btn-default btn-burgandy" onclick="RedirectToRegister(event)">Join</button>
+                </div>
+                <div class="col-xs-6" style="text-align: center">
+                    <button class="btn btn-default btn-burgandy" onclick="RedirectToChooseMovie(event)">Visit</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 RLogin hidden-sm hidden-md hidden-lg">
+            <button class="btn btn-default btn-burgandy" onclick="RedirectToLogin(event)">Log In</button>
+        </div>
+    </div>
+</body>
+</html>

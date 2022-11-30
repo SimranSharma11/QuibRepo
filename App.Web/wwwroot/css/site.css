@@ -1,0 +1,2310 @@
+
+/*******************CSS3*******************
+
+*****/
+
+.btn:focus {
+    outline: none !important;
+}
+
+.btn-burgandy, btn btn-lg btn-primary {
+    background-color: #990000 !important;
+    border-radius: 16px !important;
+    color: white !important;
+    min-width: 100px !important;
+    border: 0;
+}
+
+
+.navbar-custom {
+    background-color: #CCCC99 !important;
+    height: 56px !important;
+}
+
+.chooseMovieTitle {
+    text-align: left !important;
+    color: #990000 !important;
+    font-weight: bold !important;
+}
+
+/*login page css*/
+.login-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+
+.prev-arrows {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 10;
+}
+
+.left {
+    position: absolute;
+    top: 40%;
+    left: -18px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+    .left > img, .right > img {
+        width: 25px;
+    }
+
+.next-arrows {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+
+.left:hover, .right:hover {
+    opacity: 1;
+}
+
+.right {
+    position: absolute;
+    top: 40%;
+    right: -16px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.btn-join {
+    margin-top: 15%;
+    margin-bottom: 7%;
+}
+
+.form-group-button {
+    text-align: center;
+    margin-top: 15%;
+}
+
+
+.form-align {
+    margin-bottom: 30px !important;
+}
+
+
+.login-wrapper .form-control {
+    border-bottom: 1px solid #ccc !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-top: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    text-transform: lowercase;
+}
+
+/*login page css ends*/
+
+
+
+
+/*Registration page css*/
+
+.label-style {
+    font-style: italic;
+    opacity: 0.6;
+    text-align: left;
+}
+
+.register-form .form-control {
+    border-bottom: 1px solid #ccc !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-top: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 5px 10px !important;
+}
+
+.register-form .form-group {
+    margin-bottom: 7px !important;
+}
+
+input:focus {
+    box-shadow: none !important;
+}
+
+.register-page-wrapper .header-text {
+    color: #990000;
+    margin-bottom: 20px;
+    margin-top: 200px;
+    text-align: center;
+    font-weight: 700;
+}
+
+
+.header-text h1 {
+    font-weight: 700;
+}
+
+.register-form-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #990000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.terms-bar {
+    resize: none;
+    background-color: #dcdcdc !important;
+    height: 250px !important;
+    resize: none !important;
+}
+
+
+
+
+.choose-file-button {
+    position: relative;
+    left: -1px;
+    color: white;
+    background-color: #990000;
+    font-size: 14px;
+    padding: 2px 15px 2px 10px;
+}
+
+
+.file-avatar {
+    margin-bottom: -10px;
+    text-align: left;
+}
+
+    .file-avatar img {
+        width: 64px;
+        height: 64px;
+    }
+
+
+    .file-avatar span {
+        position: relative;
+        top: -15px;
+        font-style: italic;
+        opacity: 0.6;
+    }
+
+.btn-register {
+    text-align: center;
+}
+
+.error-message {
+    font-style: italic;
+    color: #ff0000;
+    font-weight: 100;
+    text-align: left;
+}
+
+/*Registration page css ends*/
+
+/*Landing page css*/
+
+.navbar-right li {
+    margin-left: 25px;
+}
+
+.bx-pager-item {
+    display: none;
+}
+
+
+
+.slogan-text {
+    color: #990000;
+    margin-bottom: 20px;
+}
+
+.slogan-text {
+    color: #990000;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+/*Landing page css ends*/
+
+
+
+
+/**********************Community page css******************************/
+
+
+.quib-profile-header img {
+    width: 33px;
+    height: 48px;
+}
+
+.follower-image {
+    float: left;
+}
+
+    .follower-image > img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .follower-image > span {
+        font-weight: bold;
+        margin-left: 3px;
+    }
+
+.follower-button {
+    float: right;
+    margin-top: 8px;
+}
+
+    .follower-button > span {
+        top: 3px;
+        left: 19px;
+        color: white;
+    }
+
+
+.profile-img img {
+    width: 112px;
+    height: 112px;
+}
+
+
+
+.quib-profile-img {
+    width: 100%;
+    /*padding: 0 8px 8px 8px;*/
+    height: 36px;
+    background-color: #CCCC99;
+}
+
+    .quib-profile-img img {
+        /*width: 100%;*/
+    }
+
+.quib-profile-header {
+    padding: 5px 8px;
+    height: 64px;
+}
+
+    .quib-profile-header > img {
+        float: left;
+    }
+
+.choose-stream-header {
+    padding: 5px 8px;
+    position: relative;
+}
+
+    .choose-stream-header > img {
+        height: 48px;
+        width: 48px;
+        float: left;
+    }
+
+.choose-stream-select {
+    float: right;
+    position: relative;
+}
+
+    .choose-stream-select input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+    }
+
+.choose-stream-checkbox input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+}
+
+.choose-stream-checkbox {
+    position: absolute;
+    right: 10px;
+    top: 16px;
+    width: 25px;
+}
+
+.quib-profile-details {
+    left: 10px;
+    position: relative;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.35;
+}
+
+.profile-details {
+    height: 122px;
+    padding-top: 8px;
+    position: relative;
+}
+
+
+
+.community-list ul > li {
+    height: 40px;
+    list-style-type: none;
+    border-bottom: 1px solid gray;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+    .community-list ul > li span {
+        font-weight: 800;
+        margin-left: 10px;
+    }
+
+.follower-item {
+    position: absolute;
+    min-height: 45px;
+    top: 0px;
+    width: 32.7%;
+    left: 0px;
+}
+
+
+.follower-button {
+    margin-right: 20px;
+    float: right;
+    /*margin-top: 100px;*/
+}
+
+.follower-name {
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+
+
+.follower-button .btn-default {
+    background-color: #990000;
+    border-radius: 16px;
+    color: white;
+    min-width: 48px;
+    color: white;
+    float: right;
+    padding: 2px 7px 1px 21px;
+    font-size: 12px;
+}
+
+
+
+
+.follower-image span {
+    font-weight: bold;
+    margin-left: 3px;
+}
+
+.active-list {
+    background-color: white;
+}
+
+/**********************Community page css ends******************************/
+
+
+
+
+/*Quib Stream page*/
+
+
+
+
+.quib-container {
+    background-color: white;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+
+
+.quib-compose-btn .form-control {
+    width: 200px;
+    height: 38px;
+    border-radius: 16px;
+    margin-bottom: 0px !important;
+    margin-left: -30px;
+}
+
+.navbar-custom {
+    padding: 0px 0;
+    border: 0;
+    border-radius: 0;
+}
+
+.movie-timer {
+    height: 24px;
+    width: 80px;
+    border-radius: 16px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 7px;
+    font-size: 15px;
+    background-color: #990000 !important;
+    border: 0;
+    color: white;
+}
+
+.movie-time-remainder {
+    height: 6px;
+    width: 40px;
+    border-radius: 16px;
+    margin-top: 2px;
+    width: 50%;
+    margin: 0 auto;
+    padding: 3px 12px;
+    background-color: #990000;
+    border: 0;
+    color: white;
+}
+
+.movie-time-panel a, .movie-time-wrapper {
+    margin: 0 10px;
+}
+
+
+.movie-time-wrapper {
+    float: left;
+    margin-top: 5px;
+}
+
+.compose-side-header {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+    .compose-side-header a {
+        margin-left: 20px;
+        float: left;
+    }
+
+
+    .compose-side-header > img {
+        width: 16px;
+        height: 16px;
+    }
+
+
+.quib-compose-timer {
+    font-size: 9px;
+    height: 13px;
+    width: 62px;
+    border-radius: 11px;
+    text-align: center;
+    padding: 2px 3px 1px 3px;
+    background-color: #990000 !important;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.quib-compose-header {
+    height: 40px;
+    position: relative;
+}
+
+
+    .quib-compose-header .img-tag {
+        height: 16px;
+        width: 16px;
+    }
+
+    .quib-compose-header > span {
+        vertical-align: bottom;
+        position: relative;
+        top: 4px;
+    }
+
+.btn-guest-login {
+    height: 26px;
+    margin-top: 11px;
+}
+
+.quib-compose-wrapper {
+    padding: 5px 8px;
+}
+
+.composer-name {
+    font-weight: bold;
+}
+
+
+.quib-composer {
+    font-size: 12px;
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+
+.quib-compose-timer-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* left: 40%; */
+    top: -32px;
+    text-align: center;
+}
+
+.HilightQuib .quib-item-inner {
+}
+
+.HilightQuib .panel-body {
+    border: 1px solid #FFFFCC;
+    background-color: #FFFFCC !important;
+}
+
+.HilightQuibZero .panel-body {
+    border: 1px solid #FFFFCC;
+    background-color: #FFFFCC !important;
+}
+
+.panel-body {
+    border: #E6E6E6 solid 1px;
+}
+
+.movie-item .panel-body {
+    cursor: pointer;
+}
+
+.img-tag {
+    float: left;
+    cursor: pointer;
+}
+
+    .img-tag img {
+        width: 16px;
+        height: 16px;
+    }
+
+
+
+#btnMinus, #btnPlus {
+    float: left;
+    cursor: pointer;
+}
+
+
+    #btnMinus img, #btnPlus img {
+        width: 36px;
+        height: 36px;
+    }
+
+
+.avatar-quibcomposer {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+#imgQuibZero, #btn-resynquib, #ImgAvtrLogo, .MoviePosterThumb, #MovieScrubber, #QuibScrubber, #TimerToggle {
+    cursor: pointer;
+}
+
+.movieSlider .ui-state-default, .movieSlider .ui-widget-content .ui-state-default {
+    background-image: url("../Images/black%20circle.png") !important;
+}
+
+
+.slider img:focus {
+    outline: none;
+}
+
+
+
+.my-stream-panel {
+    position: absolute;
+    /*height: 90%;*/
+    top: 0px;
+    display: none;
+    /*margin-right: 5px;*/
+    left: 0;
+    bottom: 56px;
+    z-index: 100;
+}
+
+.my-stream-compose {
+    height: 6%;
+    position: relative;
+}
+
+
+
+    .my-stream-compose textarea {
+        width: 100%;
+        border: none;
+        /*overflow: hidden;*/
+        /*max-height: 200px;*/
+        padding-left: 10px;
+        padding-right: 30px;
+        outline: none;
+        resize: none;
+    }
+
+.close-stream {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+
+    .close-stream img {
+        width: 16px;
+        height: 16px;
+    }
+
+
+.mystream-panel-header {
+    width: 100%;
+    height: 35px;
+    background-color: white;
+    border-bottom: 8px solid #990000;
+}
+
+
+.mystream-txt {
+    height: 28px;
+    background-color: white;
+    float: left;
+    width: 60%;
+    text-align: center;
+    color: white;
+    vertical-align: middle;
+    line-height: 27px;
+    /*background-size: 100% 100%;
+        background-image: url('Images/myStream_red.png');
+        background-repeat: no-repeat;*/
+    line-height: 28px;
+    background-origin: border-box;
+}
+
+
+.mystream-panel-content::-webkit-scrollbar-track {
+    background-color: #990000;
+}
+
+.mystream-panel-content::-webkit-scrollbar {
+    width: 6px;
+    background-color: white;
+}
+
+
+.mystream-panel-content::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 2px;
+}
+
+/*.mystream-panel-content::-webkit-scrollbar-button:start  {
+    background: gray;
+}*/
+
+
+.mystream-panel-content {
+    background-color: #990000;
+    height: 70%;
+    clear: both;
+    padding: 1px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+}
+
+.mystream-wrapper {
+    background-color: white;
+    margin: 3px 3px 13px 12px;
+    padding: 7px 10px;
+    position: relative;
+}
+
+
+
+    .mystream-wrapper textarea {
+        resize: none;
+        width: 100%;
+        overflow: hidden !important;
+        height: 100px;
+    }
+
+
+#divTags {
+    font-size: 12px;
+    padding: 7px !important;
+}
+
+.quib-rating {
+    margin-top: 10px;
+}
+
+#rating-quib {
+    width: 370px;
+    position: absolute;
+    display: none;
+    z-index: 100;
+    height: 315px;
+}
+
+    #rating-quib input[type=checkbox] {
+        vertical-align: sub;
+        margin: 6px;
+    }
+
+
+.rating-title {
+    font-weight: bold;
+    margin: 3px;
+    font-size: 13px;
+}
+
+.slider {
+    float: left;
+    width: 91%;
+    position: relative;
+    left: 10px;
+    cursor: pointer;
+}
+
+.btn-stream {
+    background-color: #990000;
+    padding: 2px 10px 0 10px;
+    float: right;
+    border-radius: 12px;
+    font-size: 12px;
+    color: white;
+}
+
+.movieSlider-span {
+    background-color: transparent !important;
+    background-image: url('/Images/top.png') !important;
+    background-repeat: no-repeat !important;
+    background-size: 20px 14px !important;
+    width: 20px !important;
+    height: 14px !important;
+    top: 0 !important;
+    border: none !important;
+}
+
+
+#QuibScrubber {
+    background-color: transparent !important;
+    background-image: url('/Images/bottom.png');
+    background-repeat: no-repeat !important;
+    background-size: 20px 14px !important;
+    width: 20px !important;
+    height: 14px !important;
+    top: 2px !important;
+    border: none !important;
+}
+
+.myStreamQuibTime {
+    border: 0px;
+}
+
+#movieTimer {
+    font-size: 9px;
+    cursor: pointer;
+}
+
+#quibTimer {
+    font-size: 9px;
+}
+
+.btnPlay {
+    cursor: pointer;
+}
+
+/*Quib Stream page ends*/
+
+
+/*Admin page css*/
+
+/*.mystream-panel-content {
+       padding-bottom:100px;
+}*/
+
+.search-user .form-group {
+    width: 18%;
+}
+
+.search-control {
+    width: 90% !important;
+}
+
+.admin-pagewrap .checkbox, #AddUserModal .checkbox {
+    margin-right: 10px;
+}
+
+
+.admin-link {
+    width: 100%;
+    height: 100px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.active-link {
+    background-color: #dcdcdc;
+    color: #990000;
+}
+
+
+.edit-poster img {
+    width: 55px;
+    height: 80px;
+}
+
+.drop-down-icon {
+    position: relative;
+    background-color: #130000;
+    width: 112px;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 0 1px 15px;
+    opacity: 0.8;
+    top: 2px;
+    display: none;
+    z-index: 1;
+}
+
+    .drop-down-icon ul {
+        padding: 0;
+    }
+
+        .drop-down-icon ul li {
+            list-style-type: none;
+            cursor: pointer;
+        }
+
+.navbar-center {
+    text-align: center;
+    margin: 0 auto;
+    /*float: left !important;
+        margin-left: 750px !important;*/
+    color: #CCCC99 !important;
+    font-weight: bold !important;
+}
+
+.movie-time-panel {
+    margin-top: 2px;
+}
+
+
+.profile-description {
+    clear: both;
+    max-height: 120px;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+.profile-edit {
+    width: 100px;
+    position: absolute;
+    top: 45px;
+    right: 5px;
+}
+
+.slider-wrapper {
+    padding-top: 1.5%;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+}
+
+@media only screen and (min-width:1200px) and (max-width:1280px) {
+
+    .btnPlay {
+        right: 10px !important;
+    }
+}
+
+
+
+@media only screen and (min-width:1390px) {
+
+    .home-wrap {
+        height: 60%;
+    }
+
+
+    .admin-pagewrap {
+        width: 90.66% !important;
+    }
+
+    .sideadminwrap {
+        width: 7.333% !important;
+    }
+
+    .quib-panel {
+        margin: 0 auto;
+    }
+
+    .chooseMovieTitle span {
+        font-size: 30px;
+    }
+
+    .my-stream-panel-wrap, .mystream-footer {
+        width: calc(100% + 45px);
+    }
+
+
+
+
+    .left {
+        position: absolute;
+        top: 40%;
+        left: -22px;
+    }
+
+    .right {
+        right: -23px;
+    }
+
+    .quibzero-row {
+        height: 97%;
+        margin-bottom: 0 !important;
+        /*margin-top: 40px;*/
+    }
+
+    .movie-poster-wrapper {
+        height: 97%;
+    }
+
+
+    .navbar-center {
+        width: 95%;
+    }
+
+    .mystream-panel-content {
+        height: 86.5%;
+    }
+
+    .movie-container {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 92%;
+    }
+
+    .movie-item {
+        /*background-color: #dcdcdc;*/
+        position: absolute;
+        top: 0px;
+        width: 25%;
+        left: 0px;
+        /*margin-right: 10px;*/
+        /*margin-bottom: 10px;*/
+    }
+
+
+    .movie-time-panel {
+        left: 27%;
+    }
+
+    .register-page-wrapper {
+        max-width: 1200px;
+    }
+
+    .register-form .terms-bar {
+        height: 350px !important;
+    }
+
+
+
+    .quib-item {
+        position: absolute;
+        min-height: 50px;
+        top: 0px;
+        width: 25%;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+
+
+    .quib-list-group {
+        height: 846px;
+    }
+
+    .community-list {
+        height: 60%;
+    }
+
+    .quib-container {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 87.5%;
+    }
+
+    .profile-container3, .profile-container1, .profile-container2 {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 840px;
+    }
+
+
+    .profile-container1 {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 840px;
+    }
+
+    .item {
+        position: absolute;
+        top: 0px;
+        width: 33.34%;
+        left: 0px;
+    }
+
+
+    .follower-item {
+        top: 0px;
+        width: 33.3334%;
+        left: 0px;
+    }
+}
+
+
+@media only screen and (max-width:768px) {
+    .choose-movie-list {
+        overflow: visible !important;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .activemovie-item {
+        width: 100% !important;
+        display: block !important;
+        margin: 5px !important;
+    }
+
+    .recentmovie-item {
+        width: 100% !important;
+        display: block !important;
+        margin: 5px !important;
+    }
+}
+
+.recentmovie-item {
+    width: 25%;
+    display: inline-block ;
+    margin: 5px;
+}
+
+.activemovie-item {
+    width: 25%;
+    display: inline-block ;
+    margin: 5px;
+}
+
+.choose-movie-list {
+    overflow: hidden !important;
+}
+
+@media only screen and (max-width:1390px) {
+
+    .home-wrap {
+        height: 66%;
+    }
+
+    .admin-pagewrap {
+        width: 90.66% !important;
+    }
+
+    .sideadminwrap {
+        width: 7.333% !important;
+    }
+
+    .chooseMovieTitle span {
+        font-size: 30px;
+    }
+
+    .quibzer0-title {
+        font-size: 30px !important;
+    }
+
+
+    .quibzer0-txt {
+        font-size: 20px !important;
+    }
+
+
+
+    .txt2 {
+        font-size: 15px !important;
+    }
+
+
+    .quib-panel {
+        margin: 0 auto;
+    }
+
+    .mystream-panel-content {
+        height: 79.5%;
+    }
+
+
+
+
+
+    .quibzero-row {
+        height: 90%;
+    }
+
+    .movie-poster-wrapper {
+        height: 97%;
+    }
+
+
+
+
+
+    .burgandy2 {
+        min-width: 80px !important;
+        padding: 3px 9px !important;
+    }
+
+    .my-stream-panel-wrap, .mystream-footer {
+        width: calc(100% + 45px);
+    }
+
+
+    .movie-container {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 90%;
+    }
+
+    .movie-item {
+        /*background-color: #dcdcdc;*/
+        position: absolute;
+        top: 0px;
+        width: 25%;
+        left: 0px;
+        /*margin-right: 10px;
+        margin-bottom: 0px;*/
+    }
+
+
+
+    .register-page-wrapper {
+        max-width: 900px;
+    }
+
+
+
+    .register-form .terms-bar {
+        height: 130px !important;
+    }
+
+    .quib-container {
+        height: 82%;
+    }
+
+
+    .quib-item {
+        position: absolute;
+        min-height: 50px;
+        top: 0px;
+        width: 25%;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+
+
+
+    .community-list {
+        height: 29%;
+    }
+
+    .quib-list-group {
+        height: 555px;
+    }
+
+
+    .profile-container1, .profile-container2, .profile-container3 {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 536px;
+    }
+
+
+
+    .item {
+        position: absolute;
+        top: 0px;
+        width: 50%;
+        left: 0px;
+    }
+
+
+    .follower-item {
+        position: absolute;
+        top: 0px;
+        width: 33.334%;
+        left: 0px;
+    }
+
+    .register-form .form-group {
+        margin-bottom: 7px;
+    }
+
+    .register-form .form-control {
+        height: 30px;
+    }
+
+    .side-header-image img {
+        width: 300px;
+    }
+
+    .navbar-center {
+        width: 93.5%;
+    }
+
+
+    .right {
+        right: -18px;
+    }
+}
+
+
+.twitter-image {
+    width: 16px !important;
+    height: 16px !important;
+    float: left;
+    margin-right: 5px;
+}
+
+.right-bar {
+    float: right;
+}
+
+    .right-bar .btn {
+        font-size: 12px;
+        min-width: 70px !important;
+        padding: 3px 0px 2px 7px;
+        width: 99px;
+    }
+
+    .right-bar .glyphicon {
+        right: 95px;
+        top: 3px;
+        color: white;
+    }
+
+.slider-wrapper {
+    height: calc(100% - 56px);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media only screen and (max-width:1200px) {
+
+    .home-wrap {
+        height: 42%;
+    }
+
+    .my-stream-panel-wrap, .mystream-footer {
+        width: calc(100% + 40px);
+    }
+
+
+
+    .left {
+        left: -21px;
+    }
+
+    .right {
+        right: -22px;
+    }
+
+    .quib-panel {
+        margin: 0 auto;
+    }
+
+
+
+    #movieSlider a:focus {
+        outline: 0 !important;
+    }
+
+    #movieSlider a {
+        outline: 0 !important;
+    }
+
+    .navbar-center {
+        width: 90%;
+    }
+
+
+
+
+    .mystream-panel-content {
+        height: 82.8%;
+    }
+
+
+    .movie-time-panel {
+        margin-left: -3px;
+    }
+
+    .movie-container {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 90%;
+    }
+
+    .movie-item {
+        /*background-color: #dcdcdc;*/
+        position: absolute;
+        top: 0px;
+        width: 33.334%;
+        left: 0px;
+        /*margin-right: 10px;
+        margin-bottom: 0px;*/
+    }
+
+
+    .quib-item {
+        position: absolute;
+        min-height: 50px;
+        top: 0px;
+        width: 33.334%;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+
+    /*.navbar-center {
+        margin-left: 330px !important;
+    }*/
+
+    .community-list {
+        height: 35%;
+    }
+
+    .quib-list-group {
+        height: 600px;
+    }
+
+    .profile-container1, .profile-container2, .profile-container3 {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 595px;
+    }
+
+    .item {
+        position: absolute;
+        top: 0px;
+        width: 50%;
+        left: 0px;
+    }
+
+    .follower-item {
+        position: absolute;
+        top: 0px;
+        width: 50%;
+        left: 0px;
+    }
+
+
+    .quib-container {
+        height: 85.5%;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:992px) {
+
+    .home-wrap {
+        height: 23%;
+    }
+
+    .home-container {
+        margin-top: 104px;
+    }
+
+    .admin-pagewrap {
+        width: 80.66% !important;
+    }
+
+    .sideadminwrap {
+        width: 10.66% !important;
+    }
+
+
+    .my-stream-panel-wrap, .mystream-footer {
+        width: calc(100% + 30px);
+    }
+
+
+    .movie-container {
+        height: 85%;
+    }
+
+
+    .quib-panel {
+        margin: 0 auto;
+    }
+
+
+
+    .item {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+    }
+
+    .follower-item {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+    }
+
+
+    .movie-item {
+        position: absolute;
+        top: 0px;
+        width: 50%;
+        left: 0px;
+    }
+
+
+    .navbar-center {
+        width: 88%;
+    }
+
+    .quib-item {
+        position: absolute;
+        min-height: 50px;
+        top: 0px;
+        width: 50%;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+
+
+    .quibzer0-title {
+        font-size: 30px !important;
+    }
+
+
+    .quibzer0-txt {
+        font-size: 20px !important;
+    }
+
+
+
+    .txt2 {
+        font-size: 15px !important;
+    }
+}
+
+
+@media only screen and (max-device-width:375px) {
+
+    .movie-time-panel a, .movie-time-wrapper {
+        margin: 0 2px;
+    }
+
+    .btnPlay {
+        right: 14px !important;
+    }
+}
+
+@media only screen and (max-device-height:378px) {
+
+    .quibzero-row, .movie-poster-wrapper {
+        height: 200px !important;
+    }
+
+        .movie-poster-wrapper .panel-body div {
+            padding: 1% !important;
+        }
+
+            .movie-poster-wrapper .panel-body div img {
+                max-width: 15%;
+            }
+}
+
+
+@media only screen and (max-device-width:767px) {
+
+
+
+    .profile-topbar-back {
+        left: 6px;
+    }
+
+    .choose-top-avatar {
+        right: 0px !important;
+    }
+
+    .topbar-done {
+        left: 0;
+    }
+
+    .top-btnBack {
+        left: 6px !important;
+    }
+
+    .top-avatar {
+        right: 10px !important;
+    }
+
+
+    .quibzer0-movieimg {
+        padding: 0% !important;
+        margin-bottom: 0% !important;
+        height: calc(100% - 148px);
+    }
+
+    .chooseMovieTitle span {
+        font-size: 18px;
+        line-height: 44px;
+    }
+
+    .title-head {
+        font-size: 24px !important;
+        line-height: 44px;
+    }
+
+    .title-head-community {
+        font-size: 22px !important;
+        line-height: 50px;
+    }
+
+    .hidden-sd {
+        display: none;
+    }
+
+    .RLogin {
+        text-align: center !important;
+        margin-top: 20px;
+    }
+
+
+    .quib-item {
+        position: absolute;
+        min-height: 50px;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+
+
+
+
+    .slider-wrapper {
+        padding-top: 0;
+        background-color: white;
+    }
+
+
+    .navbar-custom {
+        margin-bottom: 0px;
+    }
+
+    .quib-item {
+        position: absolute;
+        min-height: 50px;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+
+
+
+    .my-stream-panel-wrap, .mystream-footer {
+        width: calc(100% + 30px);
+    }
+
+
+
+
+    .movie-item {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+    }
+
+    .navbar-center {
+        width: 88%;
+    }
+
+    .profile-container {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 565px;
+    }
+
+    .item {
+        background-color: #dcdcdc;
+        position: static;
+        /*min-height: 175px;*/
+        top: 0px;
+        width: 99%;
+        left: 0px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .follower-item {
+        position: static;
+        min-height: 45px;
+        top: 0px;
+        width: 99%;
+        left: 0px;
+        margin-bottom: 10px;
+        padding-right: 0px;
+    }
+}
+
+
+@media only screen and (max-width:767px) {
+
+
+    .hidden-sd {
+        display: none;
+    }
+
+    .RLogin {
+        text-align: center !important;
+        margin-top: 20px;
+    }
+
+
+    .quib-item {
+        position: absolute;
+        min-height: 50px;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+
+
+
+    .slider-wrapper {
+        margin-top: 0;
+    }
+
+
+    .navbar-custom {
+        margin-bottom: 0px;
+    }
+
+    .quib-item {
+        position: absolute;
+        min-height: 50px;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+
+
+
+    .my-stream-panel-wrap, .mystream-footer {
+        width: calc(100% + 30px);
+    }
+
+
+
+
+    .movie-item {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        left: 0px;
+    }
+
+    .navbar-center {
+        width: 88%;
+    }
+
+    .profile-container {
+        background-color: white;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 565px;
+    }
+
+    .item {
+        background-color: #dcdcdc;
+        position: static;
+        /*min-height: 175px;*/
+        top: 0px;
+        width: 99%;
+        left: 0px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .follower-item {
+        position: static;
+        min-height: 45px;
+        top: 0px;
+        width: 99%;
+        left: 0px;
+        margin-bottom: 10px;
+        padding-right: 0px;
+    }
+}
+
+@media only screen and (max-width:568px) {
+
+    .my-stream-panel-wrap, .mystream-footer {
+        width: calc(100% + 30px);
+    }
+}
+
+
+/*@media handheld, only screen and (min-width:1390px) and (max-width:1500px) {
+    
+    .my-stream-panel-wrap {
+        width: 114%;
+    }
+}
+
+
+@media handheld, only screen and (min-width:1500px) and (max-width:1650px) {
+    
+    .my-stream-panel-wrap {
+        width: 112%;
+    }
+}
+
+@media handheld, only screen and (min-width:1650px) and (max-width:1900px) {
+    
+    .my-stream-panel-wrap {
+        width: 112%;
+    }*/
+
+
+
+
+.edit-profile-form {
+    margin-top: 15px;
+}
+
+
+    .edit-profile-form .form-group {
+        margin-bottom: 15px !important;
+    }
+
+.personal-statement {
+    border: 1px solid #ccc !important;
+    height: 12px;
+    margin-bottom: 15px;
+}
+
+.edit-profile-form .personal-statement {
+    border: 1px solid #ccc !important;
+    height: 120px !important;
+    resize: none;
+    overflow-y: auto;
+}
+
+.edit-profile-form .file-avatar {
+    text-align: left;
+}
+
+.avatar-style {
+    float: left;
+}
+
+.play-quibs-wrap {
+    float: right;
+    padding: 3px 10px;
+}
+
+.play-quib-inner {
+    float: left;
+    padding: 0 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #990000;
+    vertical-align: text-bottom;
+    line-height: 30px;
+}
+
+.play-quib-img {
+    float: left;
+    width: 21px;
+    padding-top: 2px;
+}
+
+.justify-align {
+    display: flex;
+    justify-content: center;
+}
+
+.rightnav-align li {
+    float: left;
+    padding-left: 10px;
+}
+
+.movie-poster-wrapper {
+    text-align: center;
+    background-color: white;
+}
+
+    .movie-poster-wrapper img {
+        max-width: 90%;
+    }
+
+.img-bump {
+    float: right;
+    cursor: pointer;
+}
+
+.quibzero-row-inner {
+    text-align: center;
+    background-color: #990000;
+    padding: 5% 9%;
+    height: 100%;
+}
+
+.quibzero-row {
+    margin-bottom: 0 !important;
+    background-color: white;
+}
+
+.quibzer0-title {
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 2%;
+}
+
+
+.quibzer0-txt {
+    font-size: 21px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 2%;
+}
+
+
+.quibzer0-movieimg {
+    text-align: center;
+    padding: 5%;
+    margin-bottom: 4%;
+}
+
+    .quibzer0-movieimg img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+.txt2 {
+    font-size: 19px;
+}
+
+
+.img-bump img {
+    width: 20px;
+}
+
+#txtComposeQuib {
+    height: 100%;
+}
+
+#register-modal .modal-dialog, #postall-quib-modal .modal-dialog, #post-quib-modal .modal-dialog, #delete-quib-modal .modal-dialog, #end-movie-modal .modal-dialog,
+#leave-compose-modal .modal-dialog, #save-quib-modal .modal-dialog, #bump-modal .modal-dialog, #forgot-password-modal .modal-dialog, #forgot-password-success-modal .modal-dialog,
+#required-password-modal .modal-dialog, #avatar-size-modal .modal-dialog, #large-image-modal .modal-dialog, #select-image-modal .modal-dialog, #follow-modal .modal-dialog, #unfollow-succesfull .modal-dialog,
+#delete-bump-modal .modal-dialog, #delete-quib-modal .modal-dialog, #guest-login-modal .modal-dialog, #follower-modal .modal-dialog {
+    max-width: 400px;
+}
+
+.modal {
+    z-index: 1000001 !important;
+}
+
+.modal-header-custom {
+    background-color: #CCCCCC;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+    .modal-header-custom img {
+        width: 48px;
+    }
+
+.btn-custom {
+    color: #333;
+    background-color: #cccccc;
+    border-color: #ccc;
+}
+
+.modal-body {
+    min-height: 60px;
+}
+
+.movie-item-inner {
+    margin-bottom: 0 !important;
+    border-radius: 0px !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background-color: #F5F5F5;
+    width: 96% !important;
+    margin: 0 auto !important;
+}
+
+.quib-item-inner {
+    margin-bottom: 0 !important;
+    border-radius: 0px !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, .1) !important;*/
+    background-color: #FDFDFD;
+    width: 96%;
+    margin: 0 auto !important;
+}
+
+/*.loading-bar {
+    position: absolute;
+    z-index: 10;
+    top: 35%;
+    left: 47%;
+}*/
+
+.popup_load {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin: -50px;
+}
+
+.popup_busy {
+    float: left;
+    position: fixed;
+    margin: 0 0 0 0;
+    z-index: 90000000000000000001;
+}
+
+.fade12 {
+    background: #7c7c7c;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    filter: alpha(opacity=80);
+    opacity: 0.7;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /*--IE 8 Transparency--*/
+    left: 0;
+    top: 0;
+    z-index: 90000000000000;
+}
+
+.mystream-item {
+    width: 100%;
+    min-height: 60px;
+}
+
+    .mystream-item .quib-compose-timer-wrapper {
+        top: -34px;
+    }
+
+
+.btn-choose-straeam {
+    padding: 8px;
+    background-color: #FFFFDD;
+    text-align: center;
+}
+
+.header-align {
+    padding: 9px 36px;
+    margin: 0 auto;
+}
+
+
+.quib-item::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    position: relative;
+    left: -2px;
+}
+
+.quib-item::-webkit-scrollbar {
+    width: 10px;
+    background-color: red;
+}
+
+.quib-item::-webkit-scrollbar-thumb {
+    background-color: #BFBFBF;
+}
+
+.RLogin {
+    text-align: right;
+}
+
+
+.bxslider li {
+    text-align: center;
+}
+
+    .bxslider li img {
+        display: inline;
+    }
+
+
+
+
+.bx-wrapper .bx-viewport {
+    box-shadow: none !important;
+    border: none !important;
+    left: 0 !important;
+}
+
+.FolloweeListMOB .follower-item {
+    min-height: 105px;
+}
+
+.title-head, .title-head-community {
+    font-size: 30px;
+}
+
+
+.top-btnBack {
+    position: absolute;
+    top: 10px;
+    left: 6px;
+}
+
+.top-avatar {
+    position: absolute;
+    top: 4px;
+    right: 16px;
+}
+
+
+.topbar-done, .profile-topbar-back {
+    position: absolute;
+    top: 11px;
+    text-decoration: none;
+    left: 6px;
+}
+
+.choose-top-avatar {
+    top: 4px;
+    position: absolute;
+    right: -6px;
+}
+
+.item-inner {
+    margin-bottom: 0 !important;
+    border-radius: 0px !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background-color: #F5F5F5;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+.follower-item-inner {
+    margin-bottom: 0 !important;
+    border-radius: 0px !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+    .follower-item-inner .panel-body {
+        border: none;
+    }
+
+
+.panel-wrap {
+    background-color: #dcdcdc;
+    height: 100%;
+}
+
+body, html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+#mobile-slider .bx-wrapper .bx-controls-direction a {
+    position: absolute;
+    top: 50%;
+    outline: 0;
+    width: 66px;
+    height: 66px;
+    text-indent: -9999px;
+    z-index: 9999;
+}
+
+#mobile-slider .bx-wrapper .bx-controls-direction a {
+    position: absolute;
+    top: 50%;
+    outline: 0;
+    width: 66px;
+    height: 66px;
+    text-indent: -9999px;
+    z-index: 9999;
+}
+
+#mobile-slider .bx-wrapper .bx-prev {
+    display: none !important;
+}
+
+#mobile-slider .bx-wrapper .bx-next {
+    display: none !important;
+}
+
+.top-poster {
+    position: relative;
+    float: left;
+    margin-right: 8px;
+    margin-top: -5px;
+    left: -28px;
+}
+
+.bottom-align {
+    margin-bottom: 10px;
+}
+
+.top-align {
+    margin-top: 10px;
+}
+
+.ui-grid-pager-panel {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.TextWrap div {
+    /*width: 300px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;*/
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+}
+
+.clearBoth {
+    clear: both;
+}
+
+.ui-grid-row {
+}
+
+textarea {
+    resize: none;
+}
+
+.gridedit::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.gridedit::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
+}
+
+.gridedit::-webkit-scrollbar-thumb {
+    background-color: #A9A9AA;
+    border: 2px solid #A9A9AA;
+    border-radius: 10px;
+}
+
+
+.ui-grid-viewport::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.ui-grid-viewport::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
+}
+
+.ui-grid-viewport {
+    -webkit-overflow-scrolling: touch; /* lets it scroll lazy */
+    -webkit-overflow-scrolling: auto;
+}
+
+    .ui-grid-viewport::-webkit-scrollbar-thumb {
+        background-color: #A9A9AA;
+        border: 2px solid #A9A9AA;
+        border-radius: 10px;
+    }
+
+.bx-wrapper {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+
+.home-container {
+    background-color: white;
+    overflow: hidden;
+    height: auto;
+    white-space: nowrap;
+    margin-top: 30px;
+}
+
+.home-item {
+    /*background-color: #dcdcdc;*/
+    width: 100%;
+    left: 0px;
+    /*margin-right: 10px;*/
+    /*margin-bottom: 10px;*/
+    display: inline-block;
+    overflow-y: auto;
+}
+
+.bx-wrapper {
+    padding: 0px 5px !important;
+}
+
+.btn-Qsm {
+    width: 80px !important;
+    padding: 4px 6px;
+}
+
+.quib-profile-detailsQS {
+    margin-left: 5px;
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.35;
+}

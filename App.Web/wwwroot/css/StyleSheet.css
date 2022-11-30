@@ -1,0 +1,53 @@
+﻿body {
+    
+}
+.nav {
+    background-color: #CCCC99;
+    height: 56px !important;
+    width: 100%;
+}
+
+button {
+    margin: 5%;
+    background-color: #990000;
+    border-radius: 16px !important;
+    color: white !important;
+    min-width: 100px !important;
+    border: 0;
+}
+
+input{
+    border-bottom: 1px solid #ccc;
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-top: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    text-transform: lowercase;
+}
+.loginbtn {
+float:right;
+}
+
+.logoimg {
+    float:left;
+}
+#formdiv {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+.button {
+align-items:center;
+}
+.nav top-avatar {
+align-items:end;
+}
+#registerSubmit {
+align-self:center;
+}
+/*nav{
+    background-color: #91B9B8;
+    height: 56px !important;
+    width:100%;
+}*/
