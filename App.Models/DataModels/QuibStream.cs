@@ -13,6 +13,7 @@ namespace App.Models.DataModels
         public QuibStream()
         {
             IsBumped = false;
+           
         }
         public int Id { get; set; }
         public string Body { get; set; }
@@ -33,7 +34,7 @@ namespace App.Models.DataModels
         public string? SeedQuibType { get; set; }
         public bool IsScreenshot { get; set; } = false;
         public string DisplayName { get; set; }
-        public string AvatarBase32ImagePath { get; set; }
+        public string? AvatarBase32ImagePath { get; set; }
     }
   
 }

@@ -27,5 +27,8 @@ namespace App.Services.Interfaces
         public List<time> GetAllQuibTime(int MovieId);
         public List<Poster> GetMoviePosterById(int MovieId);
         public Movie GetMovieById(int id);
+        public List<QuibStream> GetQuibsByMovieIdForInterval(int MovieId, bool QuibZero, string SelectedStream, int StartTime);
+        public List<QuibStream> GetInitialQuibsByMovieId(int MovieId, bool QuibZero, string SelectStream);
+
     } 
 }

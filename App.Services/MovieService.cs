@@ -196,6 +196,43 @@ namespace App.Services
            var movie = GetALLMovie().FirstOrDefault(x=>x.Id == id);
             return movie;
         }
+        public List<QuibStream> GetQuibsByMovieIdForInterval(int MovieId, bool QuibZero,string SelectedStream,int StartTime)
+        {
 
+         
+            var @p_MovieId = MovieId;
+            var @p_isQuibZero = QuibZero;
+            var @p_SelectedStreams = SelectedStream;
+           var @p_StartTime = StartTime;
+            List<QuibStream> quibStreams = new List<QuibStream>();
+            if (QuibZero)
+            {
+                quibStreams = _appDbContext.quibStreams.FromSqlRaw("call GetQuibsByMovieIdForInterval(" + @p_MovieId + "," + @p_isQuibZero + "," + @p_SelectedStreams + "," + @p_StartTime + ");").ToList();
+            }
+            else
+            {
+                quibStreams = _appDbContext.quibStreams.FromSqlRaw("call GetQuibZerosByMovieId(" + @p_MovieId + "," + @p_isQuibZero + "," + @p_SelectedStreams + "," + @p_StartTime + ");").ToList();
+            }
+            return quibStreams;
+        }
+        public List<QuibStream> GetInitialQuibsByMovieId(int MovieId, bool QuibZero,string SelectStream)
+        {
+
+           
+            var @p_MovieId = MovieId;
+            var @p_isQuibZero = QuibZero;
+            var @p_SelectedStreams = SelectStream;
+
+            List<QuibStream> quibStreams = new List<QuibStream>();
+            if (QuibZero)
+            {
+                quibStreams = _appDbContext.quibStreams.FromSqlRaw("call GetInitialQuibsByMovieId(" + @p_MovieId + "," + @p_isQuibZero + "," + @p_SelectedStreams + ");").ToList();
+            }
+            else
+            {
+                quibStreams = _appDbContext.quibStreams.FromSqlRaw("call GetInitialQuibsByMovieId(" + @p_MovieId + "," + @p_isQuibZero + "," + @p_SelectedStreams + ");").ToList();
+            }
+            return quibStreams;
+        }
     }
 }

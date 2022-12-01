@@ -38,5 +38,19 @@ namespace App.Web.Controllers.API
             //var MovieId = HttpContext.Session.GetInt32("MovieId");
             return _adminPanel.GetMovieLength(33);
         }
+        [HttpGet]
+        [Route("/GetQuibsByMovieIdForInterval")]
+        public List<App.Models.DataModels.QuibStream> GetQuibsByMovieIdForInterval(int MovieId, bool QuibZero, string SelectedStream, int StartTime)
+        {
+            return _movieService.GetQuibsByMovieIdForInterval(MovieId,QuibZero,SelectedStream,StartTime);
+
+        }
+        [HttpGet]
+        [Route("/GetInitialQuibsByMovieId")]
+        public List<App.Models.DataModels.QuibStream> GetInitialQuibsByMovieId(int MovieId, bool QuibZero, string SelectStream)
+        {
+            return _movieService.GetInitialQuibsByMovieId(MovieId,QuibZero,SelectStream);
+
+        }
     }
 }
