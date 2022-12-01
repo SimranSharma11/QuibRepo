@@ -116,6 +116,52 @@
         }
 
     }     
+     function SetMoviePoster() {
+    $.ajax({
+        url: "@Context.Request.PathBase" +"/GetMovieById",
+        method: "GET",
+        success: function (response) {
+            if (response != undefined && response != null) {
+
+                //KVW - use file path not base64
+                if (response.length >= 100)
+                    $("#quibZeroMoviePoster").attr("src", response.posterContent);
+                else
+                    $("#quibZeroMoviePoster").attr("src", response.posterContent);
+            }
+            else {
+                alert("Can't complete action at this time. Please try again later.");
+            }
+       
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+
+    });
+
+} 
+function SetMovieThumbnail() {
+    $.ajax({
+        async: false,
+        url:  "@Context.Request.PathBase"+"/MoviePosterById",
+        type: 'Get',
+        dataType: 'text',
+        success: function (response) {
+            if (response != undefined && response != null) {
+                var object = response;
+
+                //KVW - use file path not base64
+                if (object != null && object != undefined && object.PosterContent != null && object.PosterContent != undefined && object.PosterContent != "" && object.PosterContent.length >= 100)
+                    $(".MoviePosterThumb").attr("src", "data:image/jpeg;base64," + object.PosterContent);
+                else
+                    $(".MoviePosterThumb").attr("src", object.PosterContent);
+            }
+        }
+    });
+}
+   SetMovieThumbnail();
 
         $(function () {
             $("#movieSlider").slider();
@@ -903,7 +949,7 @@
     <script type="text/javascript">
 $(document).ready(function() {
     BindBumpClick();
-  
+
 });
     </script>
 </body>

@@ -301,7 +301,7 @@ $(document).ready(function () {
     $('.myStreamQuibTime').formatTime();
 
     // Show movie poster thumbnail in left top corner
-    SetMovieThumbnail();
+ 
 
     // Set user avatar in header
     SetUserAvatar();
@@ -1007,32 +1007,6 @@ function OpenMyStream() {
 }
 
 // quib zero movie poster
-function SetMoviePoster() {
-    $.ajax({
-        url: "https://localhost:7231/MoviePosterById",
-        method: "GET",
-        success: function (response) {
-            if (response != undefined && response != null) {
-
-                //KVW - use file path not base64
-                if (response.length >= 100)
-                    $("#quibZeroMoviePoster").attr("src", "data:image/jpeg;base64," + response);
-                else
-                    $("#quibZeroMoviePoster").attr("src", response);
-            }
-            else {
-                alert("Can't complete action at this time. Please try again later.");
-            }
-       
-
-        },
-        error: function (error) {
-            console.log(error);
-        }
-
-    });
-
-}
 
 /* Prevent display sleep and enable wake lock in all Android and iOS web browsers - NoSleep.js */
 

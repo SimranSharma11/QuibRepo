@@ -1,23 +1,5 @@
 ﻿// Set movie thumbnail on left top corner
-function SetMovieThumbnail() {
-    $.ajax({
-        async: false,
-        url:"https://localhost:7231/GetMovieById",
-        type: 'POST',
-        dataType: 'text',
-        success: function (response) {
-            if (response != undefined && response != null) {
-                var object = JSON.parse(response);
 
-                //KVW - use file path not base64
-                if (object != null && object != undefined && object.PosterContent != null && object.PosterContent != undefined && object.PosterContent != "" && object.PosterContent.length >= 100)
-                    $(".MoviePosterThumb").attr("src", "data:image/jpeg;base64," + object.PosterContent);
-                else
-                    $(".MoviePosterThumb").attr("src", object.PosterContent);
-            }
-        }
-    });
-}
 
 // Set user avatar on right top corner
 function SetUserAvatar() {
