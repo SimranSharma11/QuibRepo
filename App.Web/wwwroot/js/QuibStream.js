@@ -6,8 +6,8 @@ var setmovietime;
 var openmystream;
 var resizemystream;
 var Rheight2;
-var selectedStreams = null;
-var SelectStream = null;
+var selectedStreams = 'null';
+var SelectStream = 'null';
 var imageString;
 
 //Validate User is guest or loggedin
@@ -695,9 +695,8 @@ function LoadInitialQuibsQuibStream() {
 function LoadAllQuibsQuibStream(quibs) {
     //$('#quibContainer').empty();
     //var quibs = GetAllQuibsQuibStream();
-    lstQuibs = JSON.parse(quib);
-    var object = lstQuibs;
-    console.log(object);
+  
+    var object = JSON.parse(quibs);
     var time = 0;
     var bumpSign = '';
     var body = '';
@@ -711,7 +710,7 @@ function LoadAllQuibsQuibStream(quibs) {
 
             body = (object[obj].IsScreenshot == false) ? object[obj].Body : "<img style='height:auto; width:100%;' id='imgScreenshot" + object[obj].Id + "' src='" + object[obj].Body + "' />";
 
-            if (object[obj].IsQuibZero == true)
+            if (object[obj].QuibZero == true)
                 time = 'QUIB ZERO';
             else
                 time = object[obj].Time;
@@ -876,9 +875,9 @@ function GetAllQuibsQuibStream() {
     var content;
     $.ajax({
         async: false,
-        url: localStorage.getItem('environment') + 'QuibStream/GetQuibsByMovieId',
+        url: localStorage.getItem('environment') + '/GetQuibsById',
         dataType: 'text',
-        data: { MovieId: localStorage.getItem('MovieId'), QuibZero: false, selectedStreams: selectedStreams },
+        data: { MovieId: localStorage.getItem('MovieId'), QuibZero: false },
         success: function (response) {
             if (response != undefined && response != null) {
                 content = response;

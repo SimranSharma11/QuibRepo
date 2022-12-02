@@ -37,7 +37,7 @@ function BackClick() {
 // navigate to login page
 function RedirectToLogin(e) {
     e.preventDefault();
-    location.href = localStorage.getItem('environment') + "Login";
+    location.href = localStorage.getItem('environment') + "/Identity/Account/Login";
 }
 
 function queryStringValuefromKey(key) {

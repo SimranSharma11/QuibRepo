@@ -115,15 +115,15 @@ namespace App.Web.Controllers.API
         }
         [HttpGet]
         [Route("/MoviePosterById")]
-        public List<Poster> MoviePosterById()
+        public List<Poster> MoviePosterById(int MovieId)
         {
-         return  _movieService.GetMoviePosterById(33);
+         return  _movieService.GetMoviePosterById(MovieId);
 
         }
         [HttpGet]
         [Route("/GetMovieById")]
-        public Movie GetMovieById() {
-            return _movieService.GetMovieById(33);
+        public Movie GetMovieById(int MovieId) {
+            return _movieService.GetMovieById(MovieId);
         }
     }
 }

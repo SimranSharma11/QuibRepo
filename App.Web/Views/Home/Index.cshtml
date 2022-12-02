@@ -19,9 +19,6 @@
 
 
     <script>
-         
-           var url = '@Context.Request.Path';
-           console.log(url);
         if (localStorage.getItem('environment') == null || localStorage.getItem('environment') == "" || localStorage.getItem('environment').length == 0)
             localStorage.setItem('environment', 'https://localhost:7231');
         $(document).ready(function () {
@@ -30,8 +27,6 @@
         });
 
         // LOCAL
-      
-          localStorage.setItem('environment', 'http://' + url + '/');
         // CLOUD
         //localStorage.setItem('environment', '/QUIB_Dev/');
 

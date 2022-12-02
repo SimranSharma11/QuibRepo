@@ -125,6 +125,7 @@
      function SetMoviePoster() {
     $.ajax({
         url: "@Context.Request.PathBase" +"/GetMovieById",
+        data: { MovieId: localStorage.getItem('MovieId') },
         method: "GET",
         success: function (response) {
             if (response != undefined && response != null) {
@@ -152,6 +153,7 @@ function SetMovieThumbnail() {
     $.ajax({
         async: false,
         url:  "@Context.Request.PathBase"+"/MoviePosterById",
+        data: { MovieId: localStorage.getItem('MovieId') },
         type: 'Get',
         dataType: 'text',
         success: function (response) {

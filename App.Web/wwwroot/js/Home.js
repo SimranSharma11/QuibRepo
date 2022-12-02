@@ -13,7 +13,7 @@ function RedirectToLogin(e) {
 // Visit website as a Guest
 function RedirectToChooseMovie(e) {
     e.preventDefault();
-    location.href = localStorage.getItem('environment') + "ChooseMovie";
+    location.href = localStorage.getItem('environment') + "/ChooseMovie";
 }
 
 // hide loading pop up
