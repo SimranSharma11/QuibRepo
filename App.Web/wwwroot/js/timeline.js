@@ -1,5 +1,5 @@
 ﻿// Timer related variables
-var basePath = localStorage.getItem('environment').split('/')[0];
+
 var movieLength = 0;
 var selectedMovieLength = 0;
 var isRunning = false;

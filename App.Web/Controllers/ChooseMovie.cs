@@ -13,13 +13,14 @@ namespace App.Web.Controllers
         }
         public IActionResult Index()
         {
-
+           
             return View();
 
         }
         public IActionResult QuibStream(int MovieId, bool QuibZero)
         {
-            HttpContext.Session.SetInt32("MovieId", MovieId);
+            HttpContext.Session.SetInt32("MovieId",MovieId);
+           
             var list = _movieService.GetQuibsByMovieId(MovieId, QuibZero);
             return View(list);
         }
