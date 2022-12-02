@@ -35,10 +35,7 @@
     <script src="~/js/Common.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>  
     <script type="text/javascript">
-        // var url = '@Context.Request.Path';
-        //if (localStorage.getItem('environment') == null || localStorage.getItem('environment') == "" || localStorage.getItem('environment').length == 0)
-        //    localStorage.setItem('environment', 'http://' + url + '/');
-              localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
+        localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
         localStorage.setItem('UserId', '@Context.Request.Cookies["UserId"]');
          localStorage.setItem('environment', 'https://localhost:7231');
         function showLoadingGIF() {

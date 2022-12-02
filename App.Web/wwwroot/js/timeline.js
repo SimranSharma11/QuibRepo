@@ -538,7 +538,7 @@ function scrollByNew(x) {
 function drawTimeLine() {
     var obj = GetAllQuibsTime();
     var quibData =obj;
-
+     
     var canvas = document.getElementById('timelineCanvas');
     var canvas_width = $('#timelineCanvas').width();
 
@@ -548,7 +548,7 @@ function drawTimeLine() {
 
     if (canvas.getContext) {
         // Getting the length of movie from database
-        selectedMovieLength = GetQuibAndMovieData();
+        selectedMovieLength = GetQuibAndMovieData().toString();
 
         // Setting the length of scrubbers' sliders
         // movie scrubber
@@ -617,46 +617,55 @@ function ChangeValueAndTime(sliderChosen, timerChosen, timeToChange, isTimer, is
 
 // TIMELINE - Get the lingth of movie
 function GetQuibAndMovieData(callback) {
-    var deferred = $.Deferred();
-    $.ajax({
-        url: "https://localhost:7231/api/QuibStream/GetMovieLength",
-        method: "GET",
-        success: function (res) {
-         
-            if (res != undefined && res != null) {
-                length = res;
-            }
 
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });  
-
-    return deferred.promise();
+    var content;
+    
+        $.ajax({
+            async: false,
+            url: localStorage.getItem('environment') + '/api/QuibStream/GetMovieLength',
+            dataType: 'text',
+            data: { MovieId: localStorage.getItem('MovieId') },
+            success: function (response) {
+                if (response != undefined && response != null) {
+                    var item = JSON.parse(response);
+                    content = item[0].length
+                }
+                else {
+                    alert("Can't complete action at this time. Please try again later.");
+                }
+            },
+        });
+        return content;
 }
-
-// get all quibs time to draw timeline
 function GetAllQuibsTime() {
-    var deferred = $.Deferred();
+    var content;
+    var item=[];
+    var finalReturn = [];
+   
     $.ajax({
-        url: "https://localhost:7231/api/QuibStream/GetAllQuibTime",
-        method: "GET",
-        success: function (res) {
-          
-            if (res != undefined && res != null) {
-                deferred.resolve(res);
-            }
-
+        async: false,
+        url: localStorage.getItem('environment') + '/api/QuibStream/GetAllQuibTime',
+        dataType: 'text',
+        data: {
+            MovieId: localStorage.getItem('MovieId')
         },
-        error: function (error) {
-            console.log(error);
-        }
+        success: function (response) {
+            if (response != undefined && response != null) {
+                item = JSON.parse(response);
+                item.map(item => {
+                    finalReturn.push(item.time);
+                })
+                content = finalReturn;
 
+            }
+            else {
+                alert("Can't complete action at this time. Please try again later.");
+            }
+        },
     });
-
-    return deferred.promise();
-  }
+    return content;
+}
+// get all quibs time to draw timeline
 
 // Close popup modal
 function leaveComposeModalYes() {
