@@ -178,7 +178,7 @@ function StyleMovieList() {
 // Redirect to quib stream page
 function RedirectToQuibStreamPage(MovieId) {
     $('.popup_load').css("display", "block");
-    window.location.href = localStorage.getItem('environment') + "ChooseMovie/QuibStream?MovieId=" + MovieId + "&isQuibZero=" + true;
+    window.location.href = localStorage.getItem('environment') + "/ChooseMovie/QuibStream?MovieId=" + MovieId + "&isQuibZero=" + true;
     setTimeout(function () {
         $('.popup_load').css("display", "none");
     }, 2000);

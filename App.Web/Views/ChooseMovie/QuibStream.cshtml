@@ -48,77 +48,7 @@
             return deferred.promise();
         }
 
-   function btnPlay() {
-        var that = $(this).find('#imgPlayPause');
-
-        enabledisableNoSleep(true);
-        if (IsQuibZeroOpen) {
-            if ($('#txtComposeQuib').val().length > 0) {
-                $('#save-quib-modal').modal('show');
-            }
-            else {
-                resizemystream = true;
-                openmystream = false;
-                $('.my-stream-panel').fadeOut();
-                isNavButtonClick = false;
-
-
-                if ($('#txtComposeQuib').val().length > 0) {
-                    $('#save-quib-modal').modal('show');
-                }
-                else {
-                    showLoadingGIF().then(function() {
-                        // Timer font size and text
-                        // Param : IsQuibZero?
-
-                        FormatTimer(false);
-
-                        IsQuibZeroOpen = false;
-
-                        $('.popup_load').css('display', 'block');
-
-                        // closing my stream panel
-                        $('.my-stream-panel').addClass('hide');
-
-                        // Param : IsQuibZero?
-                        UpdateUIControls(false);
-
-                        $('#quibContainer').empty();
-
-                        LoadInitialQuibsQuibStream();
-                        LoadAllQuibsQuibStream(initialQuibs);
-                        LoadAllQuibsQuibStream(quibs);
-
-
-                        setTimeout(function() {
-                            $('.quib-item').css('visibility', 'visible');
-
-                            UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
-
-                            PlayMovie();
-
-                            // My stream compose timer                                                
-                            $('.quib-compose-timer').formatTime();
-                            $('.popup_load').css('display', 'none');
-                        }, 3000);
-                    });
-                }
-
-            }
-        }
-        else {
-            var quibScrbrStartClick = $('#quibSlider').slider('value');
-            IsIntervalTimeUP = false;
-            isNavButtonClick = false;
-            PlayMovie();
-
-            // button src gets change in playmovie() function
-            //if (that.attr('src') == imgPath + imgNamePause) {
-            //    ClearOnlyQuibsAhead($('#movieSlider').slider('value'));
-            //}
-        }
-
-    }     
+  
      function SetMoviePoster() {
     $.ajax({
         url: "@Context.Request.PathBase" +"/GetMovieById",
@@ -483,7 +413,7 @@ function SetMovieThumbnail() {
                         <img src="~/Images/plus.png" />
                     </a>
                 </div>
-                <a class="btnPlay" style="float: right; position: absolute; top: 2px; right: 18px;" onclick="btnPlay();">.
+                <a class="btnPlay" style="float: right; position: absolute; top: 2px; right: 18px;">
                     <img id="imgPlayPause" src="~/Images/play.png" width="29" height="36" />
                 </a>
             </div>

@@ -101,7 +101,8 @@ $(document).ready(function () {
 
     }
 
-    // PLAY MOVIE
+       
+ // PLAY MOVIE
     function PlayMovie() {
         $('.movie-time-wrapper').css('margin-top', 0)
         isRunning = !isRunning;
@@ -188,7 +189,77 @@ $(document).ready(function () {
     });
 
     // Timer Play button click
-  
+    $('.btnPlay').on('click', function () {
+        var that = $(this).find('#imgPlayPause');
+
+        enabledisableNoSleep(true);
+        if (IsQuibZeroOpen) {
+            if ($('#txtComposeQuib').val().length > 0) {
+                $('#save-quib-modal').modal('show');
+            }
+            else {
+                resizemystream = true;
+                openmystream = false;
+                $('.my-stream-panel').fadeOut();
+                isNavButtonClick = false;
+
+
+                if ($('#txtComposeQuib').val().length > 0) {
+                    $('#save-quib-modal').modal('show');
+                }
+                else {
+                    showLoadingGIF().then(function () {
+                        // Timer font size and text
+                        // Param : IsQuibZero?
+
+                        FormatTimer(false);
+
+                        IsQuibZeroOpen = false;
+
+                        $('.popup_load').css('display', 'block');
+
+                        // closing my stream panel
+                        $('.my-stream-panel').addClass('hide');
+
+                        // Param : IsQuibZero?
+                        UpdateUIControls(false);
+
+                        $('#quibContainer').empty();
+
+                        LoadInitialQuibsQuibStream();
+                        LoadAllQuibsQuibStream(initialQuibs);
+                        LoadAllQuibsQuibStream(quibs);
+
+
+                        setTimeout(function () {
+                            $('.quib-item').css('visibility', 'visible');
+
+                            UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
+
+                            PlayMovie();
+
+                            // My stream compose timer                                                
+                            $('.quib-compose-timer').formatTime();
+                            $('.popup_load').css('display', 'none');
+                        }, 3000);
+                    });
+                }
+
+            }
+        }
+        else {
+            var quibScrbrStartClick = $('#quibSlider').slider('value');
+            IsIntervalTimeUP = false;
+            isNavButtonClick = false;
+            PlayMovie();
+
+            // button src gets change in playmovie() function
+            //if (that.attr('src') == imgPath + imgNamePause) {
+            //    ClearOnlyQuibsAhead($('#movieSlider').slider('value'));
+            //}
+        }
+
+    });
 
     // Toggle timer button click to toggle between running time and remaining time
     $('#TimerToggle').on('click', function () {
