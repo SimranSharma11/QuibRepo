@@ -774,7 +774,7 @@ function LoadAllQuibsQuibStream(quibs) {
                     //    "<img src='/Images/tag.png' />" +
                     //"</a>" +
                     "<a class='img-bump'>" +
-                    "<img src='" + localStorage.getItem('environment') + "Images/bump-red.png' />" +
+                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
                     "</a>" +
                     "</div>" +
                     "<div class='drop-down-icon'>" +

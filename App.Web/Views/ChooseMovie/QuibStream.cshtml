@@ -56,9 +56,9 @@
         method: "GET",
         success: function (response) {
             if (response != undefined && response != null) {
-
+                
                 //KVW - use file path not base64
-                if (response.length >= 100)
+                if (response.length != null)
                     $("#quibZeroMoviePoster").attr("src", response.posterContent);
                 else
                     $("#quibZeroMoviePoster").attr("src", response.posterContent);
@@ -405,7 +405,7 @@ function SetMovieThumbnail() {
                         <img src="~/Images/minus.png" />
                     </a>
                     <div class="movie-time-wrapper">
-                        <input id="movieTimer" type="text" class="form-control movie-timer" value="QUIB ZERO" readonly="readonly"/>
+                        <input id="movieTimer" type="text" class="form-control movie-timer" value="QUIB ZERO" readonly="readonly" title="write a quib"/>
                         <input id="quibTimer" type="text" class="form-control movie-timer" value="QUIB ZERO" readonly="readonly" style="display: none" />
                      
                     </div>
@@ -498,7 +498,7 @@ function SetMovieThumbnail() {
                                                         movie as a whole.
                                                     </div>
                                                     <div class="quibzer0-movieimg" style="text-align: center">
-                                                        <img src="~/Images/movie_posters/full_res/13_Chinatown.jpg" id="quibZeroMoviePoster" />
+                                                        <img src="~/Images/defaultmovieposter.png" id="quibZeroMoviePoster" />
                                                     </div>
                                                     <div class="quibzer0-txt txt2 btnPlay">
                                                         <span style="position: relative; top: -13px;">PLAY TIMELINE QUIBS</span>
@@ -682,14 +682,18 @@ function SetMovieThumbnail() {
     <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 56px; text-align: center; border: 0; background-color: #FFFFCC">
         <div class="container-fluid">
             <div class="scrubber-wrapper" style="display: flex; justify-content: center; padding-top: 5px; background-color: #FFFFCC">
-               
+                <div id="btnQuibZeroDiv" style="float: left;">
+                    <a id="btnQuibZero">
+                        <button class="btn btn-default btn-burgandy" >carousel</button>
+                    </a>
+                </div>
                 <div class="slider" style="padding: 1px 0">
                     <div class="movieSliderWrapper">
                         <div id="movieSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all;" style="height: 16px; border: none; background-color: #FFFFCC">
                             <span id="MovieScrubber" class="ui-slider-handle ui-state-default ui-corner-all movieSlider-span" style=""></span>
                         </div>
                     </div>
-                    <canvas id="timelineCanvas" style="height: 14px; width: 100%; background-color: #FFFFCC"></canvas>
+                    <canvas id="timelineCanvas" style="height: 10px; width: 100%; background-color: #FFFFCC"></canvas>
                     <div class="quibSliderWrapper">
                         <div id="quibSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="height: 16px; border: none; background-color: #FFFFCC">
                             <span id="QuibScrubber" class="ui-slider-handle ui-state-default ui-corner-all quibSlider-span"></span>

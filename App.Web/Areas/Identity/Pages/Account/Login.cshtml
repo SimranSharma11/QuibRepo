@@ -4,7 +4,9 @@
 @{
     ViewData["Title"] = "Quib - Share what you know and love about great movies "; 
 }
-
+<head>
+    <script src="~/js/Home.js"></script>
+</head>
 <body>
     <div class="nav">
         <link rel="stylesheet" href="~/css/site.css"/>
@@ -20,10 +22,10 @@
             </div>
             <ul class="nav navbar-nav rightnav-align hidden-xs" style="margin-top: 12px; margin-right: -8px; float: right">
                   <li>
-                    <button class="btn btn-default btn-burgandy" onclick="RedirectToRegister(event)">Join</button>
+                        <button class="btn btn-default btn-burgandy" onclick="RedirectToRegister(event)">Join</button>
                 </li>
                 <li>
-                    <button class="btn btn-default btn-burgandy" onclick="RedirectToChooseMovie(event)">Visit</button>
+                        <button class="btn btn-default btn-burgandy" onclick="RedirectToChooseMovie(event)">Visit</button>
                 </li>
             </ul>
         </div>

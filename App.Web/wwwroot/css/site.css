@@ -188,9 +188,6 @@ input:focus {
 
     .file-avatar span {
         position: relative;
-        top: -15px;
-        font-style: italic;
-        opacity: 0.6;
     }
 
 .btn-register {
