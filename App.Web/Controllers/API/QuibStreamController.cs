@@ -52,5 +52,12 @@ namespace App.Web.Controllers.API
             return _movieService.GetInitialQuibsByMovieId(MovieId,QuibZero,SelectStream);
 
         }
+        [HttpGet]
+        [Route("/GetQuibByUserIdAndMovieId")]
+        public List<App.Models.DataModels.QuibStream> GetQuibByUserIdAndMovieId(int MovieId, int UserId)
+        {
+            return _movieService.GetQuibByUserIdAndMovieId(MovieId,UserId);
+
+        }
     }
 }

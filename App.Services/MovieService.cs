@@ -234,5 +234,18 @@ namespace App.Services
             }
             return quibStreams;
         }
+        public List<QuibStream> GetQuibByUserIdAndMovieId(int MovieId,int UserId)
+        {
+
+
+            var @p_MovieId = MovieId;
+            var @p_UserId = UserId;
+
+            List<QuibStream> quibStreams = new List<QuibStream>();
+           
+                quibStreams = _appDbContext.quibStreams.FromSqlRaw("call GetQuibByUserIdAndMovieId(" + @p_MovieId + "," + @p_UserId + ");").ToList();
+          
+            return quibStreams;
+        }
     }
 }

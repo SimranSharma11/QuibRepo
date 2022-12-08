@@ -11,6 +11,7 @@ using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
 using App.Models.DataModels;
+using App.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -145,6 +146,7 @@ namespace App.Web.Areas.Identity.Pages.Account
                     Input.AvatarBase32ImagePath.CopyTo(new FileStream(filePath, FileMode.Create));
                 }
                 var user = CreateUser();
+                HttpContext.Session.SetString("UserId",user.Id);
                 user.AvatarBase32ImagePath = filePath;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

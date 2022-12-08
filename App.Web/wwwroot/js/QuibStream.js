@@ -10,6 +10,37 @@ var selectedStreams = 'null';
 var SelectStream = 'null';
 var imageString;
 
+
+function SetMoviePoster() {
+    $.ajax({
+        url: localStorage.getItem('environment') + "/GetMovieById",
+        data: { MovieId: localStorage.getItem('MovieId') },
+        method: "GET",
+        success: function (response) {
+            if (response != undefined && response != null) {
+                $(".movietitle").text(response.title);
+
+                //KVW - use file path not base64
+                if (response.length != null)
+                    $("#quibZeroMoviePoster").attr("src", response.posterContentThumb);
+
+                else
+                    $("#quibZeroMoviePoster").attr("src", response.posterContentThumb);
+
+            }
+            else {
+                alert("Can't complete action at this time. Please try again later.");
+            }
+
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+
+    });
+
+}
 //Validate User is guest or loggedin
 function ValidateUserSession() {
     var deferred = $.Deferred();
@@ -277,7 +308,7 @@ $(document).ready(function () {
 
     // Close my stream panel
     $('#CloseStream').on('click', function () {
-
+        $('#prevOpenCompose').css('visibility', 'hidden');
         resizemystream = true;
         openmystream = false;
         if (!setbool) {
@@ -559,6 +590,7 @@ function BindBumpClick() {
 // Open my stream on quib-timestamp click
 function BindQuibTimeStampClick() {
     $('.quib-compose-timer').on('click', function () {
+        $('#prevOpenCompose').css('visibility','visible');
         if (localStorage.getItem('UserId') != null && localStorage.getItem('UserId') != undefined && localStorage.getItem('UserId') != 0) {
             ComposeQuibTime = $(this).val();
             UpdateComposeTime(ComposeQuibTime);
@@ -686,6 +718,7 @@ function LoadInitialQuibsQuibStream() {
         "<div class='panel-body' style='padding: 0 ;height:100%'>" +
         "<div style='font-size: 24px; font-weight: bold; color: black;padding:7% 0px'>Timeline quibs for</div>" +
         "<img src='" + $('.MoviePosterThumb').attr('src') + "' />" +
+     
         "</div>" +
         "</div>" +
         "</div>");
@@ -984,6 +1017,7 @@ function OpenMyStream() {
     resizemystream = false;
     if (localStorage.getItem('UserId') == '30') {
         $('#register-modal').modal('show');
+       
     }
     else {
 

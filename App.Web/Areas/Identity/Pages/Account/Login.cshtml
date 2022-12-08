@@ -6,6 +6,10 @@
 }
 <head>
     <script src="~/js/Home.js"></script>
+    <script>
+        localStorage.setItem('UserId', '@HttpContext.Session.GetString("UserId")');
+
+    </script>
 </head>
 <body>
     <div class="nav">

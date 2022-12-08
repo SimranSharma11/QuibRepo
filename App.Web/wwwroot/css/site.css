@@ -562,6 +562,7 @@ input:focus {
 
 .panel-body {
     border: #E6E6E6 solid 1px;
+    margin-left:4%;
 }
 
 .movie-item .panel-body {
@@ -2186,6 +2187,11 @@ body, html {
     left: -28px;
 }
 
+.movietitle {
+    margin-top: -33px;
+    margin-left: 39px;
+    font-size: large;
+}
 .bottom-align {
     margin-bottom: 10px;
 }

@@ -88,7 +88,10 @@
     <link href="~/css/main.css" rel="stylesheet" />
     <script src="~/js/Home.js"></script>
     <script src="~/js/Register.js"></script>
- 
+ <script>
+        localStorage.setItem('UserId', '@HttpContext.Session.GetString("UserId")');
+      
+ </script>
     </head>
 <body>
 
