@@ -146,13 +146,13 @@ namespace App.Web.Areas.Identity.Pages.Account
                 }
                 var user = CreateUser();
                 user.AvatarBase32ImagePath = filePath;
-                //await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "ChooseMovie");
+                  
                     //_logger.LogInformation("User created a new account with password.");
 
                     //var userId = await _userManager.GetUserIdAsync(user);
@@ -177,14 +177,15 @@ namespace App.Web.Areas.Identity.Pages.Account
                     //    return LocalRedirect(returnUrl);
                     //}
                 }
-                //foreach (var error in result.Errors)
-                //{
-                //    ModelState.AddModelError(string.Empty, error.Description);
-                //}
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
             }
 
             // If we got this far, something failed, redisplay form
-            return Page();
+            //return Page();
+            return RedirectToAction("Index", "ChooseMovie");
         }
 
         private ApplicationUser CreateUser()

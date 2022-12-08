@@ -37,6 +37,7 @@
     <script type="text/javascript">
         localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
         localStorage.setItem('UserId', '@Context.Request.Cookies["UserId"]');
+         localStorage.setItem('UserId', '@Context.Session.GetString("UserId")');
          localStorage.setItem('environment', 'https://localhost:7231');
         function showLoadingGIF() {
             var deferred = $.Deferred();

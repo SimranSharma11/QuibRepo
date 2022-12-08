@@ -807,7 +807,7 @@ function LoadAllQuibsQuibStream(quibs) {
                     "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     "<a class='img-bump'>" +
-                    "<img src='" + localStorage.getItem('environment') + "Images/bump-red.png' />" +
+                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
                     "</a>" +
                     "</div>" +
                     "<div class='drop-down-icon'>" +

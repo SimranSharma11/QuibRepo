@@ -47,7 +47,7 @@ function CurrentQuib() {
 // Update compose timer
 function UpdateComposeTime(time) {
     if (!IsIntervalTimeUP) {
-        if (!($('#txtComposeQuib').val().length > 0 || $('#image').attr('src').length > 0)) {
+        if (!($('#txtComposeQuib').val().length > 0 || ($('#image').attr('src') && $('#image').attr('src').length > 0))) {
             if (time == 'NaN:NaN:NaN') {
                 $('#BtnSave').html('QUIB ZERO');
             }
