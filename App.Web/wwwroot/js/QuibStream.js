@@ -792,12 +792,12 @@ function LoadAllQuibsQuibStream(quibs) {
             if (!object[obj].isScreenshot) {
                 $('#quibContainer').append("<div class='quib-item " + time + "'  time='Parent_" + time + "' style='visibility:hidden'> " +
                     "<div class='panel panel-default quib-item-inner inner1'>" +
-                    "<div class='panel-body' style='padding: 0;'>" +
+                    "<div class='panel-body' style='padding: 0;background-color:#990000;color:white;'>" +
                     "<div class='quib-compose-wrapper'>" +
                     "<div class='quib-compose-header'>" +
                     //"<img src='data:image/jpeg;base64," + avatar + "' class='avatar-quibcomposer' />" +
-                    "<img src='" + avatar + "' class='avatar-quibcomposer' />" +
-                    "<span class='composer-name " + SeedquibClass + "' style='font-weight: bold'> " + object[obj].displayName + "</span>" +
+                    //"<img src='" + avatar + "' class='avatar-quibcomposer' />" +
+                    //"<span class='composer-name " + SeedquibClass + "' style='font-weight: bold'> " + object[obj].displayName + "</span>" +
                     "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
                     "<div class='quib-compose-timer-wrapper'>" +
                     "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
