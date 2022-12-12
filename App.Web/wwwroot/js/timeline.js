@@ -181,8 +181,7 @@ $(document).ready(function () {
 
             $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
 
-            isSliderSync = true;
-            isNavButtonClick = false;
+         
             ChangeValueAndTime('#quibSlider', '#timer', $('#movieSlider').slider('value'), false, true);
             ClearQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick);
         }
@@ -192,14 +191,14 @@ $(document).ready(function () {
             $('#save-quib-modal').modal('show');
         }
         else {
-            var quibScrbrStartClick = $('#movieSlider').slider('value');
-
+           
+            var quibScrbrStartClick = $('#quibSlider').slider('value');
             $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
 
             isSliderSync = true;
             isNavButtonClick = false;
             ChangeValueAndTime('#movieSlider', '#timer', $('#quibSlider').slider('value'), false, true);
-            ClearQuibsAhead($('#quibSlider').slider('value'), quibScrbrStartClick);
+            ClearQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick);
         }
     });
 
