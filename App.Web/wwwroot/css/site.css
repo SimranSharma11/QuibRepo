@@ -15,7 +15,11 @@
     border: 0;
 }
 
-
+.seedquibtimer {
+    margin: 12%;
+    color: #990000 !important;
+    margin-left: 23px !important;
+}
 .navbar-custom {
     background-color: #CCCC99 !important;
     height: 56px !important;
@@ -488,18 +492,18 @@ input:focus {
 
 
 .quib-compose-timer {
-    margin: 5%;
     font-size: 9px;
     height: 13px;
     width: 62px;
     border-radius: 11px;
     text-align: center;
     padding: 2px 3px 1px 3px;
-    background-color: white !important;
+    background-color: #990000 !important;
     border: 0;
-    color: #990000;
+    color: white;
     cursor: pointer;
     display: inline-block;
+    margin-left: -30px;
 }
 
 .quib-compose-header {
@@ -547,17 +551,13 @@ input:focus {
     top: -32px;
     text-align: center;
 }
-.HilightQuib .quib-compose-timer {
-    color: white !important;
-    background-color: #990000 !important;
-}
-    .HilightQuib .quib-item-inner {
+
+.HilightQuib .quib-item-inner {
 }
 
 .HilightQuib .panel-body {
     border: 1px solid #FFFFCC;
     background-color: #FFFFCC !important;
-    color: black !important;
 }
 
 .HilightQuibZero .panel-body {
@@ -1975,7 +1975,6 @@ input:focus {
     border-radius: 0px !important;
     border: 0 !important;
     box-shadow: none !important;
-    background-color: #F5F5F5;
     width: 96% !important;
     margin: 0 auto !important;
 }

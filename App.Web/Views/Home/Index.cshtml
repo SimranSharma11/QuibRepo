@@ -19,6 +19,7 @@
 
 
     <script>
+
         if (localStorage.getItem('environment') == null || localStorage.getItem('environment') == "" || localStorage.getItem('environment').length == 0)
             localStorage.setItem('environment', 'https://localhost:7231');
         $(document).ready(function () {
@@ -117,7 +118,7 @@
                 </a>
             </div>
             <ul class="nav navbar-nav rightnav-align hidden-xs" style="margin-top: 12px; margin-right: -8px; float: right">
-            @if (string.IsNullOrEmpty(Context.Session.GetString("UserId" )))
+            @if (Context.Session.GetString("UserId") != null)
             {
                 <li>
                     <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="window.location.href='@Url.Action("Index", "ChooseMovie")'">Continue</button>

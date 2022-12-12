@@ -187,6 +187,21 @@ $(document).ready(function () {
             ClearQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick);
         }
     });
+    $('#btn-resyncmovie').on('click', function () {
+        if ($('#txtComposeQuib').val().length > 0) {
+            $('#save-quib-modal').modal('show');
+        }
+        else {
+            var quibScrbrStartClick = $('#movieSlider').slider('value');
+
+            $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
+
+            isSliderSync = true;
+            isNavButtonClick = false;
+            ChangeValueAndTime('#movieSlider', '#timer', $('#quibSlider').slider('value'), false, true);
+            ClearQuibsAhead($('#quibSlider').slider('value'), quibScrbrStartClick);
+        }
+    });
 
     // Timer Play button click
     $('.btnPlay').on('click', function () {

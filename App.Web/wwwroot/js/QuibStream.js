@@ -240,8 +240,9 @@ $(document).ready(function () {
                 $('#save-quib-modal').modal('show');
             }
             else {
-                ValidateUserSession().then(function (res) {
-                    if (res) {
+                var userid = localStorage.getItem("UserId");
+                // ValidateUserSession().then(function (res) {
+                if (userid.length != 0) {
                         setmovietimer = ComposeQuibTime;
                         UpdateComposeTime(ComposeQuibTime);
 
@@ -256,7 +257,7 @@ $(document).ready(function () {
                     else {
                         $('#guest-login-modal').modal('show');
                     }
-                });
+              //  });
             }
         }
     });
@@ -425,7 +426,7 @@ $(document).ready(function () {
 
     $('#btnChooseStream').on('click', function () {
         if (localStorage.getItem('UserId') != null && localStorage.getItem('UserId') != undefined && localStorage.getItem('UserId') != 0) {
-            window.location.href = localStorage.getItem('environment') + "ChooseStream?MovieId=" + queryStringValuefromKey('MovieId');
+            window.location.href = localStorage.getItem('environment') + "/ChooseStream?MovieId=" + localStorage.getItem("MovieId");
         }
         else {
             $('#guest-login-modal').modal('show');
@@ -435,7 +436,7 @@ $(document).ready(function () {
     // On click on movie poster go to Choose Movie page
     $('.MoviePosterThumb').on('click', function () {
         if ($('.my-stream-panel').is(':hidden')) {
-            window.location.href = localStorage.getItem('environment') + "ChooseMovie";
+            window.location.href = localStorage.getItem('environment') + "/ChooseMovie";
         }
         else {
             if ($('#txtComposeQuib').val().length > 0) {
@@ -452,7 +453,7 @@ $(document).ready(function () {
     $('.unposted-quibs').on('change', function () {
         $.ajax({
             //async: false,
-            url: localStorage.getItem('environment') + 'QuibStream/GetQuibByUserIdAndMovieId',
+            url: localStorage.getItem('environment') + '/GetQuibByUserIdAndMovieId',
             type: 'POST',
             dataType: 'text',
             success: function (response) {
@@ -792,6 +793,45 @@ function LoadAllQuibsQuibStream(quibs) {
             if (!object[obj].isScreenshot) {
                 $('#quibContainer').append("<div class='quib-item " + time + "'  time='Parent_" + time + "' style='visibility:hidden'> " +
                     "<div class='panel panel-default quib-item-inner inner1'>" +
+                    "<div class='panel-body' style='padding: 0;'>" +
+                    "<div class='quib-compose-wrapper'>" +
+                    "<div class='quib-compose-header'>" +
+                    //"<img src='data:image/jpeg;base64," + avatar + "' class='avatar-quibcomposer' />" +
+                    "<img src='" + avatar + "' class='avatar-quibcomposer' />" +
+                    "<span class='composer-name " + SeedquibClass + "' style='font-weight: bold'> " + object[obj].displayName + "</span>" +
+                    "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
+                    "<div class='quib-compose-timer-wrapper'>" +
+                    "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
+                    "</div>" +
+                    "<div class='compose-side-header' style='float: right'>" +
+                    //"<a class='img-tag'>" +
+                    //    "<img src='/Images/tag.png' />" +
+                    //"</a>" +
+                    "<a class='img-bump'>" +
+                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
+                    "</a>" +
+                    "</div>" +
+                    "<div class='drop-down-icon'>" +
+                    "<ul>" +
+                    "<li onclick='FollowUser(" + object[obj].userId + ")' data-toggle='modal' data-target='#follower-modal'>Follow</li>" +
+                    "<li onclick='GotoProfile(" + object[obj].userId + ")'>See Profile</li>" +
+                    "<li onclick='GotoQuibStack(" + object[obj].userId + "," + object[obj].movieId + ")'>See Stream</li>" +
+                    //'<li onclick=' + gotoQuibStack + '>See Stream</li>' +
+                    "</ul>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='quib-composer " + SeedquibClass + "'>" +
+                    body +
+                    "</div>" +
+                    bumpSign +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>");
+            }
+          else if (!object[obj].isSeedQuib) {
+                $('#quibContainer').append("<div class='quib-item " + time + "'  time='Parent_" + time + "' style='visibility:hidden'> " +
+                    "<div class='panel panel-default quib-item-inner inner1'>" +
                     "<div class='panel-body' style='padding: 0;background-color:#990000;color:white;'>" +
                     "<div class='quib-compose-wrapper'>" +
                     "<div class='quib-compose-header'>" +
@@ -800,7 +840,7 @@ function LoadAllQuibsQuibStream(quibs) {
                     //"<span class='composer-name " + SeedquibClass + "' style='font-weight: bold'> " + object[obj].displayName + "</span>" +
                     "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
                     "<div class='quib-compose-timer-wrapper'>" +
-                    "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
+                    "<input type='text' class='form-control quib-compose-timer seedquibtimer'style='background-color:white !important;' value='" + time + "' readonly='true' />" +
                     "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
@@ -860,6 +900,8 @@ function LoadAllQuibsQuibStream(quibs) {
                     "</div>" +
                     "</div>");
             }
+
+
 
         }
     }
@@ -1015,7 +1057,9 @@ function OpenMyStream() {
     openmystream = true;
 
     resizemystream = false;
-    if (localStorage.getItem('UserId') == '30') {
+    var userid = localStorage.getItem("UserId");
+    
+    if (userid.length == 0) {
         $('#register-modal').modal('show');
        
     }

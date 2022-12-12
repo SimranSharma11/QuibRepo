@@ -13,12 +13,11 @@
     
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
-    <link href="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"/>
-     <link href="~/css/cropper.css" rel="stylesheet" />
   
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js" integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous">
-      </script>
+     <link href="~/css/cropper.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
       <link href="~/css/jquery-ui.min.css" rel="stylesheet"/>
      <script src="~/lib/jquery/dist/placeholder.js"></script>
     <script src="~/lib/jquery/dist/jquery-timer.js"></script>
@@ -70,7 +69,7 @@
         }
 
         $(document).ready(function () {
-
+            SetMovieThumbnail();
             function scrollByNew(x) {
                 sliderflag = false;
                 $('#quib-list').stop().animate({
@@ -345,7 +344,7 @@
         <div class="header-align" style="">
             <div class="col-md-6 col-lg-6 col-sm-6 hidden-xs">
                 <div class="top-poster">
-                    <img src="~/Images/jawsMoviePoster_33x48.png" height="48" width="34" class="MoviePosterThumb" style="margin-left: -6px;" />
+                    <img src="~/Images/movie_posters/full_res/5_Pulp Fiction.jpg" height="48" width="34" class="MoviePosterThumb" style="margin-left: -6px;" />
                     <div class="movietitle"></div>
                 </div>
               
@@ -660,6 +659,11 @@
                     </div>
                 </div>
                 <div id="btn-resynquib" style="float: left; margin-left: 20px; padding-top: 2px">
+                    <a>
+                        <img src="~/Images/re%20sync.png" />
+                    </a>
+                </div>
+                 <div id="btn-resyncmovie" style="float: left; margin-left: 20px; padding-top: 2px">
                     <a>
                         <img src="~/Images/re%20sync.png" />
                     </a>

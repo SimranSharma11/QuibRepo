@@ -176,18 +176,12 @@ function LoadAllMovies(res) {
                                 "<div class='panel-body' style='padding: 0'>" +
 
                             "<div class='quib-profile-header'>" +
-                                "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" +
+                    ((object[obj].posterContentThumb != null && object[obj].posterContentThumb != undefined && object[obj].posterContentThumb != "" && object[obj].posterContentThumb.length >= 100) ?
+                        "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" : "<img src='" + object[obj].posterContentThumb + "'/>") +
                                 "<div class='quib-profile-details'>" +
                                     "<div>" + object[obj].title + "</div>" +
                                     "<div>" + object[obj].releaseYear + "</div>" +
                                     "<div>" + object[obj].director + "</div>" +
-                                "</div>" +
-                            "</div>" +
-
-                            "<div class='quib-profile-img'>" +
-                                "<div class='play-quibs-wrap'>" +
-                                    "<span class='play-quib-inner'>PLAY QUIBS</span>" +
-                                    "<img class='play-quib-img' src='" + localStorage.getItem('environment') + "/Images/play.png'>" +
                                 "</div>" +
                             "</div>" +
                             "</div>" +
@@ -231,18 +225,12 @@ function LoadRecentMovies(res) {
                 "<div class='panel-body' style='padding: 0'>" +
 
                 "<div class='quib-profile-header'>" +
-                "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" +
+                    ((object[obj].posterContentThumb != null && object[obj].posterContentThumb != undefined && object[obj].posterContentThumb != "" && object[obj].posterContentThumb.length >= 100) ?
+                        "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" : "<img src='" + object[obj].posterContentThumb + "'/>") +
                 "<div class='quib-profile-details'>" +
                 "<div>" + object[obj].title + "</div>" +
                 "<div>" + object[obj].releaseYear + "</div>" +
                 "<div>" + object[obj].director + "</div>" +
-                "</div>" +
-                "</div>" +
-
-                "<div class='quib-profile-img'>" +
-                "<div class='play-quibs-wrap'>" +
-                "<span class='play-quib-inner'>PLAY QUIBS</span>" +
-                "<img class='play-quib-img' src='" + localStorage.getItem('environment') + "/Images/play.png'>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +
@@ -286,18 +274,12 @@ function LoadActiveMovies(res) {
                 "<div class='panel-body' style='padding: 0'>" +
 
                 "<div class='quib-profile-header'>" +
-                "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" +
+                    ((object[obj].posterContentThumb != null && object[obj].posterContentThumb != undefined && object[obj].posterContentThumb != "" && object[obj].posterContentThumb.length >= 100) ?
+                        "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" : "<img src='" + object[obj].posterContentThumb + "'/>") +
                 "<div class='quib-profile-details'>" +
                 "<div>" + object[obj].title + "</div>" +
                 "<div>" + object[obj].releaseYear + "</div>" +
                 "<div>" + object[obj].director + "</div>" +
-                "</div>" +
-                "</div>" +
-
-                "<div class='quib-profile-img'>" +
-                "<div class='play-quibs-wrap'>" +
-                "<span class='play-quib-inner'>PLAY QUIBS</span>" +
-                "<img class='play-quib-img' src='" + localStorage.getItem('environment') + "/Images/play.png'>" +
                 "</div>" +
                 "</div>" +
                 "</div>" +

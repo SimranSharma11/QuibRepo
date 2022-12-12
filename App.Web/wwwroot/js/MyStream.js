@@ -502,47 +502,54 @@ function AddQuib() {
 // MY STREAM - Get all quibs from database for a user
 function GetQuibByUserIdAndMovieId() {
     var content;
+    var deferred = $.Deferred();
     $.ajax({
-        url: localStorage.getItem('environment') + '/QuibStream/GetQuibByUserIdAndMovieId',
-        type: 'POST',
+        async: false,
+        url: localStorage.getItem('environment') + '/GetQuibByUserIdAndMovieId',
+        type: 'get',
         dataType: 'text',
+        data: { movieId: queryStringValuefromKey("movieId") },
         success: function (response) {
             if (response != undefined && response != null) {
                 content = response;
                 LoadAllQuibsMyStream(response);
+                deferred.resolve(JSON.parse(response));
             }
             else {
                 alert("Can't complete action at this time. Please try again later.");
+                deferred.resolve(response);
             }
+
         },
         complete: function (jqXHR, status) {
             $('.popup_load').css('display', 'none');
         }
     });
+    return deferred.promise();
 }
 
 // MY STREAM - Get all quibs from database for a user
-function GetQuibByUserIdAndMovieId1() {
-    var content;
-    $.ajax({
-        async: false,
-        url: localStorage.getItem('environment') + '/QuibStream/GetQuibByUserIdAndMovieId',
-        type: 'POST',
-        dataType: 'text',
-        success: function (response) {
-            if (response != undefined && response != null) {
-                content = response;
-                LoadAllQuibsMyStream(response);
-            }
-            else {
-                alert("Can't complete action at this time. Please try again later.");
-            }
-        },
-        complete: function (jqXHR, status) {
-            $('.popup_load').css('display', 'none');
-        }
-    });
-}
+//function GetQuibByUserIdAndMovieId1() {
+//    var content;
+//    $.ajax({
+//        async: false,
+//        url: localStorage.getItem('environment') + '/GetQuibByUserIdAndMovieId',
+//        type: 'get',
+//        dataType: 'text',
+//        success: function (response) {
+//            if (response != undefined && response != null) {
+//                content = response;
+//                LoadAllQuibsMyStream(response);
+//            }
+//            else {
+//                alert("Can't complete action at this time. Please try again later.");
+//            }
+//        },
+//        complete: function (jqXHR, status) {
+//            $('.popup_load').css('display', 'none');
+//        }
+//    });
+//}
 
 // MY STREAM - Loading all quibs we got from database for a user
 function LoadAllQuibsMyStream(quibs) {

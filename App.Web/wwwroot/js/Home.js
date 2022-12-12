@@ -1,4 +1,5 @@
-﻿// Some scripts are on .cshtml page as well
+﻿
+// Some scripts are on .cshtml page as well
 function RedirectToRegister(e) {
     e.preventDefault();
     location.href = localStorage.getItem('environment') + "/Identity/Account/Register";

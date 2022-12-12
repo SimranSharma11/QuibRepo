@@ -15,18 +15,18 @@ function SetMovieThumbnail() {
 
             if (response != undefined && response != null) {
                 var object = JSON.parse(response);
-                console.log(object[0].posterContent);
+             
                 //KVW - use file path not base64
                 if (object != null && object[0].posterContent.length >= 100)
 
                     $(".MoviePosterThumb").attr("src", "data:image/jpeg;base64," + object[0].posterContent);
                 else
+
                     $(".MoviePosterThumb").attr("src", object[0].posterContent);
             }
         }
     });
 }
-SetMovieThumbnail();
 // Set user avatar on right top corner
 function SetUserAvatar() {
     if (localStorage.getItem('UserId') != null && localStorage.getItem('UserId') != undefined && localStorage.getItem('UserId').length > 0 && parseInt(localStorage.getItem('UserId')) > 0) {
