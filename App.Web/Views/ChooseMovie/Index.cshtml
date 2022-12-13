@@ -34,7 +34,31 @@
             <div class=" chooseMovieTitle" style="padding-top: 7px; float: left; margin-left: 50px">
                 <span>What we're quibbing</span>
 </div>
-       
+        <ul class="nav top-avatar">
+            @if (Context.Session.Id  == null)
+            {
+                <li>
+                    <button onclick="window.location.href='@Url.Action("Index", "Login")'" class="btn-burgandy btn-guest-login">Log In</button>
+                </li>
+            }
+            else if (ViewBag.AvatarBase64Thumb == null || ViewBag.AvatarBase64Thumb == "undefined" || ViewBag.AvatarBase64Thumb == "")
+            {
+
+                <li>
+                    @*<img src=@Url.Content("~/Images/avatar.png") height="48" width="48" id="ImgAvtrLogo" />*@
+                    <img src=@Url.Content("~/Images/avatar_thumb.png") height="48" width="48" class="ImgAvtrLogo" />
+                </li>
+            }
+            else
+            {
+
+                <li>
+                    @*<img src=@Url.Content("~/Images/avatar.png") height="48" width="48" id="ImgAvtrLogo" />*@
+                    <img src=@Url.Content("~/Images/avatar_thumb.png") height="48" width="48" id="ImgAvtrLogo" />
+                </li>
+
+            }
+        </ul>
         </div>
         <!-- /.container-fluid -->
     </nav>
@@ -109,6 +133,7 @@
 
 @*Setting avatar image in header*@
 <script type="text/javascript">
+    console.log(@Context.Request.PathBase);
     var playQuib_01_imgPath = '@Url.Content("~/Images/playQuib_01.png")';
     $(document).ready(function () {
         $("#ImgAvtrLogo").attr("src", "data:image/jpeg;base64," + '@ViewBag.AvatarBase64Thumb');

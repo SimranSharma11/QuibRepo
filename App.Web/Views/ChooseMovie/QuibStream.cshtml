@@ -37,7 +37,7 @@
     <script type="text/javascript">
         localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
        
-         localStorage.setItem('environment', 'https://localhost:7231');
+       
         function showLoadingGIF() {
             var deferred = $.Deferred();
             $('.popup_load').css('display', 'block');
@@ -511,7 +511,7 @@
                         <img src="~/Images/minus.png" />
                     </a>
                     <div class="movie-time-wrapper">
-                        <input id="movieTimer" type="text" class="form-control movie-timer" value="QUIB ZERO" readonly="readonly" title="write a quib"/>
+                        <input id="movieTimer" type="text" class="form-control movie-timer" value="" readonly="readonly" title="write a quib"/>
                         <input id="quibTimer" type="text" class="form-control movie-timer" value="QUIB ZERO" readonly="readonly" style="display: none" />
                      
                     </div>

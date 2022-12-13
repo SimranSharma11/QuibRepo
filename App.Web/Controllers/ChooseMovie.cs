@@ -1,5 +1,6 @@
 ﻿using App.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Principal;
 
 namespace App.Web.Controllers
 {
@@ -13,7 +14,8 @@ namespace App.Web.Controllers
         }
         public IActionResult Index()
         {
-           
+            
+            HttpContext.Session.GetString("UserId");
             return View();
 
         }
@@ -23,6 +25,11 @@ namespace App.Web.Controllers
            
             var list = _movieService.GetQuibsByMovieId(MovieId, QuibZero);
             return View(list);
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return View("Index");  
         }
     }
 }

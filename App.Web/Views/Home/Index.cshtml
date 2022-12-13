@@ -19,9 +19,12 @@
 
 
     <script>
-
+     
+        var url = "@Context.Request.Host";
+        var userid = localStorage.getItem("UserId");
         if (localStorage.getItem('environment') == null || localStorage.getItem('environment') == "" || localStorage.getItem('environment').length == 0)
-            localStorage.setItem('environment', 'https://localhost:7231');
+      
+            localStorage.setItem('environment', 'https://' + url );
         $(document).ready(function () {
             $('.bxslider').bxSlider({
             });
@@ -118,13 +121,14 @@
                 </a>
             </div>
             <ul class="nav navbar-nav rightnav-align hidden-xs" style="margin-top: 12px; margin-right: -8px; float: right">
-            @if (Context.Session.GetString("UserId") != null)
+             @*(Context.Session.GetString("UserId") != null)*@
+                @if (Context.Request.Cookies.ContainsKey("UserId") == null)
             {
                 <li>
                     <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="window.location.href='@Url.Action("Index", "ChooseMovie")'">Continue</button>
                 </li>
                 <li>
-                    <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="window.location.href='@Url.Action("Logout", "Login")'">Log Out</button>
+                        <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="window.location.href='@Url.Action("Logout", "ChooseMovie")'">Log Out</button>
                 </li>
             }
             else

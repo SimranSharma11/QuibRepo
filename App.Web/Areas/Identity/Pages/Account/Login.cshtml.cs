@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using App.Models.DataModels;
 using Org.BouncyCastle.Bcpg;
+using System.Security.Claims;
 
 namespace App.Web.Areas.Identity.Pages.Account
 {
@@ -112,8 +113,7 @@ namespace App.Web.Areas.Identity.Pages.Account
             
             if (ModelState.IsValid)
             {
-                var user = await _userManager.GetUserAsync(User);
-                var UserId = user.Id;
+               
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
