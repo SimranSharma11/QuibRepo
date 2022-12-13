@@ -122,13 +122,13 @@
             </div>
             <ul class="nav navbar-nav rightnav-align hidden-xs" style="margin-top: 12px; margin-right: -8px; float: right">
              @*(Context.Session.GetString("UserId") != null)*@
-                @if (Context.Request.Cookies.ContainsKey("UserId") == null)
+                @if (Context.User.Identity.IsAuthenticated)
             {
                 <li>
                     <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="window.location.href='@Url.Action("Index", "ChooseMovie")'">Continue</button>
                 </li>
                 <li>
-                        <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="window.location.href='@Url.Action("Logout", "ChooseMovie")'">Log Out</button>
+                        <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="RedirectToLogout(event)">Log Out</button>
                 </li>
             }
             else

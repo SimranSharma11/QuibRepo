@@ -10,7 +10,10 @@ function RedirectToLogin(e) {
     e.preventDefault();
     location.href = localStorage.getItem('environment') + "/Identity/Account/Login";
 }
-
+function RedirectToLogout(e) {
+    e.preventDefault();
+    location.href = localStorage.getItem('environment') + "/Identity/Account/Logout";
+}
 // Visit website as a Guest
 function RedirectToChooseMovie(e) {
     e.preventDefault();

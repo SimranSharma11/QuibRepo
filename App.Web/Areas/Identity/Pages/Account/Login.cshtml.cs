@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using App.Models.DataModels;
 using Org.BouncyCastle.Bcpg;
 using System.Security.Claims;
+using MySqlX.XDevAPI;
 
 namespace App.Web.Areas.Identity.Pages.Account
 {
@@ -26,11 +27,12 @@ namespace App.Web.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
-        }
+            _userManager = userManager;
+    }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -119,6 +121,12 @@ namespace App.Web.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = _userManager.Users.Where(x => x.Email == Input.Email).ToList();
+                    user.ForEach(x =>
+                    {
+                        var id = x.Id;
+                  HttpContext.Session.SetString("user_id", id); 
+                    });
                     _logger.LogInformation("User logged in.");
                     //return LocalRedirect(returnUrl);
                     return RedirectToAction("Index", "ChooseMovie");

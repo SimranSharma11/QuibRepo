@@ -14,8 +14,6 @@ namespace App.Web.Controllers
         }
         public IActionResult Index()
         {
-            
-            HttpContext.Session.GetString("UserId");
             return View();
 
         }
