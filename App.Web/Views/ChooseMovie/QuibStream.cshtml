@@ -69,7 +69,7 @@
         }
 
         $(document).ready(function () {
-            SetMovieThumbnail();
+         
         function btnPlay()
         {
                 var that = $(this).find('#imgPlayPause');
@@ -123,7 +123,7 @@
                                     // My stream compose timer
                                     $('.quib-compose-timer').formatTime();
                                     $('.popup_load').css('display', 'none');
-                                }, 3000);
+                                }, 1000);
                             });
                         }
 
@@ -223,6 +223,7 @@
 
                 });
             }
+            SetMovieThumbnail();
             function scrollByNew(x) {
                 sliderflag = false;
                 $('#quib-list').stop().animate({

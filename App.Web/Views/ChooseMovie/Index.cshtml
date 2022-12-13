@@ -16,7 +16,7 @@
   <script src="~/js/movie.js"></script>
     <script src="~/js/Common.js"></script>
     <script src="~/lib/jquery/dist/jquery.touchSwipe.js"></script>
- 
+    <script src="~/js/Home.js"></script>
 
     <style>
         .quib-profile-header {
@@ -38,7 +38,7 @@
             @if (!(Context.User.Identity.IsAuthenticated))
             {
                 <li>
-                    <button onclick="window.location.href='@Url.Action("Index", "Login")'" class="btn-burgandy btn-guest-login">Log In</button>
+                    <button onclick="RedirectToLogin(event)" class="btn-burgandy btn-guest-login">Log In</button>
                 </li>
             }
             else if (ViewBag.AvatarBase64Thumb == null || ViewBag.AvatarBase64Thumb == "undefined" || ViewBag.AvatarBase64Thumb == "")

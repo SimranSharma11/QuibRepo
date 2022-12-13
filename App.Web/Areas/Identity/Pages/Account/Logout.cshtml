@@ -3,14 +3,39 @@
 @{
     ViewData["Title"] = "Log out";
 }
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/css/site.css" />
 <header>
+    <nav class="navbar navbar-default navbar-custom" style="margin-bottom: 0">
+        <div class="container-fluid">
+            <div>
+                <a class="navbar-brand" href="#" style="margin-top: -5px">
+                    <img src=@Url.Content("~/Images/logo.png") width="77" height="34" />
+                </a>
+            </div>
+            <ul class="nav navbar-nav rightnav-align hidden-xs" style="/*margin-top: 12px; margin-right: -8px;*/flex-direction:unset; float: right">
+                <li>
+                    <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="RedirectToLogin(event)">Log In</button>
+                </li>
+
+                <li>
+                    <button class="btn btn-default btn-burgandy" onclick="RedirectToRegister(event)">Join</button>
+                </li>
+                <li>
+                    <button class="btn btn-default btn-burgandy" onclick="RedirectToChooseMovie(event)">Visit</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="wrap" style="margin: 5%;">
     <h1>@ViewData["Title"]</h1>
     @{
         if (User.Identity.IsAuthenticated)
         {
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Identity/Account/Login")" method="post">
-                <button type="submit" class="btn btn-default btn-burgandy">Click here to Logout</button>
+                <button type="submit" class="btn btn-default btn-burgandy" style="height:5%;">
+                    Click here to Logout
+                </button>
             </form>
         }
         else
@@ -18,4 +43,5 @@
             <p>You have successfully logged out of the application.</p>
         }
     }
+    </div>
 </header>
