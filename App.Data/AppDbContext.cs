@@ -25,6 +25,8 @@ namespace App.Data
         public DbSet<movies> movies { get; set; }
         public DbSet<Movie> movie { get; set; }
         public DbSet<QuibStream> quibStreams { get; set; }
+
+        public DbSet<quibs> quibs { get; set; }
         public DbSet<time> Time { get; set; }
         public DbSet<Length> length { get; set; }
         public DbSet<Poster> posters { get; set; }

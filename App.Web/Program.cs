@@ -26,6 +26,7 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
 builder.Services.AddTransient<IEmailSender, SendMail>();
 builder.Services.AddTransient<IMovieService, MovieService>();
 builder.Services.AddTransient<IAdminPanel, AdminPanel>();
+builder.Services.AddTransient<IQuibStreamService, QuibStreamService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddMvc()
        .AddSessionStateTempDataProvider();
