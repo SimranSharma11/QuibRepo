@@ -33,6 +33,7 @@
     <script src="~/js/timer.js"></script>
     <script src="~/js/TagMap.js"></script>
     <script src="~/js/Common.js"></script>
+    <script src="~/js/Home.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>  
     <script type="text/javascript">
         localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
@@ -527,15 +528,18 @@
            @* <div class="col-md-4 col-lg-3 col-sm-6 hidden-sm hidden-xs"></div>*@
             <div class="col-md-2 col-lg-2 col-sm-2 hidden-sm hidden-xs">
                 <ul class="nav " style="float: right; margin-top: -6px; margin-right: -34px;">
-                    @if (TempData["UserId"] == "GUEST")
+                    @if (!(Context.User.Identity.IsAuthenticated))
                     {
-                        <li>
-                            <button onclick="window.location.href='@Url.Action("Logout", "Login")'" class="btn-burgandy btn-guest-login">Log In</button>
+                        <li style=" position: absolute;top: 12px;right: 31px;">
+                            <button onclick="RedirectToLogin(event)" class="btn-burgandy btn-guest-login">Log In</button>
                         </li>
                     }
                     else
                     {
-                        <li>
+                        <li style=" position: absolute;top: 3px;right: 40px;">
+                            <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="RedirectToLogout(event)">Log Out</button>
+                        </li>
+                        <li style="position: absolute;top: -5px; right: -22px;">
                             <img src=@Url.Content("~/Images/avatar_thumb.png") height="48" width="48" id="ImgAvtrLogo" />
                         </li>
                     }
@@ -695,12 +699,12 @@
                         </div>
                     </div>
                 </div>
-                <div id="btn-resynquib" style="float: left; margin-left: 20px; padding-top: 2px">
+                <div id="btn-resynquib" style="float: left; margin-left: 20px; padding-top: 2px"title="Resync Quib">
                     <a>
                         <img src="~/Images/re%20sync.png" />
                     </a>
                 </div>
-                <div id="btn-resyncmovie" style="float: left; margin-left: 20px; padding-top: 2px">
+                <div id="btn-resyncmovie" style="float: left; margin-left: 20px; padding-top: 2px" title="Resync Movie">
                     <a>
                         <img src="~/Images/re%20sync.png" />
                     </a>
@@ -721,7 +725,7 @@
                 </div>
                 <div class="modal-footer">
                     @*<button type="button" class="btn btn-custom" onclick="window.location.href = '@Url.Action("Logout", "Login")'">Register now</button>*@
-                    <button type="button" class="btn btn-custom" onclick="window.location.href = '@Url.Action("Logout", "Register")'">Register now</button>
+                    <button type="button" class="btn btn-custom" onclick="RedirectToRegister(event)">Register now</button>
                     <button type="button" class="btn btn-custom" data-dismiss="modal">No thanks</button>
                 </div>
             </div>

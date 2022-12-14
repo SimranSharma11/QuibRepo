@@ -34,24 +34,28 @@
             <div class=" chooseMovieTitle" style="padding-top: 7px; float: left; margin-left: 50px">
                 <span>What we're quibbing</span>
 </div>
-        <ul class="nav top-avatar">
+        <ul class="nav avatar">
             @if (!(Context.User.Identity.IsAuthenticated))
             {
-                <li>
+                <li style=" position: absolute;top: 12px;right: 31px;">
                     <button onclick="RedirectToLogin(event)" class="btn-burgandy btn-guest-login">Log In</button>
                 </li>
             }
             else if (ViewBag.AvatarBase64Thumb == null || ViewBag.AvatarBase64Thumb == "undefined" || ViewBag.AvatarBase64Thumb == "")
             {
-
-                <li>
+                <li style=" position: absolute;top: 12px;right: 95px;">
+                    <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="RedirectToLogout(event)">Log Out</button>
+                </li>
+                <li style="position: absolute;top: 4px; right: 31px;">
                     @*<img src=@Url.Content("~/Images/avatar.png") height="48" width="48" id="ImgAvtrLogo" />*@
                     <img src=@Url.Content("~/Images/avatar_thumb.png") height="48" width="48" class="ImgAvtrLogo" />
                 </li>
             }
             else
             {
-
+                <li>
+                    <button class="btn btn-default btn-burgandy" style="text-align: center;" id="btnLogin" onclick="RedirectToLogout(event)">Log Out</button>
+                </li>
                 <li>
                     @*<img src=@Url.Content("~/Images/avatar.png") height="48" width="48" id="ImgAvtrLogo" />*@
                     <img src=@Url.Content("~/Images/avatar_thumb.png") height="48" width="48" id="ImgAvtrLogo" />
