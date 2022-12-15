@@ -17,7 +17,12 @@
     <script src="~/js/Common.js"></script>
     <script src="~/lib/jquery/dist/jquery.touchSwipe.js"></script>
     <script src="~/js/Home.js"></script>
-
+    <script>
+       
+        if ("@Context.User.Identity.IsAuthenticated" === "True") {
+        localStorage.setItem("UserId", "@Context.Session.GetString("user_id")");
+        }
+    </script>
     <style>
         .quib-profile-header {
             background-color: #FFFFCC;

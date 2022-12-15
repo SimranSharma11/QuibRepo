@@ -211,8 +211,9 @@ $(document).ready(function () {
 
     // MY STREAM - Compose quib button click - opening my stream panel
     $('#btn-composequib').on('click', function () {
-        ValidateUserSession().then(function (res) {
-            if (res) {
+        var userid = localStorage.getItem("UserId");
+        if (userid.length != 0) 
+{
                 $('#txtComposeQuib').focus();
                 setmovietimer = $('#movieTimer').val();
                 showLoadingGIF().then(function () {
@@ -223,15 +224,16 @@ $(document).ready(function () {
                         OpenMyStream();
                     }, 100);
                 });
-            } else {
+        }
+        else {
                 $('#guest-login-modal').modal('show');
             }
-        });
+       
     });
 
     // Open My Stream
     $('#movieTimer').on('click', function () {
-
+        $('#prevOpenCompose').css('visibility', 'visible');
         resizemystream = false;
         ComposeQuibTime = $('#movieTimer').val();
         if (!openmystream) {
@@ -264,9 +266,8 @@ $(document).ready(function () {
 
     // Key press in compose quib area
     $('#txtComposeQuib').on('input propertychange paste', function () {
-        ValidateUserSession().then(function (res) {
-            if (res) {
-
+        var userid = localStorage.getItem("UserId");
+  if (userid.length != 0) {
                 if ($("#txtComposeQuib").val().trim().length > 0) {
 
                     if (ComposeQuibTime == null || ComposeQuibTime == undefined || ComposeQuibTime.length == 0)
@@ -304,7 +305,7 @@ $(document).ready(function () {
             else {
                 $('#guest-login-modal').modal('show');
             }
-        });
+    
     });
 
     // Close my stream panel
@@ -361,8 +362,8 @@ $(document).ready(function () {
     // Save quib from quib comose aream
     $('#BtnSave').on('click', function () {
 
-        ValidateUserSession().then(function (res) {
-            if (res) {
+        var userid = localStorage.getItem("UserId");
+        if (userid.length != 0)  {
 
                 // Cant save blank quib
                 if ($("#txtComposeQuib").val().trim().length > 0 || $('#image').attr('src').length > 0) {
@@ -392,10 +393,11 @@ $(document).ready(function () {
                 $('#txtComposeQuib').val('');
                 $('#txtComposeQuib').focus();
                 ComposeQuibTime = null;
-            } else {
+        }
+        else {
                 $('#guest-login-modal').modal('show');
             }
-        });
+       
 
 
     });

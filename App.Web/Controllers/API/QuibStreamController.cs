@@ -11,11 +11,13 @@ namespace App.Web.Controllers.API
     {
         private readonly IMovieService _movieService;
         private readonly IAdminPanel _adminPanel;
+        private readonly IQuibStreamService _quibStreamService;
 
-        public QuibStreamController(IMovieService movieService,IAdminPanel adminPanel)
+        public QuibStreamController(IMovieService movieService,IAdminPanel adminPanel,IQuibStreamService quibStreamService)
         {
             _movieService = movieService;
             _adminPanel = adminPanel;
+            _quibStreamService = quibStreamService;
         }
         [HttpGet]
         [Route("/GetQuibsById")]
@@ -58,6 +60,11 @@ namespace App.Web.Controllers.API
         {
             return _movieService.GetQuibByUserIdAndMovieId(MovieId,UserId);
 
+        }
+        [HttpPost]
+        public void AddBump(quibs quibs)
+        { 
+        _quibStreamService.AddQuib(quibs);  
         }
     }
 }
