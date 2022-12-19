@@ -20,6 +20,7 @@ function RedirectToChooseMovie(e) {
     location.href = localStorage.getItem('environment') + "/ChooseMovie";
 }
 
+
 // hide loading pop up
 //$('document').ready(function (){
 //    $('.popup_load').css("display", "none");

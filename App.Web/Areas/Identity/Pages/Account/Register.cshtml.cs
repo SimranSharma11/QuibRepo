@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using MySqlX.XDevAPI;
+using Org.BouncyCastle.Crypto.Tls;
 
 namespace App.Web.Areas.Identity.Pages.Account
 {
@@ -133,7 +134,13 @@ namespace App.Web.Areas.Identity.Pages.Account
 
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+            var existingUser = _userManager.FindByEmailAsync(Input.Email);
+            //if (existingUser.Result != null)
+            //{
+            //    ModelState.AddModelError("Email", "User with this email already exists");
+            //    return Page();
+            //}
+            if (ModelState.IsValid && existingUser.Result == null)
             {
                 string uniqueFileName = null;
                 string filePath = null;

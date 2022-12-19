@@ -72,12 +72,14 @@
         <!-- /.container-fluid -->
     </nav>
     <div class="all">
-      <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80% ;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
-                <span>Recent Quibs</span>
-  </div>
+    @if ((Context.User.Identity.IsAuthenticated))
+    {
+        <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80% ;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
+            <span>Recent Quibs</span>
+        </div>
 
-  <div class="container-fluid">
-        <div class="row">
+        <div class="container-fluid">
+            <div class="row">
             @*loading overlay*@
            <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
                <div class="recent-container" id="RecentMovieList" style="margin-top:5px">
@@ -86,7 +88,7 @@
                </div>
         </div>
     </div>
-
+    }
       <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80%;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
          <span>Most Active Quibs</span>
   </div>

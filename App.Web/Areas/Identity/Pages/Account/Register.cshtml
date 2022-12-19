@@ -65,8 +65,9 @@
       <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post"enctype="multipart/form-data">
                
             <div class="form-group ">
-                    @Html.TextBoxFor(p => p.Input.Email, new { autocompletetype = "disabled", @maxlength = "254", @class = "form-control", @placeholder = "Email", style = "text-transform: lowercase" })      
-                       <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                    @Html.TextBoxFor(p => p.Input.Email, new { autocompletetype = "disabled", @maxlength = "254",@id = "emailId", @class = "form-control", @placeholder = "Email", @onblur = "return ValidateEmail()", style = "text-transform: lowercase", @type = "email" })
+                                     <span asp-validation-for="Input.Email" id="EmailError" class="text-danger"></span>
+                  
             </div>
 
              <div class="form-group">

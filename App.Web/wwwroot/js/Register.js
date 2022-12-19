@@ -82,13 +82,15 @@ setTimeout(function () {
 
 // validate new email address
 function ValidateEmail() {
+    var emailId = $("#emailId").val();
     $.ajax({
-        url: localStorage.getItem('environment') + 'Register/ValidateEmail',
-        type: 'POST',
+       
+        url: localStorage.getItem('environment') + '/api/QuibStream/validate?email=' + emailId,
+        type: 'get',
         dataType: 'text',
-        data: { email: $("#Email").val() },
+    
         success: function (response) {
-            if (response == 'False') {
+            if (response == 'false') {
                 $("#EmailError").text("This email address is already registered.");
                 $("#Email").focus();
             }
