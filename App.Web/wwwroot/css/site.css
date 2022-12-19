@@ -570,7 +570,7 @@ input:focus {
     margin-left:4%;
 }
 
-.movie-item .panel-body {
+.movie-item .panel-body,.recentmovie-item,.activemovie-item {
     cursor: pointer;
 }
 

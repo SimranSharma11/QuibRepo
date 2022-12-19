@@ -704,10 +704,10 @@ function ChangeValueAndTime(sliderChosen, timerChosen, timeToChange, isTimer, is
 function GetQuibAndMovieData(callback) {
 
     var content;
-    
+    var MovieId = localStorage.getItem("MovieId");
         $.ajax({
             async: false,
-            url: localStorage.getItem('environment') + '/api/QuibStream/GetMovieLength',
+            url: localStorage.getItem('environment') + '/api/QuibStream/GetMovieLength?MovieId=' + MovieId,
             dataType: 'text',
             data: { MovieId: localStorage.getItem('MovieId') },
             success: function (response) {
@@ -726,10 +726,10 @@ function GetAllQuibsTime() {
     var content;
     var item=[];
     var finalReturn = [];
-   
+    var MovieId = localStorage.getItem("MovieId");
     $.ajax({
         async: false,
-        url: localStorage.getItem('environment') + '/api/QuibStream/GetAllQuibTime',
+        url: localStorage.getItem('environment') + '/api/QuibStream/GetAllQuibTime?MovieId=' + MovieId,
         dataType: 'text',
         data: {
             MovieId: localStorage.getItem('MovieId')

@@ -233,7 +233,7 @@ $(document).ready(function () {
 
     // Open My Stream
     $('#movieTimer').on('click', function () {
-        $('#prevOpenCompose').css('visibility', 'visible');
+     
         resizemystream = false;
         ComposeQuibTime = $('#movieTimer').val();
         if (!openmystream) {
@@ -254,6 +254,7 @@ $(document).ready(function () {
 
                         if ($('.my-stream-panel').is(':hidden')) {
                             OpenMyStream();
+                            $('#prevOpenCompose').css('visibility', 'visible');
                         }
                     }
                     else {
@@ -593,8 +594,9 @@ function BindBumpClick() {
 // Open my stream on quib-timestamp click
 function BindQuibTimeStampClick() {
     $('.quib-compose-timer').on('click', function () {
-        $('#prevOpenCompose').css('visibility','visible');
-        if (localStorage.getItem('UserId') != null && localStorage.getItem('UserId') != undefined && localStorage.getItem('UserId') != 0) {
+       
+        var userid = localStorage.getItem("UserId");
+        if (userid.length != 0) {
             ComposeQuibTime = $(this).val();
             UpdateComposeTime(ComposeQuibTime);
             //TempComposeTime = $(this).val();
@@ -622,6 +624,7 @@ function BindQuibTimeStampClick() {
                 }
             }
             $('#txtComposeQuib').focus();
+            $('#prevOpenCompose').css('visibility', 'visible');
         }
         else {
             $('#guest-login-modal').modal('show');
