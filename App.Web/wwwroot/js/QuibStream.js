@@ -279,7 +279,7 @@ $(document).ready(function () {
 
                     if (setbool) {
                         var Rheight = $('.mystream-panel-content').height();
-                        Rheight = Rheight - 104;uploadimage
+                        Rheight = Rheight - 104;
                         $('.mystream-panel-content').css('height', parseInt(Rheight));
 
                         $('.my-stream-compose').css('height', '160px');

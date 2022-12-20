@@ -1,6 +1,7 @@
 ﻿using App.Data;
 using App.Models.DataModels;
 using App.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace App.Services
         {
             _appDbContext = appDbContext;
         }
-        public void AddQuib(quibs quib)
+        public IQueryable<quibs> AddQuib(quibs quib) 
         {
             var @p_Body = quib.Body;
             var @p_UserId = quib.UserId;
@@ -29,10 +30,23 @@ namespace App.Services
             var @p_IsSeedQuib = quib.IsSeedQuib;
             var @p_SeedQuibType = quib.SeedQuibType;
             var p_IsScreenshot = quib.IsScreenshot;
-            var query = "call AddQuib(" + @p_Body + "," + @p_UserId + "," + @p_ParentId + "," + @p_Time + "," + @p_IsQuibZero + "," + @p_MovieId + "," + @p_IsSeedQuib + "," + @p_SeedQuibType + "," + p_IsScreenshot + ");"  ;
-            _appDbContext.quibs.FromSqlRaw("call AddQuib(" + @p_Body + "," + @p_UserId + "," + @p_ParentId + "," + @p_Time + "," + @p_IsQuibZero + "," + @p_MovieId + "," + @p_IsSeedQuib + "," + @p_SeedQuibType + "," + p_IsScreenshot + ");");
-            _appDbContext.SaveChangesAsync();
-
+         
+           var quibS = _appDbContext.quibs.FromSqlRaw("call AddQuib('" + @p_Body + "'," + @p_UserId + "," + @p_ParentId + "," + @p_Time + "," + @p_IsQuibZero + "," + @p_MovieId + "," + @p_IsSeedQuib + ",'" + @p_SeedQuibType + "'," + p_IsScreenshot + ");");
+            return quibS;
+        }
+        public void DeleteQuibById(int Id)
+        {
+            var @p_Id = Id;
+            var query = "call DeleteQuibById(" + @p_Id + ")";
+            var deletequib = _appDbContext.quibs.FromSqlRaw("call DeleteQuibById(" + @p_Id + ")");
+        }
+        
+        public IQueryable<quibs> UpdateQuibPostedDate(int Id, string Body)
+        { 
+        var p_Id = Id;  
+        var p_Body = Body;
+            var updatequib = _appDbContext.quibs.FromSqlRaw("call UpdateQuibPostedDate("+ p_Id + ",'" + p_Body + "')");
+            return updatequib;
         }
     }
 }

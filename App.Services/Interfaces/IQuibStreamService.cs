@@ -9,6 +9,8 @@ namespace App.Services.Interfaces
 {
     public interface IQuibStreamService
     {
-        public void AddQuib(quibs quib);
+        public IQueryable<quibs> AddQuib(quibs quib);
+        public void DeleteQuibById(int Id);
+        public IQueryable<quibs> UpdateQuibPostedDate(int Id,string Body);
     }
 }

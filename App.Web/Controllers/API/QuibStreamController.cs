@@ -67,15 +67,19 @@ namespace App.Web.Controllers.API
         }
         [HttpPost]
         [Route("AddQuib")]
-        public void AddQuib(string body,int Time,bool isSeedQuib,string isSeedQuibType)
-        {
+        public IQueryable<quibs> AddQuib(string body,string UserId, int ParentId,int Time,bool isSeedQuib,string isSeedQuibType,int MovieId,bool isScreenShot)
+        { 
             quibs quib = new quibs();
             quib.Body = body;
             quib.Time = Time;   
             quib.IsSeedQuib= isSeedQuib;    
-            quib.SeedQuibType= isSeedQuibType;  
-           
-            _quibStreamService.AddQuib(quib);
+            quib.SeedQuibType= isSeedQuibType;
+            quib.MovieId = MovieId;
+            quib.UserId = 66;
+            quib.ParentId = ParentId;
+            quib.IsQuibZero = Time == 0 ? true : false;
+            quib.IsScreenshot= isScreenShot;    
+           return _quibStreamService.AddQuib(quib);
         }
         [HttpGet]
         [Route("validate")]
@@ -100,6 +104,18 @@ namespace App.Web.Controllers.API
             }
 
             return isValid;
+        }
+        [HttpDelete]
+        [Route("DeleteQuibById")]
+        public void DeleteQuibById(int Id)
+        {
+            _quibStreamService.DeleteQuibById(Id);
+        }
+        [HttpPut]
+        [Route("UpdateQuibPostedDate")]
+        public IQueryable<quibs> UpdateQuibPostedDate(int Id, string Body)
+        {
+          return  _quibStreamService.UpdateQuibPostedDate(51671 , Body);
         }
     }
 }
