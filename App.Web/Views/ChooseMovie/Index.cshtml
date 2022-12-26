@@ -71,74 +71,120 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <div class="all">
-    @if ((Context.User.Identity.IsAuthenticated))
-    {
-        <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80% ;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
-            <span>Recent Quibs</span>
-        </div>
 
-        <div class="container-fluid">
-            <div class="row">
-            @*loading overlay*@
-           <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
-               <div class="recent-container" id="RecentMovieList" style="margin-top:5px">
-                           @*Adding the list of movies here dynamically*@
-                  </div>
-               </div>
-        </div>
-    </div>
-    }
-      <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80%;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
-         <span>Most Active Quibs</span>
-  </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-lg-3">
+            @if ((Context.User.Identity.IsAuthenticated))
+            {
+                <div class="row">
 
-    <div class="container-fluid">
-        <div class="row">
-            @*loading overlay*@
-           <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
-                <div class="active-container" id="ActiveMovieList" style="margin-top:5px" >
-                           @*Adding the list of movies here dynamically*@
+                    <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80% ;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
+                        <h4 style="padding-right:5%;">Recent Quibs</h4>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin:0%;padding:0%;">
+                        <div class="recent-container" id="RecentMovieList" style="margin-top:5px">
+                            @*Adding the list of movies here dynamically*@
                         </div>
-                  </div>
+                    </div>
+                </div>
+            }
+            <div class="row">
+
+                <div class=" chooseMovieTitle" style="padding-top: 7px; float: right; margin-left: 80%;background-color: #CCCC99;color: #990000;width:100%;text-align:right ">
+                    <h4 style="padding-right:5%;">Most Active Quibs</h4>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin:0%;padding:0%;">
+                    <div class="active-container" id="ActiveMovieList" style="margin-top:5px">
+                        @*Adding the list of movies here dynamically*@
+                    </div>
+                </div>
             </div>
+            @if((!Context.User.Identity.IsAuthenticated))
+            {
+            <div class="row">
+                <div class=" chooseMovieTitle" style="padding-top: 7px; float:right; /*margin-right: 67%;*/ background-color: #CCCC99;color: #990000;width:100%;text-align:right; ">
+                    <h4 style="padding-right:5%;">Alphabetical Order</h4>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12" style="width:110%;margin-left: -19px;">
+                    <div id="test" style="width:100%;">
+                    </div>
+
+                </div>
+            </div>
+            }
         </div>
-          
-     <div class=" chooseMovieTitle" style="padding-top: 7px; float:right; margin-left: 80%;background-color: #CCCC99;color: #990000;width:100%;text-align:right; ">
-              <span>Alphabetical Order</span>
-  </div>
-  
-      <div class="container-fluid" id="xyz">
-        <div class="row">
-            @*loading overlay*@
+        <div class="col-md-9 col-sm-9 col-lg-9">
+            @* after login*@
+            @if ((Context.User.Identity.IsAuthenticated))
+            {
+                <div class="row">
+                    <div class="col-md-4 col-xs-4 col-md-4">
+                        <div class=" chooseMovieTitle" style="padding-top: 7px; background-color: #CCCC99;color: #990000;width:100%;text-align:right; ">
+                            <h4 style="padding-right:5%;">Alphabetical Order</h4>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
             <div class="popup_load" style="position: absolute; -moz-user-select: none; display: block">
                 <div class="fade12"></div>
                 <div>
                     <img src="~/Images/loadingImg.gif" class="popup_busy" alt="Processing..." />
                 </div>
             </div>
-            <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
-                <div class="choose-movie-wrapper" style="padding: 0 10px">
-                    <div class="choose-movie-list" >
-                        <div class="movie-container" id="MovieList" style="height: calc(100% - 68px);">
-                            @*Adding the list of movies here dynamically*@
+           @* before login*@
+            @if (!(Context.User.Identity.IsAuthenticated))
+            {
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left: 6px;padding:0%;">
+                    <div class="choose-movie-wrapper" style="padding: 0 -11px">
+                        <div class="choose-movie-list">
+                            <div class="movie-container" id="MovieList" style="height: calc(100% - 68px);">
+                                @*Adding the list of movies here dynamically*@
+                            </div>
                         </div>
                     </div>
+                    <div class="prev-arrows">
+                        <span class=" left" aria-hidden="true" style="left: -24px;">
+                            <img src=@Url.Content("~/Images/left-arrow.png") />
+                        </span>
+                    </div>
+                    <div class="next-arrows">
+                        <span class="right " aria-hidden="true" style="right: -13px;">
+                            <img src=@Url.Content("~/Images/right-arrow.png") />
+                        </span>
+                    </div>
                 </div>
-                <div class="prev-arrows">
-                    <span class=" left" aria-hidden="true" style="left: 4px;">
-                        <img src=@Url.Content("~/Images/left-arrow.png") />
-                    </span>
+            }
+            @if (Context.User.Identity.IsAuthenticated)
+            {
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left: 6px;padding:0%;">
+                    <div class="choose-movie-wrapper" style="padding: 0 -11px">
+                        <div class="choose-movie-list">
+                            <div class="movie-container" id="MovieAfterLogin" style="height: calc(100% - 68px);">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prev-arrows">
+                        <span class=" left" aria-hidden="true" style="left: -24px;">
+                            <img src=@Url.Content("~/Images/left-arrow.png") />
+                        </span>
+                    </div>
+                    <div class="next-arrows">
+                        <span class="right " aria-hidden="true" style="right: -13px;">
+                            <img src=@Url.Content("~/Images/right-arrow.png") />
+                        </span>
+                    </div>
                 </div>
-                <div class="next-arrows">
-                    <span class="right " aria-hidden="true" style="right: 2px;">
-                        <img src=@Url.Content("~/Images/right-arrow.png") />
-                    </span>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
-    </div>
+</div>
+
+
 
 </html>
 
@@ -199,32 +245,103 @@ function GetData() {
 }
 function LoadAllMovies(res) {
     var deferred = $.Deferred();
-    $('#MovieList').empty();
+        var id = localStorage.getItem("UserId");
+        console.log(id);
+            $('#MovieList').empty();
     var result = JSON.stringify(res);
     var object = JSON.parse(result);
 
     for (var obj in object) {
-        if (res.hasOwnProperty(obj)) {
+            if("@Context.User.Identity.IsAuthenticated"==="False"){
+                if (parseInt(obj) === 0 && localStorage.getItem("UserId") != "") {
+                    $("#test").append("<div class='movie' style='top: 0px; left: 0px;width:100%;' onclick='RedirectToQuibStreamPage(" + object[obj].id + ")'>" +
 
-    $("#MovieList").append("<div class='movie-item' style='top: 0px; left: 0px;' onclick='RedirectToQuibStreamPage(" + object[obj].id + ")'>" +
+                        "<div class='panel panel-default movie-item-inner'>" +
+                        "<div class='panel-body' style='padding: 0'>" +
 
-                       "<div class='panel panel-default movie-item-inner'>" +
-                                "<div class='panel-body' style='padding: 0'>" +
+                        "<div class='quib-profile-header'>" +
+                        ((object[obj].posterContentThumb != null && object[obj].posterContentThumb != undefined && object[obj].posterContentThumb != "" && object[obj].posterContentThumb.length >= 100) ?
+                            "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" : "<img src='" + object[obj].posterContentThumb + "'/>") +
+                        "<div class='quib-profile-details'>" +
+                        "<div>" + object[obj].title + "</div>" +
+                        "<div>" + object[obj].releaseYear + "</div>" +
+                        "<div>" + object[obj].director + "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>");
+
+                }
+
+                else if (parseInt(obj) <= 2 && localStorage.getItem("UserId") === "") {
+                    $("#test").append("<div class='movie' style='top: 0px; left: 0px;width:100%;' onclick='RedirectToQuibStreamPage(" + object[obj].id + ")'>" +
+
+                        "<div class='panel panel-default movie-item-inner'>" +
+                        "<div class='panel-body' style='padding: 0'>" +
+
+                        "<div class='quib-profile-header'>" +
+                        ((object[obj].posterContentThumb != null && object[obj].posterContentThumb != undefined && object[obj].posterContentThumb != "" && object[obj].posterContentThumb.length >= 100) ?
+                            "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" : "<img src='" + object[obj].posterContentThumb + "'/>") +
+                        "<div class='quib-profile-details'>" +
+                        "<div>" + object[obj].title + "</div>" +
+                        "<div>" + object[obj].releaseYear + "</div>" +
+                        "<div>" + object[obj].director + "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>");
+
+                }
+                else {
+                    if (res.hasOwnProperty(obj)) {
+                        console.log(obj)
+                        $("#MovieList").append("<div class='movie-item' style='top: 0px; left: 0px;' onclick='RedirectToQuibStreamPage(" + object[obj].id + ")'>" +
+
+                            "<div class='panel panel-default movie-item-inner'>" +
+                            "<div class='panel-body' style='padding: 0'>" +
 
                             "<div class='quib-profile-header'>" +
-                    ((object[obj].posterContentThumb != null && object[obj].posterContentThumb != undefined && object[obj].posterContentThumb != "" && object[obj].posterContentThumb.length >= 100) ?
-                        "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" : "<img src='" + object[obj].posterContentThumb + "'/>") +
-                                "<div class='quib-profile-details'>" +
-                                    "<div>" + object[obj].title + "</div>" +
-                                    "<div>" + object[obj].releaseYear + "</div>" +
-                                    "<div>" + object[obj].director + "</div>" +
-                                "</div>" +
+                            ((object[obj].posterContentThumb != null && object[obj].posterContentThumb != undefined && object[obj].posterContentThumb != "" && object[obj].posterContentThumb.length >= 100) ?
+                                "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" : "<img src='" + object[obj].posterContentThumb + "'/>") +
+                            "<div class='quib-profile-details'>" +
+                            "<div>" + object[obj].title + "</div>" +
+                            "<div>" + object[obj].releaseYear + "</div>" +
+                            "<div>" + object[obj].director + "</div>" +
                             "</div>" +
                             "</div>" +
                             "</div>" +
+                            "</div>" +
+                            "</div>");
+                    }
+                }
+
+            
+            }else{
+                if (res.hasOwnProperty(obj)) {
+                    $("#MovieAfterLogin").append("<div class='movie-item' style='top: 0px; left: 0px;' onclick='RedirectToQuibStreamPage(" + object[obj].id + ")'>" +
+
+                        "<div class='panel panel-default movie-item-inner'>" +
+                        "<div class='panel-body' style='padding: 0'>" +
+
+                        "<div class='quib-profile-header'>" +
+                        ((object[obj].posterContentThumb != null && object[obj].posterContentThumb != undefined && object[obj].posterContentThumb != "" && object[obj].posterContentThumb.length >= 100) ?
+                            "<img src='data:image/jpeg;base64," + object[obj].posterContentThumb + "'/>" : "<img src='" + object[obj].posterContentThumb + "'/>") +
+                        "<div class='quib-profile-details'>" +
+                        "<div>" + object[obj].title + "</div>" +
+                        "<div>" + object[obj].releaseYear + "</div>" +
+                        "<div>" + object[obj].director + "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
                         "</div>");
-        }
+                }
+            }
+
     }
+
     deferred.resolve('success');
     return deferred.promise();
 }

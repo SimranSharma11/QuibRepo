@@ -95,7 +95,7 @@
         $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
     }
 
-    if (typeof document.createElement('cropper').style.transition === 'undefined') {
+    if (typeof document.createElement('cropper').style.transition == 'undefined') {
         $('button[data-method="rotate"]').prop('disabled', true);
         $('button[data-method="scale"]').prop('disabled', true);
     }
@@ -103,12 +103,12 @@
 
     // Download
     if ($download[0] != null) {
-        if (typeof $download[0].download === 'undefined') {
+        if (typeof $download[0].download == 'undefined') {
             $download.addClass('disabled');
         }
     }
     if ($downloads[0] != null) {
-        if (typeof $downloads[0].download === 'undefined') {
+        if (typeof $downloads[0].download == 'undefined') {
             $downloads.addClass('disabled');
         }
     }
@@ -126,7 +126,7 @@
             return;
         }
 
-        if (type === 'checkbox') {
+        if (type == 'checkbox') {
             options[name] = $this.prop('checked');
             cropBoxData = $image.cropper('getCropBoxData');
             canvasData = $image.cropper('getCanvasData');
@@ -135,7 +135,7 @@
                 $image.cropper('setCropBoxData', cropBoxData);
                 $image.cropper('setCanvasData', canvasData);
             };
-        } else if (type === 'radio') {
+        } else if (type == 'radio') {
             options[name] = $this.val();
         }
 
@@ -158,10 +158,10 @@
         if ($image.data('cropper') && data.method) {
             data = $.extend({}, data); // Clone a new one
 
-            if (typeof data.target !== 'undefined') {
+            if (typeof data.target != 'undefined') {
                 $target = $(data.target);
 
-                if (typeof data.option === 'undefined') {
+                if (typeof data.option == 'undefined') {
                     try {
                         data.option = JSON.parse($target.val());
                     } catch (e) {
@@ -235,10 +235,10 @@
         if ($images.data('cropper') && data.method) {
             data = $.extend({}, data); // Clone a new one
 
-            if (typeof data.target !== 'undefined') {
+            if (typeof data.target != 'undefined') {
                 $target = $(data.target);
 
-                if (typeof data.option === 'undefined') {
+                if (typeof data.option == 'undefined') {
                     try {
                         data.option = JSON.parse($target.val());
                     } catch (e) {
@@ -356,6 +356,11 @@
             }
 
             if (files && files.length) {
+                var screenshot = $("#screenshot-modal");
+                if (screenshot != null && screenshot != undefined) {
+                    screenshot.modal('show');
+                }
+
                 file = files[0];
                 ImageFileType = file.type;
             

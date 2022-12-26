@@ -238,11 +238,11 @@ $(document).ready(function () {
                         // Param : IsQuibZero?
                         UpdateUIControls(false);
 
-                        $('#quibContainer').empty();
+                        //$('#quibContainer').empty();
 
-                        LoadInitialQuibsQuibStream();
-                        LoadAllQuibsQuibStream(initialQuibs);
-                        LoadAllQuibsQuibStream(quibs);
+                        //LoadInitialQuibsQuibStream();
+                        //LoadAllQuibsQuibStream(initialQuibs);
+                        //LoadAllQuibsQuibStream(quibs);
 
 
                         setTimeout(function () {

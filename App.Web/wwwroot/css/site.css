@@ -6,7 +6,9 @@
 .btn:focus {
     outline: none !important;
 }
-
+.movie {
+    margin-top: 12px;
+}
 .btn-burgandy, btn btn-lg btn-primary {
     background-color: #990000 !important;
     border-radius: 16px !important;
@@ -26,7 +28,7 @@
 }
 
 .chooseMovieTitle {
-    text-align: left !important;
+  /*  text-align: left !important;*/
     color: #990000 !important;
     font-weight: bold !important;
 }
@@ -199,7 +201,7 @@ input:focus {
 }
 
 .error-message {
-    font-style: italic;
+  
     color: #ff0000;
     font-weight: 100;
     text-align: left;
@@ -567,7 +569,7 @@ input:focus {
 
 .panel-body {
     border: #E6E6E6 solid 1px;
-    margin-left:4%;
+   /* margin-left:4%;*/
 }
 
 .movie-item .panel-body,.recentmovie-item,.activemovie-item {
@@ -999,7 +1001,7 @@ input:focus {
         /*background-color: #dcdcdc;*/
         position: absolute;
         top: 0px;
-        width: 25%;
+        width: 32%;
         left: 0px;
         /*margin-right: 10px;*/
         /*margin-bottom: 10px;*/
@@ -1080,6 +1082,10 @@ input:focus {
 
 
 @media only screen and (max-width:768px) {
+    .chooseMovieTitle {
+        width: 100% !important;
+        margin-right: 0% !important;
+    }
     .choose-movie-list {
         overflow: visible !important;
     }
@@ -1100,15 +1106,19 @@ input:focus {
 }
 
 .recentmovie-item {
-    width: 25%;
-    display: inline-block ;
-    margin: 5px;
+    /*  width: 25%;
+    display: inline-block ;*/
+    /*   margin: 5px;*/
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .activemovie-item {
-    width: 25%;
-    display: inline-block ;
-    margin: 5px;
+    /* width: 25%;
+    display: inline-block ;*/
+    /* margin: 5px;*/
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .choose-movie-list {
@@ -1195,8 +1205,10 @@ input:focus {
         /*background-color: #dcdcdc;*/
         position: absolute;
         top: 0px;
-        width: 25%;
+        width: 32%;
         left: 0px;
+        margin-top: 10px;
+     
         /*margin-right: 10px;
         margin-bottom: 0px;*/
     }
@@ -1690,7 +1702,7 @@ input:focus {
 
 @media only screen and (max-width:767px) {
 
-
+   
     .hidden-sd {
         display: none;
     }
@@ -1975,8 +1987,8 @@ input:focus {
     border-radius: 0px !important;
     border: 0 !important;
     box-shadow: none !important;
-    width: 96% !important;
-    margin: 0 auto !important;
+   /* width: 96% !important;
+    margin: 0 auto !important;*/
 }
 
 .quib-item-inner {
