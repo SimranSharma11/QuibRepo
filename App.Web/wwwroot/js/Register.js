@@ -55,13 +55,16 @@
     });
 
     // Register SUBMIT
-    //$('#btn-register').on('click', function () {
-    //    if (!$('#chkTermsCondition').is(':checked')) {
-    //        /*        $('#ChkErrorMessage').removeClass('hide');*/
-    //        $('#ChkErrorMessage').css('display', 'block');
-    //    }
-       
-    //});
+    $('.btn-register').on('click', function () {
+        if ($('#chkTermsCondition').is(':checked')) {
+
+            localStorage.setItem('#chkTermsCondition', 'true');
+        }
+        else {
+            $('#ChkErrorMessage').css('display', 'block');
+            localStorage.setItem('#chkTermsCondition', 'false');
+        }
+    });
 
 // terms and conditions
 $('#chkTermsCondition').on('change', function () {

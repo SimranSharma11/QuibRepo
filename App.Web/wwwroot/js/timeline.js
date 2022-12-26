@@ -504,8 +504,8 @@ $(document).ready(function () {
     $('#quibSlider').slider({
         change: function (e) {
             if (!isNavButtonClick) {
-
                 if ($(this).slider('value') < 1) {
+                    ApplyStyleToQuibStream();
                     ChangeValueAndTime('#quibSlider', '#timer', 1, false, true);
 
                     $slider = $('#quibSlider');
@@ -525,7 +525,7 @@ $(document).ready(function () {
             setslider = true;
             checkslider = true;
             isSliderSync = false;
-
+            ApplyStyleToQuibStream();
             $('.quib-item').css('visibility', 'visible');
 
             $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom_line.png')");

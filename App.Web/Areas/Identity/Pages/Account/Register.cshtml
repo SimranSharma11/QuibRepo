@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-6"style="margin-top: 5%;">
     <div class="panel panel-default">
         <div class="panel-body register-form">
             <div class="register-form-header " style=""><span>Join the Quib beta!</span></div>
@@ -128,7 +128,8 @@
                                         </div>
                                         <div style="display:inline-block;float: left;">
                                             <button type="button" class="btn choose-file-button" id="btnUploadImage" onclick="UploadImage();" style="margin-right:2px;display:inline-block">Choose Image</button>
-                                            <input asp-for="Input.AvatarBase32ImagePath" type="file" class="fileAvtr" id="inputImage" name="File" title="" style="opacity: 0; position: relative; left: 0px; width: 140px; top: -22px;"  />
+                                            <input asp-for="Input.AvatarBase32ImagePath" type="file" class="fileAvtr" id="inputImage"  title="" style="opacity: 0; position: relative; left: 0px; width: 140px; top: -22px;"  />
+                                       
                                         </div>
                                         <button type="button" class="btn choose-file-button btnCancelUpload" id="btnCancelUpload" onclick="cancelUploadImage()">Cancel Image</button>
                                     </div>
@@ -358,7 +359,7 @@ You may also contact us at support@quibs.com with any questions regarding these 
                                         @*<input name="termAgreement" type="hidden" value="false">*@
                                         I Agree
                                     </label>
-                                    <div class="error-message" id="ChkErrorMessage"><span>You must accept the terms and conditions.</span></div>
+                                    <div class="error-message" id="ChkErrorMessage" style="display:none"><span>You must accept the terms and conditions.</span></div>
                                     <div class="error-message" id="errorMessage"><span class="field-validation-valid" data-valmsg-for="termAgreement" data-valmsg-replace="true"></span></div>
                                 </div>
                             <div class="btn-register">         
