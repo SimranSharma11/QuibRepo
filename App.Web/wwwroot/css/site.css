@@ -26,9 +26,32 @@
     background-color: #CCCC99 !important;
     height: 56px !important;
 }
-
+/*#allScrubber:hover {
+display:none;
+}*/
+#carouselOffset {
+    width: 121%;
+    height: 100%;
+    margin-top: -9%;
+    margin-left: -34%;
+}
+.DualSync {
+    display: none;
+    margin-right: -26px;
+}
+.DualSyncmovie {
+    display: none;
+    margin-right: -26px;
+}
+#carouselExpand {
+    width: 121%;
+    height: 18%;
+    margin-top: -9%;
+    margin-left: -22%;
+    display: none;
+}
 .chooseMovieTitle {
-  /*  text-align: left !important;*/
+    /*  text-align: left !important;*/
     color: #990000 !important;
     font-weight: bold !important;
 }
@@ -606,7 +629,7 @@ input:focus {
     cursor: pointer;
 }
 
-#imgQuibZero, #btn-resynquib, #ImgAvtrLogo, .MoviePosterThumb, #MovieScrubber, #QuibScrubber, #TimerToggle {
+#imgQuibZero, .btn-resynquib, #ImgAvtrLogo, .MoviePosterThumb, #MovieScrubber, #QuibScrubber, #TimerToggle #allScrubber {
     cursor: pointer;
 }
 
@@ -784,22 +807,31 @@ input:focus {
     background-color: transparent !important;
     background-image: url('/Images/top.png') !important;
     background-repeat: no-repeat !important;
-    background-size: 20px 14px !important;
-    width: 20px !important;
-    height: 14px !important;
-    top: 0 !important;
+    background-size: 22px 26px !important;
+    width: 26px !important;
+    height: 18px !important;
+    top: -28px !important;
     border: none !important;
 }
 
-
+.allSlider-span {
+    background-color: transparent !important;
+    background-image: url('/Images/ScrubberSync.jpg') !important;
+    background-repeat: no-repeat !important;
+    background-size: 30px 56px !important;
+    width: 27px !important;
+    height: 59px !important;
+    top: -7px !important;
+    border: 3px solid #990000 !important;
+}
 #QuibScrubber {
     background-color: transparent !important;
     background-image: url('/Images/bottom.png');
     background-repeat: no-repeat !important;
-    background-size: 20px 14px !important;
-    width: 20px !important;
-    height: 14px !important;
-    top: 2px !important;
+    background-size: 22px 26px !important;
+    width: 26px !important;
+    height: 18px !important;
+    top: -17px !important;
     border: none !important;
 }
 

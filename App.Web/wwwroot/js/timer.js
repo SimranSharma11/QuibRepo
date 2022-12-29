@@ -10,6 +10,7 @@ function StartTimer() {
                 ChangeValueAndTime('#slider', '#quibTimer', totalTicks, true, false);
                 ChangeValueAndTime('#slider', '#movieTimer', totalTicks, true, false);
                 ChangeValueAndTime('#movieSlider', '#timer', totalTicks, false, true);
+                ChangeValueAndTime('#allSlider', '#timer', totalTicks, false, true);
             }
             CurrentQuib();
 

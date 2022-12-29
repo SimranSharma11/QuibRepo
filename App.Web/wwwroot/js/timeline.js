@@ -123,6 +123,7 @@ $(document).ready(function () {
 
                 // if user hit play button when movie is desync, we need to sync back and hide all quibs having greater time then movie timer
                 ClearQuibsAhead($('#movieSlider').slider('value'));
+             
             }
             else {
                 StopTimer();
@@ -132,17 +133,26 @@ $(document).ready(function () {
     }
 
     // Timeline big circle (O) click at beginning of timeline
+  
     $('#btnQuibZero').on('click', function () {
-        if ($('#txtComposeQuib').val().length > 0) {
-            $('#save-quib-modal').modal('show');
-        }
-        else {
-            // Loading quib zeros
-            $('.popup_load').css('display', 'block');
-            window.location.href = localStorage.getItem('environment') + '/QuibStream/Index?MovieId=' + localStorage.getItem('MovieId') + '&isQuibZero=true';
-        }
+        $('#carouselOffset').css('display', 'none');
+        $('#carouselExpand').css('display', 'block');
+        $('.caouselhide').css('display', 'block');
+        $('.DualSync').css('display', 'block');
+        $('.quib-container').css('opacity', '26%');
+        $('#hide').css('background-color', 'blue');
+        $('.Allsync').css('height', '61px');
     });
+    $('#allScrubber').on('click', function () {
+        $('#allScrubber').css('display', 'none');
+        $('#carouselOffset').css('height', '21%');
+    });
+    $('.Allsync').on('click', function () {
+        $('#carouselOffset').css('height', '20%');
+        $('.Allsync').css('display', 'none');
+        $('.DualSync').css('display', 'block');
 
+    });
     // Timer plus (+) button click of timer
     $('#btnPlus').on('click', function () {
         if (totalTicks < selectedMovieLength) {
@@ -172,11 +182,12 @@ $(document).ready(function () {
     });
 
     // Timeline - Resync button click
-    $('#btn-resynquib').on('click', function () {
+    $('.btn-resynquib').on('click', function () {
         if ($('#txtComposeQuib').val().length > 0) {
             $('#save-quib-modal').modal('show');
         }
         else {
+            $('#allScrubber').css('display', 'block');
             var quibScrbrStartClick = $('#quibSlider').slider('value');
 
             $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
@@ -186,14 +197,14 @@ $(document).ready(function () {
             ClearQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick);
         }
     });
-    $('#btn-resyncmovie').on('click', function () {
+    $('.btn-resyncmovie').on('click', function () {
         if ($('#txtComposeQuib').val().length > 0) {
             $('#save-quib-modal').modal('show');
         }
         else {
-           
+            $('#allScrubber').css('display', 'block');
             var quibScrbrStartClick = $('#quibSlider').slider('value');
-            $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
+            $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/top.png')");
 
             isSliderSync = true;
             isNavButtonClick = false;
@@ -282,7 +293,19 @@ $(document).ready(function () {
     });
 
 
+    $('#allSlider').slider({
+        change: function (e, ui) {
+            if ($(this).slider('value') == 1)
+            if (isSliderSync) {
+            
+            }
+            
+        },
 
+        slide: function (e) {
+            ChangeValueAndTime('#slider', '#movieTimer', $(this).slider('value'), true, true);
+        }
+    });
     // Slide event of a movie scrubber
     $('#movieSlider').slider({
         change: function (e, ui) {
@@ -361,8 +384,13 @@ $(document).ready(function () {
             var tempTime = $('#quibSlider').slider('value');
             var movieScrubberVal = parseInt($(this).slider('value'));
             var quibScrbrStartClick = $('#quibSlider').slider('value');
+            $('#carouselOffset').css('height', '21%');
+            $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/top_line.png') !important");
 
-            $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
+            $('#allScrubber').css('display', 'none');
+            $('.Allsync').css('display', 'none');
+            $('.DualSyncmovie').css('display', 'block');
+            //$('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
             $('.quib-item').css('visibility', 'visible');
 
 
@@ -432,8 +460,11 @@ $(document).ready(function () {
             }
 
             isSliderSync = true;
+
             ShowQuibsAtThisTime(tempTime.toString().toHHMMSS());
-            setTimeout(function () { ClearOnlyQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick); }, 400);
+         
+                setTimeout(function () { ClearOnlyQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick); }, 400);
+            
         },
 
         slide: function (e) {
@@ -443,19 +474,19 @@ $(document).ready(function () {
 
     function showQuibsAndslide(that) {
         ShowQuibsAtThisTime($(that).slider('value').toString().toHHMMSS());
-
+        
         // Getting actual time based on slider position
         totalTicks = $(that).slider('value');
-
+        quibtotaltick = $('#quibSlider').slider('value');
         // Only possible in manual scrubber sliding
         if (totalTicks < 1) {
             totalTicks = 1;
             ChangeValueAndTime('#movieSlider', '#movieTimer', totalTicks, true, true);
         }
-
-        // Updating quib slider position
-        ChangeValueAndTime('#quibSlider', '#quibTimer', totalTicks, true, true);
-
+        if (totalTicks-1 == quibtotaltick) {
+            // Updating quib slider position
+            ChangeValueAndTime('#quibSlider', '#quibTimer', totalTicks, true, true);
+        }
         //VIEWPORT START
         var cols_array = [];
         $(".quib-item").withinviewport().each(function () {
@@ -526,6 +557,10 @@ $(document).ready(function () {
             checkslider = true;
             isSliderSync = false;
             ApplyStyleToQuibStream();
+            $('#allScrubber').css('display', 'none');
+            $('#carouselOffset').css('height', '20%');
+            $('.Allsync').css('display', 'none');
+            $('.DualSync').css('display', 'block');
             $('.quib-item').css('visibility', 'visible');
 
             $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom_line.png')");
@@ -640,7 +675,9 @@ function drawTimeLine() {
         $('#movieSlider').slider({
             max: selectedMovieLength
         });
-
+        $('#allSlider').slider({
+            max: selectedMovieLength
+        });
         // quib scrubber
         $('#quibSlider').slider({
             max: selectedMovieLength
