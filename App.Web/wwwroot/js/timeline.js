@@ -151,7 +151,7 @@ $(document).ready(function () {
         $('#carouselOffset').css('height', '20%');
         $('.Allsync').css('display', 'none');
         $('.DualSync').css('display', 'block');
-
+        f
     });
     // Timer plus (+) button click of timer
     $('#btnPlus').on('click', function () {
@@ -183,6 +183,10 @@ $(document).ready(function () {
 
     // Timeline - Resync button click
     $('.btn-resynquib').on('click', function () {
+        $(".upcheck").css("display", 'none');
+        $(".upuncheck").css("display", "unset");
+        $(".btmuncheck").css("display", 'none');
+        $(".btmcheck").css("display", "unset");
         if ($('#txtComposeQuib').val().length > 0) {
             $('#save-quib-modal').modal('show');
         }
@@ -198,6 +202,10 @@ $(document).ready(function () {
         }
     });
     $('.btn-resyncmovie').on('click', function () {
+        $(".upcheck").css("display", 'unset');
+        $(".upuncheck").css("display", "none");
+        $(".btmuncheck").css("display", 'unset');
+        $(".btmcheck").css("display", "none");
         if ($('#txtComposeQuib').val().length > 0) {
             $('#save-quib-modal').modal('show');
         }
@@ -384,12 +392,9 @@ $(document).ready(function () {
             var tempTime = $('#quibSlider').slider('value');
             var movieScrubberVal = parseInt($(this).slider('value'));
             var quibScrbrStartClick = $('#quibSlider').slider('value');
-            $('#carouselOffset').css('height', '21%');
+            $('#carouselOffset').css('height', '100%');
             $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/top_line.png') !important");
-
             $('#allScrubber').css('display', 'none');
-            $('.Allsync').css('display', 'none');
-            $('.DualSyncmovie').css('display', 'block');
             //$('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
             $('.quib-item').css('visibility', 'visible');
 

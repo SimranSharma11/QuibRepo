@@ -691,8 +691,8 @@
             <div class="scrubber-wrapper" style="display: flex; justify-content: center; padding-top: 5px; background-color: #FFFFCC">
                 <div id="btnQuibZeroDiv" style="float: left;width:4%;">
                     <a id="btnQuibZero">
-                        <img id="carouselOffset" src="~/Images/CarouselButoonOffset.jpg" />
-                        <img id="carouselExpand" src="~/Images/CaraouselExpand.jpg" />
+                        <img id="carouselOffset" src="~/Images/CarouselButoonOffset.jpg"  style="mix-blend-mode: multiply;"/>
+                        <img id="carouselExpand" src="~/Images/CaraouselExpand.jpg" style="mix-blend-mode: multiply;" />
 
                     </a>
                 </div>
@@ -719,32 +719,40 @@
                 </div>
                 <div class="syncbtn"style="width: 4%;">
                     <div class="Allsync" style="width:100%;float: left; margin-left: 20px; padding-top: 2px;">
-                        <img src="~/Images/AllSync.jpg" style="width:121%;height:100%;margin-top:-9%;" />
+                        <img src="~/Images/AllSync.jpg" style="width:121%;height:100%;margin-top:-9%; mix-blend-mode: multiply;" />
                     </div>
                     <div class="DualSync">
-                        <div class="btn-resynquib"title="Resync Quib">
-                            <a>
-                                <img src="~/Images/halfMovieSync.jpg" style="height:10%;"/>
-                            </a>
-                        </div>
                         <div class="btn-resyncmovie" title="Resync Movie">
                             <a>
-                                <img src="~/Images/otherHalfMovieSync.jpg" style="height:10%;" />
+                                <img src="~/Images/upcheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="upcheck" />
+                            </a>
+                            <a>
+                                <img src="~/Images/upuncheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="upuncheck" />
                             </a>
                         </div>
-                    </div>
-                    <div class="DualSyncmovie">
+
                         <div class="btn-resynquib" title="Resync Quib">
                             <a>
-                                <img src="~/Images/HalfQuibSync.jpg" style="height:10%;" />
+                                <img src="~/Images/btmuncheck.jpg" style="height:10%; mix-blend-mode: multiply;" class ="btmuncheck" />
+                            </a>
+                            <a>
+                                <img src="~/Images/btmcheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="btmcheck" />
+                            </a>
+
+                        </div>
+                    </div>
+                    @*<div class="DualSyncmovie"> btn-resyncmovie
+                        <div class="btn-resynquib" title="Resync Quib">
+                            <a>
+                                <img src="~/Images/HalfQuibSync.jpg" style="height:4%;" />
                             </a>
                         </div>
                         <div class="btn-resyncmovie" title="Resync Movie">
                             <a>
-                                <img src="~/Images/otherHalfQuibSync.jpg" style="height:10%;" />
+                                <img src="~/Images/otherHalfQuibSync.jpg" style="height:4%;" />
                             </a>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
 
             </div>

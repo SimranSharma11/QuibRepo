@@ -43,6 +43,12 @@ display:none;
     display: none;
     margin-right: -26px;
 }
+.btmcheck {
+    display: none;
+}
+.upuncheck {
+    display: none;
+}
 #carouselExpand {
     width: 121%;
     height: 18%;
