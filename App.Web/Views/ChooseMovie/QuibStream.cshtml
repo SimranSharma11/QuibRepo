@@ -113,8 +113,11 @@
                                 $('#quibContainer').empty();
 
                                 LoadInitialQuibsQuibStream();
-                               // LoadAllQuibsQuibStream(initialQuibs);
                                 LoadAllQuibsQuibStream(quibs);
+                               //LoadAllQuibsQuibStream(initialQuibs);
+                               LoadInitialQuibsQuibStreamforcarousel();
+                                LoadAllQuibsQuibStreamforcarousel(quibs);
+                             
 
 
                                 setTimeout(function () {
@@ -391,6 +394,7 @@
                 //isRunning = false;
                 //StopTimer();
                 ApplyStyleToQuibStream();
+                ApplyStyleToQuibStreamforcarousel();
                 var totalScroll = $('#quib-list').scrollLeft();
                 var offsetPos = $('#quib-list').offset();
                 var prevcolPos = $('.HilightQuib').offset();
@@ -485,7 +489,44 @@
             }, 500);
                
         };
+           function ApplyStyleToQuibStreamforcarousel() {
+            $('.popup_load').css('display', 'block');
+            var Col = 0;
+            var TotalHight = 0;
+            var margin_bottom = 10;
+            var margin_right = 0;
+            var leftPos = 0;
+            var maxqheight = $(".quibsdata").height();
 
+            // will get the exact column that fits in a screen
+            $(".quibsdata").children().each(function () {
+                TotalHight = TotalHight + margin_bottom + $(this).height();
+                var topPos = TotalHight - (margin_bottom + $(this).height());
+
+
+                var quibheight = $(this).height();
+                if (maxqheight < (quibheight + 50)) {
+                   
+                    $(this).find(".inner1 .panel-body").css('height', maxqheight - 7 + 'px');
+                    $(this).find(".inner1 .panel-body").css({ "overflow-y": "auto","overflow": "auto","overflow-x": "hidden"});
+                }
+
+                if (TotalHight > $(".quibsdata").height()) {
+                    Col = Col + 1;
+                    leftPos = ($(this).width() + margin_right) * Col;
+                    TotalHight = $(this).height() + margin_bottom;
+                    topPos = 0;
+                }
+                $(this).attr('colmValue', Col.toString());
+                $(this).css('top', topPos + 'px')
+                $(this).css('left', leftPos + 'px')
+            });
+            
+            setTimeout(function () {
+                $('.popup_load').css("display", "none");
+            }, 500);
+               
+        };
     </script>
 </head>
 
@@ -552,7 +593,30 @@
     </div>
 
     <div class="caouselhide" style="display:none;height:200px;width:100%;background-color:aqua;margin-bottom:10px">
+
+
+        <div class="quibsdata">
+        </div>
+
+        <div class="prev-arrows" id="prevOpenCompose" style="margin-left: 336px;visibility:hidden;">
+            <span class=" left">
+                <img src=@Url.Content("~/Images/left-arrow.png") />
+            </span>
+        </div>
+
+        <div class="prev-arrows">
+            <span class=" left" style="left: 10px">
+                <img src=@Url.Content("~/Images/left-arrow.png") />
+            </span>
+        </div>
+        <div class="next-arrows">
+            <span class="right " style="right: 10px">
+                <img src=@Url.Content("~/Images/right-arrow.png") />
+            </span>
+        </div>
+
     </div>
+ 
 
     <button style="background-color:dimgrey;color:black;display:none;" class="returnToQuib">Tap Here To Return To Quibs</button>
 
