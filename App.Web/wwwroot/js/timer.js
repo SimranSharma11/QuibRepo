@@ -10,6 +10,7 @@ function StartTimer() {
                 ChangeValueAndTime('#slider', '#quibTimer', totalTicks, true, false);
                 ChangeValueAndTime('#slider', '#movieTimer', totalTicks, true, false);
                 ChangeValueAndTime('#movieSlider', '#timer', totalTicks, false, true);
+                ChangeValueAndTime('#allSlider', '#timer', totalTicks, false, true);
             }
             CurrentQuib();
 
@@ -48,19 +49,23 @@ function CurrentQuib() {
 function UpdateComposeTime(time) {
     if (!IsIntervalTimeUP) {
         if (!($('#txtComposeQuib').val().length > 0 || ($('#image').attr('src') && $('#image').attr('src').length > 0))) {
+           
             if (time == 'NaN:NaN:NaN') {
                 $('#BtnSave').html('QUIB ZERO');
             }
             else {
                 if (ComposeQuibTime != null && ComposeQuibTime != undefined && ComposeQuibTime.length > 0)
                     time = ComposeQuibTime;
+                $('.mystream-time').css('top', '36%');
                 $('#BtnSave').html(time);
                 //$('#BtnSave').html($('#movieTimer').val())
             }
         }
         else {
-            $('#BtnSave').html('Save');
+            $('.mystream-time').css('top', 'unset');
+            $('#BtnSave').html('SAVE');
         }
+       
     }
 }
 

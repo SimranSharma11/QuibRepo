@@ -35,6 +35,8 @@
     <script src="~/js/Common.js"></script>
     <script src="~/js/Home.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>  
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
     <script type="text/javascript">
         localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
        
@@ -58,7 +60,10 @@
         $(function () {
             $("#quibSlider").slider();
         });
-
+         $(function () {
+            $("#allSlider").slider();
+        });
+        
         var setbool = true;
         var sliderflag = true;
 
@@ -110,7 +115,7 @@
                                 $('#quibContainer').empty();
 
                                 LoadInitialQuibsQuibStream();
-                                LoadAllQuibsQuibStream(initialQuibs);
+                               // LoadAllQuibsQuibStream(initialQuibs);
                                 LoadAllQuibsQuibStream(quibs);
 
 
@@ -161,7 +166,8 @@
                         $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
 
                         // if user hit play button when movie is desync, we need to sync back and hide all quibs having greater time then movie timer
-                        ClearQuibsAhead($('#movieSlider').slider('value'));
+                ClearQuibsAhead($('#movieSlider').slider('value'));
+                      
                     }
                     else {
                         StopTimer();
@@ -481,11 +487,24 @@
             }, 500);
                
         };
-
+        function HandleBackFunctionality() {
+            if (window.event) //Internet Explorer
+            {
+              if ($("#txtComposeQuib").val().trim().length > 0)  
+              return 'unload';
+                  //('#save-quib-modal').modal('show');
+            }
+            else //Other browsers for example Chrome
+            {
+                if ($("#txtComposeQuib").val().trim().length > 0) 
+                    ('#save-quib-modal').modal('show');
+            }
+        }
     </script>
+ 
 </head>
 
-<body>
+<body onbeforeunload="HandleBackFunctionality()">
     @*loading overlay*@
     <div class="popup_load">
         <div class="fade12" ></div>
@@ -526,7 +545,7 @@
             </div>
            @* <div class="col-md-4 col-lg-3 col-sm-6 hidden-sm hidden-xs"></div>*@
             <div class="col-md-2 col-lg-2 col-sm-2 hidden-sm hidden-xs">
-                <ul class="nav " style="float: right; margin-top: -6px; margin-right: -34px;">
+                <ul class="nav " style="float: right; margin-top: -9px; margin-right: -34px;">
                     @if (!(Context.User.Identity.IsAuthenticated))
                     {
                         <li style=" position: absolute;top: -5px;right: 31px;">
@@ -547,32 +566,60 @@
         </div>
     </div>
 
+    <div class="caouselhide" style="display:none;height:200px;width:100%;background-color:aqua;margin-bottom:10px">
+        <div class="slider-container" item-display-d="4">
+            <div class="slider-width">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+                <div class="item">7</div>
+                <div class="item">8</div>
+                <div class="item">9</div>
+                <div class="item">10</div>
+                <div class="item">11</div>
+                <div class="item">12</div>
+                <div class="item">13</div>
+                <div class="item">14</div>
+                <div class="item">15</div>
+                <div class="item">16</div>
+            </div>
+        </div>
+        <button type="button" id="prev">Prev</button>
+        <button type="button" id="next">Next</button>
+    </div>
+
+    <button style="background-color:dimgrey;color:black;display:none;" class="returnToQuib">Tap Here To Return To Quibs</button>
+
     <div class="container-fluid">
 
         @************My stream****************@
 
         <div class="my-stream-panel col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <div class="row my-stream-panel-wrap" style="overflow-y: hidden; height: 100%; height: calc(100% - 38px);">
+            <div class="row my-stream-panel-wrap" style="overflow-y: hidden; height: 100%; height: calc(100% - 10px);">
                 <div class="my-stream-compose" id="myStreamCompose">
-                    <textarea id="txtComposeQuib" ></textarea>
+                    <textarea id="txtComposeQuib" placeholder="WRITE A QUIB"></textarea>
                     <span class="close-stream" id="CloseStream">
                         <img src="~/Images/close.png" />
                     </span>
+                    <div class="mystream-panel-header">
+                        <div class="mystream-time" style="float: left;width: 40%; text-align: center; height: 28px;position:absolute;left:109px;">
+                            <button type="button" id="BtnSave" class="btn btn-default btn-burgandy timerbtn" style="margin: 0 auto; text-align: center; padding: 4px 12px; font-size: 14px;font-weight:700;">SAVE</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="mystream-panel-header">
+               
+                <div style="background: #990000; padding-right: 3px;">
                     <div class="mystream-txt">
-                        <img src="~/Images/myStream_red_01.png" style="width: 100%; height: 100%" />
-                        <div style="position: relative; top: -26px">
+
+                        <div style="position: relative;">
                             <span>My Stream </span>
                             <span id="MyStreamCount">18</span>
                         </div>
                     </div>
-
-                    <div class="mystream-time" style="float: left; background-color: white; width: 40%; text-align: center; height: 28px">
-                        <button type="button" id="BtnSave" class="btn btn-default btn-burgandy" style="margin: 0 auto; text-align: center; padding: 4px 12px; font-size: 12px">Save</button>
-                    </div>
-                </div>
-                <div style="background: #990000; padding-right: 3px;">
+                  
                     <div class="mystream-panel-content" style="height: calc(100% - 87px);">
                         <div id="myStreamPanel" style="padding-bottom: 100%">
                             @*LOADIG FROM MyStream.js*@
@@ -581,13 +628,13 @@
                 </div>
 
             </div>
-            <div class="row mystream-footer" style="background-color: black; height: 38px; clear: both">
+          @*  <div class="row mystream-footer" style="background-color: black; height: 38px; clear: both">
                 <button type="button" class="btn btn-default btn-burgandy" data-toggle="modal" data-target="#postall-quib-modal" style="background-color: white; padding: 2px 9px; font-size: 12px; float: right; margin-right: 17px; margin-top: 9px; min-width: 90px">Post All</button>
-            </div>
+            </div>*@
         </div>
 
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="hide">
                 <div class="row">
                     <div class="quib-panel" style="position: relative; padding: 0 36px">
                         <div class="quib-panel-group" style="overflow: hidden; position: relative;">
@@ -680,37 +727,77 @@
     <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 56px; text-align: center; border: 0; background-color: #FFFFCC">
         <div class="container-fluid">
             <div class="scrubber-wrapper" style="display: flex; justify-content: center; padding-top: 5px; background-color: #FFFFCC">
-                <div id="btnQuibZeroDiv" style="float: left;">
+                <div id="btnQuibZeroDiv" style="float: left;width:4%;">
                     <a id="btnQuibZero">
-                        <button class="btn btn-default btn-burgandy" >carousel</button>
+                        <img id="carouselOffset" src="~/Images/CarouselButoonOffset.jpg"  style="mix-blend-mode: multiply;"/>
+                        <img id="carouselExpand" src="~/Images/CaraouselExpand.jpg" style="mix-blend-mode: multiply;" />
+
                     </a>
                 </div>
+
+
                 <div class="slider" style="padding: 1px 0">
-                    <div class="movieSliderWrapper">
-                        <div id="movieSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all;" style="height: 16px; border: none; background-color: #FFFFCC">
-                            <span id="MovieScrubber" class="ui-slider-handle ui-state-default ui-corner-all movieSlider-span" style=""></span>
+                    <div class="allSliderWrapper">
+                        <div id="allSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all;" style="height: 16px; border: none; background-color: #FFFFCC">
+                            <span id="allScrubber" class="ui-slider-handle ui-state-default ui-corner-all allSlider-span" style=""></span>
                         </div>
                     </div>
                     <canvas id="timelineCanvas" style="height: 10px; width: 100%; background-color: #FFFFCC"></canvas>
+                    <div class="movieSliderWrapper">
+                        <div id="movieSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all;" style="height: 16px; border: none; background-color: #FFFFCC;display:none;">
+                            <span id="MovieScrubber" class="ui-slider-handle ui-state-default ui-corner-all movieSlider-span" style=""></span>
+                        </div>
+                    </div>
+                   
                     <div class="quibSliderWrapper">
-                        <div id="quibSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="height: 16px; border: none; background-color: #FFFFCC">
+                        <div id="quibSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="height: 16px; border: none; background-color: #FFFFCC;display:none;">
                             <span id="QuibScrubber" class="ui-slider-handle ui-state-default ui-corner-all quibSlider-span"></span>
                         </div>
                     </div>
                 </div>
-                <div id="btn-resynquib" style="float: left; margin-left: 20px; padding-top: 2px"title="Resync Quib">
-                    <a>
-                        <img src="~/Images/re%20sync.png" />
-                    </a>
+                <div class="syncbtn"style="width: 4%;">
+                    <div class="Allsync" style="width:100%;float: left; margin-left: 16px; padding-top: 2px;">
+                        <img src="~/Images/AllSync.jpg" style="width:121%;height:100%;margin-top:-9%; mix-blend-mode: multiply;" />
+                    </div>
+                    <div class="DualSync">
+                        <div class="btn-resynquib" title="Resync Movie">
+                      
+                            <a>
+                                <img src="~/Images/upcheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="upcheck" />
+                            </a>
+                            <a>
+                                <img src="~/Images/upuncheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="upuncheck" />
+                            </a>
+                        </div>
+
+                        <div class="btn-resyncmovie" title="Resync Quib">
+                            <a>
+                                <img src="~/Images/btmuncheck.jpg" style="height:10%; mix-blend-mode: multiply;" class ="btmuncheck" />
+                            </a>
+                            <a>
+                                <img src="~/Images/btmcheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="btmcheck" />
+                            </a>
+
+                        </div>
+                    </div>
+                    @*<div class="DualSyncmovie"> btn-resyncmovie
+                        <div class="btn-resynquib" title="Resync Quib">
+                            <a>
+                                <img src="~/Images/HalfQuibSync.jpg" style="height:4%;" />
+                            </a>
+                        </div>
+                        <div class="btn-resyncmovie" title="Resync Movie">
+                            <a>
+                                <img src="~/Images/otherHalfQuibSync.jpg" style="height:4%;" />
+                            </a>
+                        </div>
+                    </div>*@
                 </div>
-                <div id="btn-resyncmovie" style="float: left; margin-left: 20px; padding-top: 2px" title="Resync Movie">
-                    <a>
-                        <img src="~/Images/re%20sync.png" />
-                    </a>
-                </div>
+
             </div>
         </div>
     </nav>
+
 
     @*MESSAGE POP-UPS*@
     <div class="modal fade" id="guest-login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -8,10 +8,11 @@
 
 
             $('#RegistrationForm').submit();
-            
+            localStorage.setItem('#chkTermsCondition','true');
         }
         else {
-            $('#ChkErrorMessage').removeClass('hide');
+            $('#ChkErrorMessage').css('display', 'block');
+            localStorage.setItem('#chkTermsCondition', 'false');
         }
 
         setTimeout(function () {
@@ -54,24 +55,28 @@
     });
 
     // Register SUBMIT
-    $('#btn-register').on('click', function () {
-        if ($("#image").attr('src') != '') {
-            $("#32ImageBtn").trigger("click");
-            $("#256ImageBtn").trigger("click");
+    $('.btn-register').on('click', function () {
+        if ($('#chkTermsCondition').is(':checked')) {
+
+            localStorage.setItem('#chkTermsCondition', 'true');
         }
-    
-        showLoadingGIF().then(function () {            
-            $('.popup_load').css("display", "none");
-        });      
+        else {
+            $('#ChkErrorMessage').css('display', 'block');
+            localStorage.setItem('#chkTermsCondition', 'false');
+        }
     });
 
 // terms and conditions
 $('#chkTermsCondition').on('change', function () {
     if (!$('#chkTermsCondition').is(':checked')) {
-        $('#ChkErrorMessage').removeClass('hide');
+        /*        $('#ChkErrorMessage').removeClass('hide');*/
+        $('#ChkErrorMessage').css('display', 'block');
+        localStorage.setItem('#chkTermsCondition', 'true');
     }
     else {
-        $('#ChkErrorMessage').addClass('hide');
+        /* $('#ChkErrorMessage').addClass('hide');*/
+        $('#ChkErrorMessage').css('display', 'none');
+        localStorage.setItem('#chkTermsCondition', 'false');
     }
 });
 setTimeout(function () {

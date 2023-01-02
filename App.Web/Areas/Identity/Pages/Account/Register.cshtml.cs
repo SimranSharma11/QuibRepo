@@ -91,6 +91,7 @@ namespace App.Web.Areas.Identity.Pages.Account
             /// </summary>
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Please Enter a combination of numbers,alphabet and special characters")]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -117,9 +118,8 @@ namespace App.Web.Areas.Identity.Pages.Account
             [Display(Name = "Username")]
             public string Username { get; set; }
             //public int RegistrationCode { get; set; }
-            [Required(ErrorMessage = "Please accept terms and condition")]
-            [Display(Name = "IsEnabled")]
-            public bool IsEnabled { get; set; }
+
+            public bool IsEnabled { get; set; } 
         }
 
 
@@ -132,7 +132,8 @@ namespace App.Web.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
 
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/Identity/Account/Login");
+         
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             var existingUser = _userManager.FindByEmailAsync(Input.Email);
             //if (existingUser.Result != null)
@@ -140,62 +141,66 @@ namespace App.Web.Areas.Identity.Pages.Account
             //    ModelState.AddModelError("Email", "User with this email already exists");
             //    return Page();
             //}
-            if (ModelState.IsValid && existingUser.Result == null)
-            {
-                string uniqueFileName = null;
-                string filePath = null;
-                if (Input.AvatarBase32ImagePath.Length != 0)
+          
+                if (ModelState.IsValid && existingUser.Result == null)
                 {
-                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images/User32");
-                    
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + Input.AvatarBase32ImagePath.FileName;
-                    filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                
+                    string uniqueFileName = null;
+                    string filePath = null;
+                    if (Input.AvatarBase32ImagePath.Length != 0)
+                    {
+                        string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images/User32");
 
-                    Input.AvatarBase32ImagePath.CopyTo(new FileStream(filePath, FileMode.Create));
+                        uniqueFileName = Guid.NewGuid().ToString() + "_" + Input.AvatarBase32ImagePath.FileName;
+                        filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                        Input.AvatarBase32ImagePath.CopyTo(new FileStream(filePath, FileMode.Create));
+                    }
+                    var user = CreateUser();
+                    HttpContext.Session.SetString("UserId", user.Id);
+                    user.AvatarBase32ImagePath = filePath;
+                    await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                    await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                    var result = await _userManager.CreateAsync(user, Input.Password);
+
+                    if (result.Succeeded)
+                    {
+                        return LocalRedirect(returnUrl);
+                        //_logger.LogInformation("User created a new account with password.");
+
+                        //var userId = await _userManager.GetUserIdAsync(user);
+                        //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        //var callbackUrl = Url.Page(
+                        //    "/Account/ConfirmEmail",
+                        //    pageHandler: null,
+                        //    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                        //    protocol: Request.Scheme);
+
+                        //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                        //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                        //if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                        //{
+                        //    return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        //}
+                        //else
+                        //{
+                        //    await _signInManager.SignInAsync(user, isPersistent: false);
+                        //    return LocalRedirect(returnUrl);
+                        //}
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
                 }
-                var user = CreateUser();
-                HttpContext.Session.SetString("UserId",user.Id);
-                user.AvatarBase32ImagePath = filePath;
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
-
-                if (result.Succeeded)
-                {
-                  
-                    //_logger.LogInformation("User created a new account with password.");
-
-                    //var userId = await _userManager.GetUserIdAsync(user);
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    //var callbackUrl = Url.Page(
-                    //    "/Account/ConfirmEmail",
-                    //    pageHandler: null,
-                    //    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                    //    protocol: Request.Scheme);
-
-                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    //if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    //{
-                    //    return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    //}
-                    //else
-                    //{
-                    //    await _signInManager.SignInAsync(user, isPersistent: false);
-                    //    return LocalRedirect(returnUrl);
-                    //}
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-            }
-
+            
+          
             // If we got this far, something failed, redisplay form
-            //return Page();
-            return RedirectToAction("Index", "ChooseMovie");
+            return Page();
+
+            //  return RedirectToAction("Index", "ChooseMovie");
         }
 
         private ApplicationUser CreateUser()

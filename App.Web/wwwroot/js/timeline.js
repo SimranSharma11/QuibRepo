@@ -123,6 +123,7 @@ $(document).ready(function () {
 
                 // if user hit play button when movie is desync, we need to sync back and hide all quibs having greater time then movie timer
                 ClearQuibsAhead($('#movieSlider').slider('value'));
+             
             }
             else {
                 StopTimer();
@@ -132,17 +133,32 @@ $(document).ready(function () {
     }
 
     // Timeline big circle (O) click at beginning of timeline
+  
     $('#btnQuibZero').on('click', function () {
-        if ($('#txtComposeQuib').val().length > 0) {
-            $('#save-quib-modal').modal('show');
-        }
-        else {
-            // Loading quib zeros
-            $('.popup_load').css('display', 'block');
-            window.location.href = localStorage.getItem('environment') + '/QuibStream/Index?MovieId=' + localStorage.getItem('MovieId') + '&isQuibZero=true';
-        }
+        $('#carouselOffset').css('display', 'none');
+        $('#carouselExpand').css('display', 'block');
+        $('.caouselhide').css('display', 'block');
+        $('.DualSync').css('display', 'block');
+        $('.quib-container').css('opacity', '26%');
+        $('#hide').css('background-color', 'blue');
+        $('.Allsync').css('height', '61px');
     });
-
+    $('#allScrubber').on('click', function () {
+      /*  $('#allScrubber').css('display', 'none');*/
+        $('#carouselOffset').css('height', '90%');
+        $('.Allsync').css('display', 'block');
+        $('.DualSync').css('display', 'none');
+    });
+    $('.Allsync').on('click', function () {
+        $('.slider').css('top', '18px');
+        $('#allScrubber').css('display', 'none');
+        $('#allSlider').css('display', 'none');
+        $('#carouselOffset').css('height', '20%');
+        $('.Allsync').css('display', 'none');
+        $('.DualSync').css('display', 'block');
+        $('#movieSlider').css('display', 'block');
+        $('#quibSlider').css('display', 'block');
+    });
     // Timer plus (+) button click of timer
     $('#btnPlus').on('click', function () {
         if (totalTicks < selectedMovieLength) {
@@ -172,11 +188,20 @@ $(document).ready(function () {
     });
 
     // Timeline - Resync button click
-    $('#btn-resynquib').on('click', function () {
+    $('.btn-resynquib').on('click', function () {
+        $('.slider').css('top', 'unset');
+        $('#allSlider').css('display', 'block');
+        $('#movieSlider').css('display', 'none');
+        $('#quibSlider').css('display', 'none');
+        $('.Allsync').css('display', 'block');
+        $('.DualSync').css('display', 'none');
+        $('#carouselOffset').css('height', '96%');
+        $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
         if ($('#txtComposeQuib').val().length > 0) {
             $('#save-quib-modal').modal('show');
         }
         else {
+            $('#allScrubber').css('display', 'block');
             var quibScrbrStartClick = $('#quibSlider').slider('value');
 
             $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
@@ -186,14 +211,22 @@ $(document).ready(function () {
             ClearQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick);
         }
     });
-    $('#btn-resyncmovie').on('click', function () {
+    $('.btn-resyncmovie').on('click', function () {
+        $('#allSlider').css('display', 'block');
+        $('.slider').css('top', 'unset');
+        $('#movieSlider').css('display', 'none');
+        $('#quibSlider').css('display', 'none');
+        $('.Allsync').css('display', 'block');
+        $('#carouselOffset').css('height', '96%');
+        $('.DualSync').css('display', 'none');
+        $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
         if ($('#txtComposeQuib').val().length > 0) {
             $('#save-quib-modal').modal('show');
         }
         else {
-           
+            $('#allScrubber').css('display', 'block');
             var quibScrbrStartClick = $('#quibSlider').slider('value');
-            $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
+            $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/top.png')");
 
             isSliderSync = true;
             isNavButtonClick = false;
@@ -238,11 +271,11 @@ $(document).ready(function () {
                         // Param : IsQuibZero?
                         UpdateUIControls(false);
 
-                        $('#quibContainer').empty();
+                        //$('#quibContainer').empty();
 
-                        LoadInitialQuibsQuibStream();
-                        LoadAllQuibsQuibStream(initialQuibs);
-                        LoadAllQuibsQuibStream(quibs);
+                        //LoadInitialQuibsQuibStream();
+                        //LoadAllQuibsQuibStream(initialQuibs);
+                        //LoadAllQuibsQuibStream(quibs);
 
 
                         setTimeout(function () {
@@ -281,14 +314,190 @@ $(document).ready(function () {
         $('#quibTimer').toggle();
     });
 
+    //$('#allSlider').slider({
+    //    change: function (e, ui) {
+    //        if ($(this).slider('value') == 1)
+    //            if (isSliderSync) {
+    //                showQuibsAndslide(this);
+    //            }
+
+    //    },
+
+    //    stop: function (e) {
+
+    //        checkslider = true;
+    //        var temp = $('.' + parseInt($(this).slider('value')) + '').last().attr('colmValue');
+    //        var tempTime = $('#quibSlider').slider('value');
+    //        var movieScrubberVal = parseInt($(this).slider('value'));
+    //        var quibScrbrStartClick = $('#quibSlider').slider('value');
+    //        $('.quib-item').css('visibility', 'visible');
 
 
-    // Slide event of a movie scrubber
-    $('#movieSlider').slider({
-        change: function (e, ui) {
-            if ($(this).slider('value') == 1)
-                ApplyStyleToQuibStream();
-            if (isSliderSync) {
+    //        if (IsQuibZeroOpen) {
+    //            // When user manually tap slider from quib zero
+    //            if ($(this).slider('value') > 0) {
+
+    //                if ($('#txtComposeQuib').val().length > 0) {
+    //                    $('#save-quib-modal').modal('show');
+    //                }
+    //                else {
+    //                    // Timer font size and text
+    //                    // Param : IsQuibZero?
+    //                    $('.popup_load').css('display', 'block');
+    //                    FormatTimer(false);
+
+    //                    IsQuibZeroOpen = false;
+
+    //                    // closing my stream panel
+    //                    $('.my-stream-panel').addClass('hide');
+
+    //                    // Param : IsQuibZero?
+    //                    UpdateUIControls(false);
+
+    //                    $('#quibContainer').empty();
+
+    //                    LoadInitialQuibsQuibStream();
+    //                    LoadAllQuibsQuibStream(initialQuibs);
+    //                    LoadAllQuibsQuibStream(quibs);
+    //                    ApplyStyleToQuibStream();
+
+    //                    $('.quib-item').css('visibility', 'visible');
+
+    //                    UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
+
+    //                    PlayMovie();
+
+    //                    // My stream compose timer
+    //                    $('.quib-compose-timer').formatTime();
+
+    //                    //showing previous quibs where there is no quibs for particular scrubber value
+
+    //                    if (temp == null || temp == undefined) {
+    //                        $('.quib-item .quib-compose-timer').filter(function (index, val) {
+
+    //                            if (ConvertTimeToSeconds($(val).val()) < movieScrubberVal) {
+    //                                temp = $('.' + ConvertTimeToSeconds($(val).val()) + '').last().attr('colmValue');
+    //                                tempTime = ConvertTimeToSeconds($(val).val());
+    //                            }
+    //                        });
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        else {
+
+    //            //showing previous quibs where there is no quibs for particular scrubber value
+    //            if (temp == null || temp == undefined) {
+    //                $('.quib-item .quib-compose-timer').filter(function (index, val) {
+
+    //                    if (ConvertTimeToSeconds($(val).val()) < movieScrubberVal) {
+    //                        temp = $('.' + ConvertTimeToSeconds($(val).val()) + '').last().attr('colmValue');
+    //                        tempTime = ConvertTimeToSeconds($(val).val());
+    //                    }
+    //                });
+    //            }
+    //        }
+
+    //        isSliderSync = true;
+
+    //        ShowQuibsAtThisTime(tempTime.toString().toHHMMSS());
+
+    //        setTimeout(function () { ClearOnlyQuibsAhead($('#allSlider').slider('value'), quibScrbrStartClick); }, 400);
+
+    //    },
+
+    //    slide: function (e) {
+    //        ChangeValueAndTime('#slider', '#movieTimer', $(this).slider('value'), true, true);
+    //    }
+    //});
+
+
+
+  
+        
+            $('#allSlider').slider({
+ 
+            change: function (e, ui) {
+                if ($(this).slider('value') == 1)
+                    ApplyStyleToQuibStream();
+                if (isSliderSync) {
+                    if (IsQuibZeroOpen) {
+                        // When user manually tap slider from quib zero
+                        if ($(this).slider('value') > 0) {
+
+                            if ($('#txtComposeQuib').val().length > 0) {
+                                $('#save-quib-modal').modal('show');
+                            }
+                            else {
+                                var that = this;
+                                showLoadingGIF().then(function () {
+                                    // Timer font size and text
+                                    // Param : IsQuibZero?
+                                    FormatTimer(false);
+
+                                    IsQuibZeroOpen = false;
+
+                                    // closing my stream panel
+                                    $('.my-stream-panel').addClass('hide');
+
+                                    // Param : IsQuibZero?
+                                    UpdateUIControls(false);
+
+                                    $('#quibContainer').empty();
+                                    LoadInitialQuibsQuibStream();
+                                    LoadAllQuibsQuibStream(initialQuibs);
+                                    LoadAllQuibsQuibStream(quibs);
+                                    ApplyStyleToQuibStream();
+
+                                    UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
+
+                                    // My stream compose timer
+                                    $('.quib-compose-timer').formatTime();
+
+                                    $('.popup_load').css('display', 'none');
+                                    showQuibsAndslide(that);
+                                });
+                            }
+                        }
+                        else {
+                            showQuibsAndslide(this);
+                        }
+                    }
+                    else {
+                        showQuibsAndslide(this);
+                    }
+                }
+                else {
+                    ShowQuibsAtThisTime($(this).slider('value').toString().toHHMMSS());
+
+                    // updating movie timer
+                    ChangeValueAndTime('#slider', '#movieTimer', totalTicks, true, false);
+
+                    if (ConvertTimeToSeconds($('#movieTimer').val()) >= selectedMovieLength) {
+                        $('#end-movie-modal').modal('show');
+                        enabledisableNoSleep(false);
+                    }
+                }
+            },
+
+            start: function (e) {
+                TempTotalTicks = $(this).slider('value');
+
+                checkslider = false;
+            },
+
+            stop: function (e) {
+
+                checkslider = true;
+                var temp = $('.' + parseInt($(this).slider('value')) + '').last().attr('colmValue');
+                var tempTime = $('#quibSlider').slider('value');
+                var movieScrubberVal = parseInt($(this).slider('value'));
+                var quibScrbrStartClick = $('#quibSlider').slider('value');
+
+                //$('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
+                $('.quib-item').css('visibility', 'visible');
+
+
                 if (IsQuibZeroOpen) {
                     // When user manually tap slider from quib zero
                     if ($(this).slider('value') > 0) {
@@ -297,34 +506,122 @@ $(document).ready(function () {
                             $('#save-quib-modal').modal('show');
                         }
                         else {
-                            var that = this;
-                            showLoadingGIF().then(function () {
-                                // Timer font size and text
-                                // Param : IsQuibZero?
-                                FormatTimer(false);
+                            // Timer font size and text
+                            // Param : IsQuibZero?
+                            $('.popup_load').css('display', 'block');
+                            FormatTimer(false);
 
-                                IsQuibZeroOpen = false;
+                            IsQuibZeroOpen = false;
 
-                                // closing my stream panel
-                                $('.my-stream-panel').addClass('hide');
+                            // closing my stream panel
+                            $('.my-stream-panel').addClass('hide');
 
-                                // Param : IsQuibZero?
-                                UpdateUIControls(false);
+                            // Param : IsQuibZero?
+                            UpdateUIControls(false);
 
-                                $('#quibContainer').empty();
-                                LoadInitialQuibsQuibStream();
-                                LoadAllQuibsQuibStream(initialQuibs);
-                                LoadAllQuibsQuibStream(quibs);
-                                ApplyStyleToQuibStream();
+                            $('#quibContainer').empty();
 
-                                UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
+                            LoadInitialQuibsQuibStream();
+                            LoadAllQuibsQuibStream(initialQuibs);
+                            LoadAllQuibsQuibStream(quibs);
+                            ApplyStyleToQuibStream();
 
-                                // My stream compose timer
-                                $('.quib-compose-timer').formatTime();
+                            $('.quib-item').css('visibility', 'visible');
 
-                                $('.popup_load').css('display', 'none');
-                                showQuibsAndslide(that);
-                            });
+                            UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
+
+                            PlayMovie();
+
+                            // My stream compose timer                                                
+                            $('.quib-compose-timer').formatTime();
+
+                            //showing previous quibs where there is no quibs for particular scrubber value 
+
+                            if (temp == null || temp == undefined) {
+                                $('.quib-item .quib-compose-timer').filter(function (index, val) {
+
+                                    if (ConvertTimeToSeconds($(val).val()) < movieScrubberVal) {
+                                        temp = $('.' + ConvertTimeToSeconds($(val).val()) + '').last().attr('colmValue');
+                                        tempTime = ConvertTimeToSeconds($(val).val());
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }
+                else {
+
+                    //showing previous quibs where there is no quibs for particular scrubber value 
+                    if (temp == null || temp == undefined) {
+                        $('.quib-item .quib-compose-timer').filter(function (index, val) {
+
+                            if (ConvertTimeToSeconds($(val).val()) < movieScrubberVal) {
+                                temp = $('.' + ConvertTimeToSeconds($(val).val()) + '').last().attr('colmValue');
+                                tempTime = ConvertTimeToSeconds($(val).val());
+                            }
+                        });
+                    }
+                }
+
+                isSliderSync = true;
+
+                ShowQuibsAtThisTime(tempTime.toString().toHHMMSS());
+
+                setTimeout(function () { ClearOnlyQuibsAhead($('#allSlider').slider('value'), quibScrbrStartClick); }, 400);
+
+            },
+
+            slide: function (e) {
+                ChangeValueAndTime('#slider', '#movieTimer', $(this).slider('value'), true, true);
+            }
+        });
+    
+    // Slide event of a movie scrubberif ($("#movieSlider").css("display") != "none") {
+        $('#movieSlider').slider({
+            change: function (e, ui) {
+                if ($(this).slider('value') == 1)
+                    ApplyStyleToQuibStream();
+                if (isSliderSync) {
+                    if (IsQuibZeroOpen) {
+                        // When user manually tap slider from quib zero
+                        if ($(this).slider('value') > 0) {
+
+                            if ($('#txtComposeQuib').val().length > 0) {
+                                $('#save-quib-modal').modal('show');
+                            }
+                            else {
+                                var that = this;
+                                showLoadingGIF().then(function () {
+                                    // Timer font size and text
+                                    // Param : IsQuibZero?
+                                    FormatTimer(false);
+
+                                    IsQuibZeroOpen = false;
+
+                                    // closing my stream panel
+                                    $('.my-stream-panel').addClass('hide');
+
+                                    // Param : IsQuibZero?
+                                    UpdateUIControls(false);
+
+                                    $('#quibContainer').empty();
+                                    LoadInitialQuibsQuibStream();
+                                    LoadAllQuibsQuibStream(initialQuibs);
+                                    LoadAllQuibsQuibStream(quibs);
+                                    ApplyStyleToQuibStream();
+
+                                    UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
+
+                                    // My stream compose timer
+                                    $('.quib-compose-timer').formatTime();
+
+                                    $('.popup_load').css('display', 'none');
+                                    showQuibsAndslide(that);
+                                });
+                            }
+                        }
+                        else {
+                            showQuibsAndslide(this);
                         }
                     }
                     else {
@@ -332,130 +629,141 @@ $(document).ready(function () {
                     }
                 }
                 else {
-                    showQuibsAndslide(this);
-                }
-            }
-            else {
-                ShowQuibsAtThisTime($(this).slider('value').toString().toHHMMSS());
+                    ShowQuibsAtThisTime($(this).slider('value').toString().toHHMMSS());
 
-                // updating movie timer
-                ChangeValueAndTime('#slider', '#movieTimer', totalTicks, true, false);
+                    // updating movie timer
+                    ChangeValueAndTime('#slider', '#movieTimer', totalTicks, true, false);
 
-                if (ConvertTimeToSeconds($('#movieTimer').val()) >= selectedMovieLength) {
-                    $('#end-movie-modal').modal('show');
-                    enabledisableNoSleep(false);
-                }
-            }
-        },
-
-        start: function (e) {
-            TempTotalTicks = $(this).slider('value');
-
-            checkslider = false;
-        },
-
-        stop: function (e) {
-
-            checkslider = true;
-            var temp = $('.' + parseInt($(this).slider('value')) + '').last().attr('colmValue');
-            var tempTime = $('#quibSlider').slider('value');
-            var movieScrubberVal = parseInt($(this).slider('value'));
-            var quibScrbrStartClick = $('#quibSlider').slider('value');
-
-            $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
-            $('.quib-item').css('visibility', 'visible');
-
-
-            if (IsQuibZeroOpen) {
-                // When user manually tap slider from quib zero
-                if ($(this).slider('value') > 0) {
-
-                    if ($('#txtComposeQuib').val().length > 0) {
-                        $('#save-quib-modal').modal('show');
+                    if (ConvertTimeToSeconds($('#movieTimer').val()) >= selectedMovieLength) {
+                        $('#end-movie-modal').modal('show');
+                        enabledisableNoSleep(false);
                     }
-                    else {
-                        // Timer font size and text
-                        // Param : IsQuibZero?
-                        $('.popup_load').css('display', 'block');
-                        FormatTimer(false);
+                }
+            },
 
-                        IsQuibZeroOpen = false;
+            start: function (e) {
+                TempTotalTicks = $(this).slider('value');
 
-                        // closing my stream panel
-                        $('.my-stream-panel').addClass('hide');
+                checkslider = false;
+            },
 
-                        // Param : IsQuibZero?
-                        UpdateUIControls(false);
+            stop: function (e) {
+                $(".upcheck").css("display", 'unset');
+                $(".upuncheck").css("display", "none");
+                $(".btmuncheck").css("display", 'unset');
+                $(".btmcheck").css("display", "none");
+                checkslider = true;
+                var temp = $('.' + parseInt($(this).slider('value')) + '').last().attr('colmValue');
+                var tempTime = $('#quibSlider').slider('value');
+                var movieScrubberVal = parseInt($(this).slider('value'));
+                var quibScrbrStartClick = $('#quibSlider').slider('value');
+                $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/top_line.png') !important");
+                $('#allScrubber').css('display', 'none');
+                $('#carouselOffset').css('height', '21%');
+                $(".DualSync").css('display', 'unset');
+                $(".Allsync").css('display', 'none')
+                //$('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
+                $('.quib-item').css('visibility', 'visible');
 
-                        $('#quibContainer').empty();
 
-                        LoadInitialQuibsQuibStream();
-                        LoadAllQuibsQuibStream(initialQuibs);
-                        LoadAllQuibsQuibStream(quibs);
-                        ApplyStyleToQuibStream();
+                if (IsQuibZeroOpen) {
+                    // When user manually tap slider from quib zero
+                    if ($(this).slider('value') > 0) {
 
-                        $('.quib-item').css('visibility', 'visible');
+                        if ($('#txtComposeQuib').val().length > 0) {
+                            $('#save-quib-modal').modal('show');
+                        }
+                        else {
+                            // Timer font size and text
+                            // Param : IsQuibZero?
+                            $('.popup_load').css('display', 'block');
+                            FormatTimer(false);
 
-                        UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
+                            IsQuibZeroOpen = false;
 
-                        PlayMovie();
+                            // closing my stream panel
+                            $('.my-stream-panel').addClass('hide');
 
-                        // My stream compose timer                                                
-                        $('.quib-compose-timer').formatTime();
+                            // Param : IsQuibZero?
+                            UpdateUIControls(false);
 
-                        //showing previous quibs where there is no quibs for particular scrubber value 
+                            $('#quibContainer').empty();
 
-                        if (temp == null || temp == undefined) {
-                            $('.quib-item .quib-compose-timer').filter(function (index, val) {
+                            LoadInitialQuibsQuibStream();
+                            LoadAllQuibsQuibStream(initialQuibs);
+                            LoadAllQuibsQuibStream(quibs);
+                            ApplyStyleToQuibStream();
 
-                                if (ConvertTimeToSeconds($(val).val()) < movieScrubberVal) {
-                                    temp = $('.' + ConvertTimeToSeconds($(val).val()) + '').last().attr('colmValue');
-                                    tempTime = ConvertTimeToSeconds($(val).val());
-                                }
-                            });
+                            $('.quib-item').css('visibility', 'visible');
+
+                            UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
+
+                            PlayMovie();
+
+                            // My stream compose timer                                                
+                            $('.quib-compose-timer').formatTime();
+
+                            //showing previous quibs where there is no quibs for particular scrubber value 
+
+                            if (temp == null || temp == undefined) {
+                                $('.quib-item .quib-compose-timer').filter(function (index, val) {
+
+                                    if (ConvertTimeToSeconds($(val).val()) < movieScrubberVal) {
+                                        temp = $('.' + ConvertTimeToSeconds($(val).val()) + '').last().attr('colmValue');
+                                        tempTime = ConvertTimeToSeconds($(val).val());
+                                    }
+                                });
+                            }
                         }
                     }
                 }
-            }
-            else {
+                else {
 
-                //showing previous quibs where there is no quibs for particular scrubber value 
-                if (temp == null || temp == undefined) {
-                    $('.quib-item .quib-compose-timer').filter(function (index, val) {
+                    //showing previous quibs where there is no quibs for particular scrubber value 
+                    if (temp == null || temp == undefined) {
+                        $('.quib-item .quib-compose-timer').filter(function (index, val) {
 
-                        if (ConvertTimeToSeconds($(val).val()) < movieScrubberVal) {
-                            temp = $('.' + ConvertTimeToSeconds($(val).val()) + '').last().attr('colmValue');
-                            tempTime = ConvertTimeToSeconds($(val).val());
-                        }
-                    });
+                            if (ConvertTimeToSeconds($(val).val()) < movieScrubberVal) {
+                                temp = $('.' + ConvertTimeToSeconds($(val).val()) + '').last().attr('colmValue');
+                                tempTime = ConvertTimeToSeconds($(val).val());
+                            }
+                        });
+                    }
                 }
+
+                isSliderSync = true;
+
+                ShowQuibsAtThisTime(tempTime.toString().toHHMMSS());
+
+                setTimeout(function () { ClearOnlyQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick); }, 400);
+
+            },
+
+            slide: function (e) {
+                ChangeValueAndTime('#slider', '#movieTimer', $(this).slider('value'), true, true);
             }
-
-            isSliderSync = true;
-            ShowQuibsAtThisTime(tempTime.toString().toHHMMSS());
-            setTimeout(function () { ClearOnlyQuibsAhead($('#movieSlider').slider('value'), quibScrbrStartClick); }, 400);
-        },
-
-        slide: function (e) {
-            ChangeValueAndTime('#slider', '#movieTimer', $(this).slider('value'), true, true);
-        }
-    });
-
+        });
+    
     function showQuibsAndslide(that) {
         ShowQuibsAtThisTime($(that).slider('value').toString().toHHMMSS());
-
+        console.log(that);
+        
         // Getting actual time based on slider position
         totalTicks = $(that).slider('value');
-
+        quibtotaltick = $('#quibSlider').slider('value');
         // Only possible in manual scrubber sliding
         if (totalTicks < 1) {
             totalTicks = 1;
             ChangeValueAndTime('#movieSlider', '#movieTimer', totalTicks, true, true);
         }
-
-        // Updating quib slider position
-        ChangeValueAndTime('#quibSlider', '#quibTimer', totalTicks, true, true);
-
+        if (totalTicks - 1 == quibtotaltick) {
+            // Updating quib slider position
+            ChangeValueAndTime('#quibSlider', '#quibTimer', totalTicks, true, true);
+        }
+        if ((that.id == 'allSlider') && (that.style.display != 'none')) {
+         
+            ChangeValueAndTime('#quibSlider', '#quibTimer', totalTicks, true, true);
+        }
         //VIEWPORT START
         var cols_array = [];
         $(".quib-item").withinviewport().each(function () {
@@ -478,7 +786,8 @@ $(document).ready(function () {
             var slidesToClick = (highColumnValue - curColumnValue);
             if ((slidescheck + 1) > parseInt(Math.round($('#quibContainer').width() / $('.quib-item').width()) - 1)) {
                 var scrollval = ($('.quib-item').width()) * slidesToClick;
-                scrollByNew(scrollval);
+                if (that.style.display != 'none') { scrollByNew(scrollval); }
+               
             }
         }
         else {
@@ -486,7 +795,9 @@ $(document).ready(function () {
             var slidesToClick = (curColumnValue - highColumnValue);
             if (slidesToClick >= (parseInt($('#quibContainer').width() / $('.quib-item').width()) - 2)) {
                 var scrollval = ($('.quib-item').width()) * slidesToClick;
-                scrollByNew(-scrollval);
+                if (that.style.display != 'none') {
+                    scrollByNew(-scrollval);
+                }
             }
         }
         TempTotalTicks = totalTicks;
@@ -504,8 +815,8 @@ $(document).ready(function () {
     $('#quibSlider').slider({
         change: function (e) {
             if (!isNavButtonClick) {
-
                 if ($(this).slider('value') < 1) {
+                    ApplyStyleToQuibStream();
                     ChangeValueAndTime('#quibSlider', '#timer', 1, false, true);
 
                     $slider = $('#quibSlider');
@@ -522,10 +833,18 @@ $(document).ready(function () {
             }
         },
         stop: function (e) {
+            $(".upcheck").css("display", 'none');
+            $(".upuncheck").css("display", "unset");
+            $(".btmuncheck").css("display", 'none');
+            $(".btmcheck").css("display", "unset");
             setslider = true;
             checkslider = true;
             isSliderSync = false;
-
+            ApplyStyleToQuibStream();
+            $('#allScrubber').css('display', 'none');
+            $('#carouselOffset').css('height', '20%');
+            $('.Allsync').css('display', 'none');
+            $('.DualSync').css('display', 'block');
             $('.quib-item').css('visibility', 'visible');
 
             $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom_line.png')");
@@ -640,7 +959,9 @@ function drawTimeLine() {
         $('#movieSlider').slider({
             max: selectedMovieLength
         });
-
+        $('#allSlider').slider({
+            max: selectedMovieLength
+        });
         // quib scrubber
         $('#quibSlider').slider({
             max: selectedMovieLength

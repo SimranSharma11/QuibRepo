@@ -8,13 +8,20 @@
     <title>Quib - Share what you know and love about great movies</title>
     <link href="Q_favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <script src="~/lib/jquery/dist/jquery.js"></script>
+  @*  <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
+
+    <script src="~/lib/jquery/dist/Jquery1.10.js"></script>
+    <script src="~/lib/jquery/dist/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/lib/jquery/dist/jquery.browser.js"></script>
+    <script src="~/lib/jquery/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery/dist/bootstrap.js"></script>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
-    <script src="~/js/cropper.js"></script>
+    <script src="~/lib/jquery/dist/cropper.js"></script>
     <script src="~/js/croppermain.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <link href="~/css/cropper.css" rel="stylesheet" />
@@ -57,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-6"style="margin-top: 5%;">
     <div class="panel panel-default">
         <div class="panel-body register-form">
             <div class="register-form-header " style=""><span>Join the Quib beta!</span></div>
@@ -89,18 +96,18 @@
                        <label asp-for="Input.RegistrationCode"></label>
                       <span asp-validation-for="Input.RegistrationCode" class="text-danger"></span>
                 </div>*@
-                <div class="form-group file-avatar" style="height: 65px; text-align: left;">
+             @*   <div class="form-group file-avatar" style="height: 65px; text-align: left;">
                     <div class="text-align:center">
 
                         <img id="imgAvtr" src="~/images/avatar.png" style="float: left; margin-right: 10px" />
-                    </div>
+                    </div>*@
  
-                <div style="display:inline-block;float: left;">
+               @* <div style="display:inline-block;float: left;">*@
                    @* <button type="button" class="btn choose-file-button" id="btnUploadImage" onclick="UploadImage();"style="margin-right:2px;display:inline-block">Choose Image</button>                 
                     <input asp-for="Input.AvatarBase32ImagePath" type="file" class="fileAvtr" id="inputImage" name="File" title="" style="opacity: 0; position: relative; left: 0px; width: 140px; top: -22px;" accept="image/*" />
                     <label asp-for="Input.AvatarBase32ImagePath"></label>
                     <span asp-validation-for="Input.AvatarBase32ImagePath" class="text-danger"></span>*@
-                    <input asp-for="Input.AvatarBase32ImagePath" type="file" />
+                  @*  <input asp-for="Input.AvatarBase32ImagePath" type="file" />
                         <span asp-validation-for="Input.AvatarBase32ImagePath" class="text-danger"></span>
                 </div>
                
@@ -110,12 +117,32 @@
                             <div class="form-group">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group" style="min-width:100%;width:100px;">
-                                        <img id="image" src="" alt="Picture" style="width:100px;height:50px max-width:100%;min-width:100%">
+                                        <img id="image" src="" alt="Picture" style="width:100px;height:50px;max-width:100%;min-width:100%">
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
 
-                            <textarea class="form-control terms-bar" readonly="true">
+                                    <div class="form-group file-avatar" style="height: 65px; text-align: left;">
+                                        <div class="text-align:center">
+                                            <img id="imgAvtr" src="~/Images/avatar.png" style="float: left; margin-right: 10px" />
+                                        </div>
+                                        <div style="display:inline-block;float: left;">
+                                            <button type="button" class="btn choose-file-button" id="btnUploadImage" onclick="UploadImage();" style="margin-right:2px;display:inline-block">Choose Image</button>
+                                            <input asp-for="Input.AvatarBase32ImagePath" type="file" class="fileAvtr" id="inputImage"  title="" style="opacity: 0; position: relative; left: 0px; width: 140px; top: -22px;"  />
+                                       
+                                        </div>
+                                        <button type="button" class="btn choose-file-button btnCancelUpload" id="btnCancelUpload" onclick="cancelUploadImage()">Cancel Image</button>
+                                    </div>
+                                    <div style="clear:both"></div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group" style="min-width:100%;width:100px;">
+                                                <img id="image" src="" alt="Picture" style="width:100px;height:50px; max-width:100%;min-width:100%">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            <textarea class="form-control terms-bar" readonly="readonly">
 
 Quib® terms of service:
 
@@ -326,12 +353,15 @@ As of the date of these terms, no direct charges are imposed upon the consumer b
 You may also contact us at support@quibs.com with any questions regarding these Terms.
                             </textarea>
 
-                            <div class="checkbox">
-                               @Html.CheckBoxFor(p => p.Input.IsEnabled, new { id = "chkTermsCondition" })
-                                    I Agree
-                                  <span asp-validation-for="Input.IsEnabled" class="text-danger"></span>
-                           </div>
-
+                                <div class="checkbox">
+                                    <label>
+                                        <input data-val="true" data-val-required="The termAgreement field is required." id="chkTermsCondition" name="termAgreement" type="checkbox" value="true"/>
+                                        @*<input name="termAgreement" type="hidden" value="false">*@
+                                        I Agree
+                                    </label>
+                                    <div class="error-message" id="ChkErrorMessage" style="display:none"><span>You must accept the terms and conditions.</span></div>
+                                    <div class="error-message" id="errorMessage"><span class="field-validation-valid" data-valmsg-for="termAgreement" data-valmsg-replace="true"></span></div>
+                                </div>
                             <div class="btn-register">         
                             
                                  <button id="registerSubmit" type="submit" class="btn-burgandy">Register</button>
