@@ -13,8 +13,8 @@
     
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
-  
-     <link href="~/css/cropper.css" rel="stylesheet" />
+    <link href="~/css/carousel.css" rel="stylesheet" />
+    <link href="~/css/cropper.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
@@ -26,6 +26,8 @@
     <script src="~/lib/jquery/dist/withinviewport.js"></script>
     <script src="~/lib/jquery/dist/jquery.withinviewport.js"></script>
     <script src="~/js/NoSleep.js"></script>
+    <script src="~/js/Carousel.js"></script>
+    <script src="~/js/timeline.js"></script>
     <script src="~/js/timeline.js"></script>
     <script src="~/js/QuibStream.js"></script>
     <script src="~/js/QuibZero.js"></script>
@@ -140,12 +142,7 @@
                     IsIntervalTimeUP = false;
                     isNavButtonClick = false;
                     PlayMovie();
-
-                    // button src gets change in playmovie() function
-                    //if (that.attr('src') == imgPath + imgNamePause) {
-                    //    ClearOnlyQuibsAhead($('#movieSlider').slider('value'));
-                    //}
-                }
+                   }
 
         } btnPlay();
             function PlayMovie() {
@@ -157,9 +154,7 @@
                         StartTimer();
                         $('#imgPlayPause').attr('src', imgPath + imgNamePause);
                         UpdateComposeTime($('#movieTimer').val());
-
-                        // Update timeline and timer control ui for quib zero
-                        // parameter: IsQuibZero?
+                        
                         UpdateUIControls(false);
 
                         isSliderSync = true;
@@ -180,10 +175,7 @@
 
             function ClearQuibsAhead(quibTime, quibScrbrStartClick) {
                 showLoadingGIF().then(function () {
-                    //for (i = quibTime + 1 ; i <= selectedMovieLength ; i++) {
-                    //    $(".quib-item input[value='" + i + "']").parents(".quib-item").css("visibility", "hidden");
-                    //}
-
+                    
                     $('.quib-item .quib-compose-timer').filter(function (index, val) {
                         if (parseInt(ConvertTimeToSeconds($(val).val())) > parseInt(quibTime)) {
                             $(val).parents('.quib-item').css('visibility', 'hidden');
@@ -389,10 +381,6 @@
         $(window).resize(function () {
             resizemystream;
             if (resizemystream) {
-                //var imgPath = '../Images/';
-                //$('#imgPlayPause').attr('src', imgPath + imgNamePlay);
-                //isRunning = false;
-                //StopTimer();
                 ApplyStyleToQuibStream();
                 ApplyStyleToQuibStreamforcarousel();
                 var totalScroll = $('#quib-list').scrollLeft();
@@ -432,52 +420,6 @@
                     topPos = 0;
                 }
 
-                //if ((parseInt($('#quibContainer').width() - $('.quib-item').width())) == 0) {
-                //    if (Col == 0) {
-                //        if (quib.GlobalDeclarations.fnCurrentFlag(false) == 0) {
-                //            $(this).attr('CurCol', 'CurCol');
-                //        }
-                //    }
-                //    else {
-                //        if (quib.GlobalDeclarations.fnCurrentFlag(false) == 0) {
-                //            $(this).removeAttr('CurCol')
-                //        }
-                //    }
-
-                //    if (Col == -1) {
-                //        if (quib.GlobalDeclarations.fnCurrentFlag(false) == 0) {
-                //            $(this).attr('PrevCol', 'PrevCol');
-                //        }
-                //    }
-                //    else {
-                //        if (quib.GlobalDeclarations.fnCurrentFlag(false) == 0) {
-                //            $(this).removeAttr('PrevCol')
-                //        }
-                //    }
-
-                //} else {
-
-                //    if (Col == 0) {
-                //        if (quib.GlobalDeclarations.fnCurrentFlag(false) == 0) {
-                //            $(this).attr('PrevCol', 'PrevCol');
-                //        }
-                //    }
-                //    else {
-                //        if (quib.GlobalDeclarations.fnCurrentFlag(false) == 0) {
-                //            $(this).removeAttr('PrevCol')
-                //        }
-                //    }
-                //    if (Col == 1) {
-                //        if (quib.GlobalDeclarations.fnCurrentFlag(false) == 0) {
-                //            $(this).attr('CurCol', 'CurCol');
-                //        }
-                //    }
-                //    else {
-                //        if (quib.GlobalDeclarations.fnCurrentFlag(false) == 0) {
-                //            $(this).removeAttr('CurCol');
-                //        }
-                //    }
-                //}
 
                 $(this).attr('colmValue', Col.toString());
                 $(this).css('top', topPos + 'px')
@@ -592,29 +534,17 @@
         </div>
     </div>
 
-    <div class="caouselhide" style="display:none;height:200px;width:100%;background-color:aqua;margin-bottom:10px">
-
-
-        <div class="quibsdata">
+    <div class="container-fluid">
+        <div class="caouselhide" style="display:none;height:100vh;width:100%;margin-bottom:10px">
+            <div class="slider-container" item-display-d="4">
+                <div class="slider-width">
+                    
+                </div>
+            </div>
+            <button type="button" id="prev" style="margin-top:5px">Prev</button>
+            <button type="button" id="next" style="margin-top:5px">Next</button>
         </div>
-
-        <div class="prev-arrows" id="prevOpenCompose" style="margin-left: 336px;visibility:hidden;">
-            <span class=" left">
-                <img src=@Url.Content("~/Images/left-arrow.png") />
-            </span>
-        </div>
-
-        <div class="prev-arrows">
-            <span class=" left" style="left: 10px">
-                <img src=@Url.Content("~/Images/left-arrow.png") />
-            </span>
-        </div>
-        <div class="next-arrows">
-            <span class="right " style="right: 10px">
-                <img src=@Url.Content("~/Images/right-arrow.png") />
-            </span>
-        </div>
-
+        
     </div>
  
 

@@ -2,13 +2,13 @@
 var inc = 0;
 var itemDisplay = 4;
 var slider;
-var itemleft;
-var itemslide;
+var itemleft =0;
+var itemslide =3;
 
 $(document).ready(function () {
     slider = $('.slider-width')[0];
-    itemleft = $(".item").length % itemDisplay;
-    itemslide = Math.floor($(".item").length / itemDisplay) - 1;
+    //itemleft = $("#Test").length % itemDisplay;
+    //itemslide = Math.floor($("#Test").length / itemDisplay) - 1;
    
 });
 

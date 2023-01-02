@@ -927,15 +927,18 @@ function LoadAllQuibsQuibStream(quibs) {
 
 //for carousel
 function LoadInitialQuibsQuibStreamforcarousel(){
-    $('.quibsdata').append("<div class='quib-item movie-poster-wrapper' prevcol='PrevCol' style='text-align: center;'>" +
-        "<div class='panel panel-default quib-item-inner inner1' style=' background-color: white; height:100%'>" +
-        "<div class='panel-body' style='padding: 0 ;height:100%'>" +
-        "<div style='font-size: 24px; font-weight: bold; color: black;padding:7% 0px'>Timeline quibs for</div>" +
-        "<img src='" + $('.MoviePosterThumb').attr('src') + "' />" +
+    $('.slider-width').append("<div class='quib-item-data'>" +
+        //"<div class='quib-item-data movie-poster-wrapper' prevcol='PrevCol' style='text-align: center;'>" +
+        //"<div class='panel panel-default quib-item-inner inner1' style=' background-color: white; height:100%'>" +
+        //"<div class='panel-body' style='padding: 0 ;height:100%'>" +
+        //"<div style='font-size: 24px; font-weight: bold; color: black;padding:7% 0px'>Timeline quibs for</div>" +
+        //"<img src='" + $('.MoviePosterThumb').attr('src') + "' />" +
 
-        "</div>" +
-        "</div>" +
-        "</div>");
+        //"</div>" +
+        //"</div>" +
+        //"</div>"
+        "</div>"
+    );
 }
 function LoadAllQuibsQuibStreamforcarousel(quibs){
     //$('#quibContainer').empty();
@@ -1002,114 +1005,121 @@ function LoadAllQuibsQuibStreamforcarousel(quibs){
             }
 
             if (!object[obj].isScreenshot) {
-                $('.quibsdata').append("<div class='quib-item " + time + "'  time='Parent_" + time + "' style='visibility:hidden'> " +
-                    "<div class='panel panel-default quib-item-inner inner1'>" +
-                    "<div class='panel-body' style='padding: 0;'>" +
-                    "<div class='quib-compose-wrapper'>" +
-                    "<div class='quib-compose-header'>" +
-                    //"<img src='data:image/jpeg;base64," + avatar + "' class='avatar-quibcomposer' />" +
+                $('.slider-width').append("<div class='quib-item-data'>" +
+                    " <div class='head-section'>" +
+                    "<div class='left-section'>" +
                     "<img src='" + avatar + "' class='avatar-quibcomposer' />" +
-                    "<span class='composer-name " + SeedquibClass + "' style='font-weight: bold'> " + object[obj].displayName + "</span>" +
-                    "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
-                    "<div class='quib-compose-timer-wrapper'>" +
-                    "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
-                    "</div>" +
-                    "<div class='compose-side-header' style='float: right'>" +
-                    //"<a class='img-tag'>" +
-                    //    "<img src='/Images/tag.png' />" +
-                    //"</a>" +
-                    "<a class='img-bump'>" +
-                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
-                    "</a>" +
-                    "</div>" +
-                    "<div class='drop-down-icon'>" +
-                    "<ul>" +
+                    "<span class='compose-name'> " + object[obj].displayName + "</span>" +
+                    "<span style='display: none;'> " + object[obj].id + "</span>" +
+                    "<ul style='display: none;'>" +
                     "<li onclick='FollowUser(" + object[obj].userId + ")' data-toggle='modal' data-target='#follower-modal'>Follow</li>" +
                     "<li onclick='GotoProfile(" + object[obj].userId + ")'>See Profile</li>" +
                     "<li onclick='GotoQuibStack(" + object[obj].userId + "," + object[obj].movieId + ")'>See Stream</li>" +
-                    //'<li onclick=' + gotoQuibStack + '>See Stream</li>' +
                     "</ul>" +
                     "</div>" +
+                    "<div class='middle-section'>" +
+                    "<input type='text' class='form-control timer' value='" + time + "' readonly='true' />" +
                     "</div>" +
-                    "<div class='quib-composer " + SeedquibClass + "'>" +
+                    "<div class='right-section'>" +
+                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
+                    "</div>" +
+                    "</div>" +
+
+                    " <div class='body-section'>" +
                     body +
                     "</div>" +
-                    bumpSign +
-                    "</div>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>");
+
+                    "</div>"
+                );
+                   
+  
+                //$('.quibsdata').append("<div class='quib-item " + time + "'  time='Parent_" + time + "' style='visibility:hidden'> " +
+                //    "<div class='panel panel-default quib-item-inner inner1'>" +
+                //    "<div class='panel-body' style='padding: 0;'>" +
+                //    "<div class='quib-compose-wrapper'>" +
+                //    "<div class='quib-compose-header'>" +
+                //    //"<img src='data:image/jpeg;base64," + avatar + "' class='avatar-quibcomposer' />" +
+                //    "<img src='" + avatar + "' class='avatar-quibcomposer' />" +
+                //    "<span class='composer-name " + SeedquibClass + "' style='font-weight: bold'> " + object[obj].displayName + "</span>" +
+                //    "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
+                //    "<div class='quib-compose-timer-wrapper'>" +
+                //    "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
+                //    "</div>" +
+                //    "<div class='compose-side-header' style='float: right'>" +
+                //    //"<a class='img-tag'>" +
+                //    //    "<img src='/Images/tag.png' />" +
+                //    //"</a>" +
+                //    "<a class='img-bump'>" +
+                //    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
+                //    "</a>" +
+                //    "</div>" +
+                //    "<div class='drop-down-icon'>" +
+                //    "<ul>" +
+                //    "<li onclick='FollowUser(" + object[obj].userId + ")' data-toggle='modal' data-target='#follower-modal'>Follow</li>" +
+                //    "<li onclick='GotoProfile(" + object[obj].userId + ")'>See Profile</li>" +
+                //    "<li onclick='GotoQuibStack(" + object[obj].userId + "," + object[obj].movieId + ")'>See Stream</li>" +
+                //    //'<li onclick=' + gotoQuibStack + '>See Stream</li>' +
+                //    "</ul>" +
+                //    "</div>" +
+                //    "</div>" +
+                //    "<div class='quib-composer " + SeedquibClass + "'>" +
+                //    body +
+                //    "</div>" +
+                //    bumpSign +
+                //    "</div>" +
+                //    "</div>" +
+                //    "</div>" +
+                //    "</div>");
             }
             else if (!object[obj].isSeedQuib) {
-                $('.quibsdata').append("<div class='quib-item " + time + "'  time='Parent_" + time + "' style='visibility:hidden'> " +
-                    "<div class='panel panel-default quib-item-inner inner1'>" +
-                    "<div class='panel-body' style='padding: 0;background-color:#990000;color:white;'>" +
-                    "<div class='quib-compose-wrapper'>" +
-                    "<div class='quib-compose-header'>" +
-                    //"<img src='data:image/jpeg;base64," + avatar + "' class='avatar-quibcomposer' />" +
-                    //"<img src='" + avatar + "' class='avatar-quibcomposer' />" +
-                    //"<span class='composer-name " + SeedquibClass + "' style='font-weight: bold'> " + object[obj].displayName + "</span>" +
-                    "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
-                    "<div class='quib-compose-timer-wrapper'>" +
-                    "<input type='text' class='form-control quib-compose-timer seedquibtimer'style='background-color:white !important;' value='" + time + "' readonly='true' />" +
-                    "</div>" +
-                    "<div class='compose-side-header' style='float: right'>" +
-                    //"<a class='img-tag'>" +
-                    //    "<img src='/Images/tag.png' />" +
-                    //"</a>" +
-                    "<a class='img-bump'>" +
-                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
-                    "</a>" +
-                    "</div>" +
-                    "<div class='drop-down-icon'>" +
-                    "<ul>" +
+                $('.slider-width').append("<div class='quib-item-data'>" +
+                    " <div class='head-section'>" +
+                    "<div class='left-section'>" +
+                    "<img src='" + avatar + "' class='avatar-quibcomposer'  style='width: 32px;height:32px'/>" +
+                    "<span class='compose-name'> " + object[obj].displayName + "</span>" +
+                    "<span style='display: none;'> " + object[obj].id + "</span>" +
+                    "<ul style='display: none;'>" +
                     "<li onclick='FollowUser(" + object[obj].userId + ")' data-toggle='modal' data-target='#follower-modal'>Follow</li>" +
                     "<li onclick='GotoProfile(" + object[obj].userId + ")'>See Profile</li>" +
                     "<li onclick='GotoQuibStack(" + object[obj].userId + "," + object[obj].movieId + ")'>See Stream</li>" +
-                    //'<li onclick=' + gotoQuibStack + '>See Stream</li>' +
                     "</ul>" +
                     "</div>" +
+                    "<div class='middle-section'>" +
+                    "<input type='text' class='form-control timer' value='" + time + "' readonly='true' />" +
                     "</div>" +
-                    "<div class='quib-composer " + SeedquibClass + "'>" +
+                    "<div class='right-section'>" +
+                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' style='width: 32px;height:32px' />" +
+                    "</div>" +
+                    "</div>" +
+                    " <div class='body-section'>" +
                     body +
                     "</div>" +
-                    bumpSign +
-                    "</div>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>");
+                    "</div>"
+                );
             }
             else {
-                $('.quibsdata').append("<div class='quib-item " + time + "'  time='Parent_" + time + "' style='visibility:hidden'> " +
-                    "<div class='panel panel-default quib-item-inner inner1'>" +
-                    "<div class='panel-body' style='padding: 0;'>" +
-                    "<div class='quib-compose-wrapper'>" +
-                    "<div class='quib-compose-header'>" +
-                    "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
-                    "<div class='quib-compose-timer-wrapper' style='top: 0;'>" +
-                    "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
-                    "</div>" +
-                    "<div class='compose-side-header' style='float: right'>" +
-                    "<a class='img-bump'>" +
-                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
-                    "</a>" +
-                    "</div>" +
-                    "<div class='drop-down-icon'>" +
-                    "<ul>" +
+                $('.slider-width').append("<div class='quib-item-data'>" +
+                    " <div class='head-section'>" +
+                    "<div class='left-section'>" +
+                    "<span style='display: none;'> " + object[obj].id + "</span>" +
+                    "<ul style='display: none;'>" +
                     "<li onclick='FollowUser(" + object[obj].userId + ")' data-toggle='modal' data-target='#follower-modal'>Follow</li>" +
                     "<li onclick='GotoProfile(" + object[obj].userId + ")'>See Profile</li>" +
                     "<li onclick='GotoQuibStack(" + object[obj].userId + "," + object[obj].movieId + ")'>See Stream</li>" +
                     "</ul>" +
                     "</div>" +
+                    "<div class='middle-section'>" +
+                    "<input type='text' class='form-control timer' value='" + time + "' readonly='true' />" +
                     "</div>" +
-                    "<div class='quib-composer " + SeedquibClass + "' style='margin-top: -20px;'>" +
+                    "<div class='right-section'>" +
+                    "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
+                    "</div>" +
+                    "</div>" +
+                    " <div class='body-section'>" +
                     body +
                     "</div>" +
-                    bumpSign +
-                    "</div>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>");
+                    "</div>"
+                );
             }
 
 
@@ -1126,7 +1136,7 @@ function LoadAllQuibsQuibStreamforcarousel(quibs){
     BindQuibTimeStampClick();
     BindTagClick();
     BindQuibAvatarClick();
-    $('.quibsdata').show();
+    $('.slider-width').show();
 }
 
 

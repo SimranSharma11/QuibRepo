@@ -665,9 +665,7 @@ input:focus {
     .my-stream-compose textarea {
         width: 100%;
         border: none;
-        /*overflow: hidden;*/
-        /*max-height: 200px;*/
-        padding-left: 10px;
+       padding-left: 10px;
         padding-right: 30px;
         outline: none;
         resize: none;
@@ -702,9 +700,6 @@ input:focus {
     color: white;
     vertical-align: middle;
     line-height: 27px;
-    /*background-size: 100% 100%;
-        background-image: url('Images/myStream_red.png');
-        background-repeat: no-repeat;*/
     line-height: 28px;
     background-origin: border-box;
 }
@@ -851,15 +846,6 @@ input:focus {
 .btnPlay {
     cursor: pointer;
 }
-
-/*Quib Stream page ends*/
-
-
-/*Admin page css*/
-
-/*.mystream-panel-content {
-       padding-bottom:100px;
-}*/
 
 .search-user .form-group {
     width: 18%;
@@ -1103,9 +1089,7 @@ input:focus {
         width: 33.34%;
         left: 0px;
     }
-
-
-    .follower-item {
+.follower-item {
         top: 0px;
         width: 33.3334%;
         left: 0px;
@@ -1830,30 +1814,6 @@ input:focus {
         width: calc(100% + 30px);
     }
 }
-
-
-/*@media handheld, only screen and (min-width:1390px) and (max-width:1500px) {
-    
-    .my-stream-panel-wrap {
-        width: 114%;
-    }
-}
-
-
-@media handheld, only screen and (min-width:1500px) and (max-width:1650px) {
-    
-    .my-stream-panel-wrap {
-        width: 112%;
-    }
-}
-
-@media handheld, only screen and (min-width:1650px) and (max-width:1900px) {
-    
-    .my-stream-panel-wrap {
-        width: 112%;
-    }*/
-
-
 
 
 .edit-profile-form {
