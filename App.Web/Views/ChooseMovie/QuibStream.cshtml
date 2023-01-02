@@ -545,7 +545,7 @@
             </div>
            @* <div class="col-md-4 col-lg-3 col-sm-6 hidden-sm hidden-xs"></div>*@
             <div class="col-md-2 col-lg-2 col-sm-2 hidden-sm hidden-xs">
-                <ul class="nav " style="float: right; margin-top: -6px; margin-right: -34px;">
+                <ul class="nav " style="float: right; margin-top: -9px; margin-right: -34px;">
                     @if (!(Context.User.Identity.IsAuthenticated))
                     {
                         <li style=" position: absolute;top: -5px;right: 31px;">
@@ -744,19 +744,19 @@
                     </div>
                     <canvas id="timelineCanvas" style="height: 10px; width: 100%; background-color: #FFFFCC"></canvas>
                     <div class="movieSliderWrapper">
-                        <div id="movieSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all;" style="height: 16px; border: none; background-color: #FFFFCC">
+                        <div id="movieSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all;" style="height: 16px; border: none; background-color: #FFFFCC;display:none;">
                             <span id="MovieScrubber" class="ui-slider-handle ui-state-default ui-corner-all movieSlider-span" style=""></span>
                         </div>
                     </div>
                    
                     <div class="quibSliderWrapper">
-                        <div id="quibSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="height: 16px; border: none; background-color: #FFFFCC">
+                        <div id="quibSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="height: 16px; border: none; background-color: #FFFFCC;display:none;">
                             <span id="QuibScrubber" class="ui-slider-handle ui-state-default ui-corner-all quibSlider-span"></span>
                         </div>
                     </div>
                 </div>
                 <div class="syncbtn"style="width: 4%;">
-                    <div class="Allsync" style="width:100%;float: left; margin-left: 20px; padding-top: 2px;">
+                    <div class="Allsync" style="width:100%;float: left; margin-left: 16px; padding-top: 2px;">
                         <img src="~/Images/AllSync.jpg" style="width:121%;height:100%;margin-top:-9%; mix-blend-mode: multiply;" />
                     </div>
                     <div class="DualSync">
