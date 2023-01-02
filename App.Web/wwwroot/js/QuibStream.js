@@ -95,7 +95,8 @@ function readURL(input) {
                     $('#image').attr('src', e.target.result);
                     $('#imgUpload').hide();
                     $('#divImage, #imgCancel').show();
-                    $('#BtnSave').html('Save');
+              
+                    $('#BtnSave').html('SAVE');
                     $('#txtComposeQuib').prop('readonly', true);
                     if (ComposeQuibTime == null || ComposeQuibTime == undefined)
                         ComposeQuibTime = $('#movieTimer').val();
@@ -273,8 +274,8 @@ $(document).ready(function () {
 
                     if (ComposeQuibTime == null || ComposeQuibTime == undefined || ComposeQuibTime.length == 0)
                         ComposeQuibTime = $('#movieTimer').val();
-
-                    $('#BtnSave').html('Save');
+                 
+                    $('#BtnSave').html('SAVE');
                     $('#CloseStream, #btnUploadImage').hide();
 
                     if (setbool) {
@@ -295,6 +296,7 @@ $(document).ready(function () {
                         $('.mystream-panel-content').css('height', Rheight);
                         UpdateComposeTime($('#movieTimer').val());
                         $('#CloseStream, #btnUploadImage').show();
+                     
                         $('#BtnSave').html(setmovietimer);
                         cancelUploadImage();
                         setbool = true;
@@ -477,10 +479,16 @@ $(document).ready(function () {
 
         $('#myStreamPanel').scrollTop(0);
         // Setting save button text to timer value
-        if (ComposeQuibTime != null && ComposeQuibTime != undefined && ComposeQuibTime.length > 0 && ComposeQuibTime > 0)
+        if (ComposeQuibTime != null && ComposeQuibTime != undefined && ComposeQuibTime.length > 0 && ComposeQuibTime > 0) {
+         
             $("#BtnSave").html(ComposeQuibTime);
-        else
+        }
+
+        else {
+          
             $("#BtnSave").html($('#movieTimer').val());
+        }
+          
 
         if (IsQuibZeroOpen)
             $("#txtComposeQuib").attr("placeholder", "write a quib zero...");
@@ -620,6 +628,7 @@ function BindQuibTimeStampClick() {
                 }
                 else {
                     // Setting save button text to timer value
+             
                     $("#BtnSave").html($(this).val());
                 }
             }
@@ -689,6 +698,7 @@ function BindTagClick() {
 // My stream quib timestamp click
 function BindMyStreamTimeStampClick() {
     $('.myStreamQuibTime').on('click', function (e) {
+   
         $('#BtnSave').html(this.value);
         $('#txtComposeQuib').focus();
     });

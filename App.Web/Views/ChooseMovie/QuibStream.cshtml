@@ -35,6 +35,8 @@
     <script src="~/js/Common.js"></script>
     <script src="~/js/Home.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>  
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
     <script type="text/javascript">
         localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
        
@@ -485,11 +487,24 @@
             }, 500);
                
         };
-
+        function HandleBackFunctionality() {
+            if (window.event) //Internet Explorer
+            {
+              if ($("#txtComposeQuib").val().trim().length > 0)  
+              return 'unload';
+                  //('#save-quib-modal').modal('show');
+            }
+            else //Other browsers for example Chrome
+            {
+                if ($("#txtComposeQuib").val().trim().length > 0) 
+                    ('#save-quib-modal').modal('show');
+            }
+        }
     </script>
+ 
 </head>
 
-<body>
+<body onbeforeunload="HandleBackFunctionality()">
     @*loading overlay*@
     <div class="popup_load">
         <div class="fade12" ></div>
@@ -552,6 +567,28 @@
     </div>
 
     <div class="caouselhide" style="display:none;height:200px;width:100%;background-color:aqua;margin-bottom:10px">
+        <div class="slider-container" item-display-d="4">
+            <div class="slider-width">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+                <div class="item">7</div>
+                <div class="item">8</div>
+                <div class="item">9</div>
+                <div class="item">10</div>
+                <div class="item">11</div>
+                <div class="item">12</div>
+                <div class="item">13</div>
+                <div class="item">14</div>
+                <div class="item">15</div>
+                <div class="item">16</div>
+            </div>
+        </div>
+        <button type="button" id="prev">Prev</button>
+        <button type="button" id="next">Next</button>
     </div>
 
     <button style="background-color:dimgrey;color:black;display:none;" class="returnToQuib">Tap Here To Return To Quibs</button>
@@ -561,27 +598,28 @@
         @************My stream****************@
 
         <div class="my-stream-panel col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <div class="row my-stream-panel-wrap" style="overflow-y: hidden; height: 100%; height: calc(100% - 38px);">
+            <div class="row my-stream-panel-wrap" style="overflow-y: hidden; height: 100%; height: calc(100% - 10px);">
                 <div class="my-stream-compose" id="myStreamCompose">
-                    <textarea id="txtComposeQuib" ></textarea>
+                    <textarea id="txtComposeQuib" placeholder="WRITE A QUIB"></textarea>
                     <span class="close-stream" id="CloseStream">
                         <img src="~/Images/close.png" />
                     </span>
+                    <div class="mystream-panel-header">
+                        <div class="mystream-time" style="float: left;width: 40%; text-align: center; height: 28px;position:absolute;left:109px;">
+                            <button type="button" id="BtnSave" class="btn btn-default btn-burgandy timerbtn" style="margin: 0 auto; text-align: center; padding: 4px 12px; font-size: 14px;font-weight:700;">SAVE</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="mystream-panel-header">
+               
+                <div style="background: #990000; padding-right: 3px;">
                     <div class="mystream-txt">
-                        <img src="~/Images/myStream_red_01.png" style="width: 100%; height: 100%" />
-                        <div style="position: relative; top: -26px">
+
+                        <div style="position: relative;">
                             <span>My Stream </span>
                             <span id="MyStreamCount">18</span>
                         </div>
                     </div>
-
-                    <div class="mystream-time" style="float: left; background-color: white; width: 40%; text-align: center; height: 28px">
-                        <button type="button" id="BtnSave" class="btn btn-default btn-burgandy" style="margin: 0 auto; text-align: center; padding: 4px 12px; font-size: 12px">Save</button>
-                    </div>
-                </div>
-                <div style="background: #990000; padding-right: 3px;">
+                  
                     <div class="mystream-panel-content" style="height: calc(100% - 87px);">
                         <div id="myStreamPanel" style="padding-bottom: 100%">
                             @*LOADIG FROM MyStream.js*@
@@ -590,9 +628,9 @@
                 </div>
 
             </div>
-            <div class="row mystream-footer" style="background-color: black; height: 38px; clear: both">
+          @*  <div class="row mystream-footer" style="background-color: black; height: 38px; clear: both">
                 <button type="button" class="btn btn-default btn-burgandy" data-toggle="modal" data-target="#postall-quib-modal" style="background-color: white; padding: 2px 9px; font-size: 12px; float: right; margin-right: 17px; margin-top: 9px; min-width: 90px">Post All</button>
-            </div>
+            </div>*@
         </div>
 
         <div class="row">
@@ -722,7 +760,8 @@
                         <img src="~/Images/AllSync.jpg" style="width:121%;height:100%;margin-top:-9%; mix-blend-mode: multiply;" />
                     </div>
                     <div class="DualSync">
-                        <div class="btn-resyncmovie" title="Resync Movie">
+                        <div class="btn-resynquib" title="Resync Movie">
+                      
                             <a>
                                 <img src="~/Images/upcheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="upcheck" />
                             </a>
@@ -731,7 +770,7 @@
                             </a>
                         </div>
 
-                        <div class="btn-resynquib" title="Resync Quib">
+                        <div class="btn-resyncmovie" title="Resync Quib">
                             <a>
                                 <img src="~/Images/btmuncheck.jpg" style="height:10%; mix-blend-mode: multiply;" class ="btmuncheck" />
                             </a>
@@ -758,6 +797,7 @@
             </div>
         </div>
     </nav>
+
 
     @*MESSAGE POP-UPS*@
     <div class="modal fade" id="guest-login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

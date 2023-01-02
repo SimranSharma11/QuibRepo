@@ -145,13 +145,15 @@ $(document).ready(function () {
     });
     $('#allScrubber').on('click', function () {
         $('#allScrubber').css('display', 'none');
-        $('#carouselOffset').css('height', '21%');
+        $('#carouselOffset').css('height', '20%');
+        $('.Allsync').css('display', 'none');
+        $('.DualSync').css('display', 'block');
     });
     $('.Allsync').on('click', function () {
         $('#carouselOffset').css('height', '20%');
         $('.Allsync').css('display', 'none');
         $('.DualSync').css('display', 'block');
-        f
+        
     });
     // Timer plus (+) button click of timer
     $('#btnPlus').on('click', function () {
@@ -183,10 +185,10 @@ $(document).ready(function () {
 
     // Timeline - Resync button click
     $('.btn-resynquib').on('click', function () {
-        $(".upcheck").css("display", 'none');
-        $(".upuncheck").css("display", "unset");
-        $(".btmuncheck").css("display", 'none');
-        $(".btmcheck").css("display", "unset");
+        $('.Allsync').css('display', 'block');
+        $('.DualSync').css('display', 'none');
+        $('#carouselOffset').css('height', '96%');
+        $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
         if ($('#txtComposeQuib').val().length > 0) {
             $('#save-quib-modal').modal('show');
         }
@@ -202,10 +204,10 @@ $(document).ready(function () {
         }
     });
     $('.btn-resyncmovie').on('click', function () {
-        $(".upcheck").css("display", 'unset');
-        $(".upuncheck").css("display", "none");
-        $(".btmuncheck").css("display", 'unset');
-        $(".btmcheck").css("display", "none");
+        $('.Allsync').css('display', 'block');
+        $('#carouselOffset').css('height', '96%');
+        $('.DualSync').css('display', 'none');
+        $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
         if ($('#txtComposeQuib').val().length > 0) {
             $('#save-quib-modal').modal('show');
         }
@@ -386,15 +388,20 @@ $(document).ready(function () {
         },
 
         stop: function (e) {
-
+            $(".upcheck").css("display", 'unset');
+            $(".upuncheck").css("display", "none");
+            $(".btmuncheck").css("display", 'unset');
+            $(".btmcheck").css("display", "none");
             checkslider = true;
             var temp = $('.' + parseInt($(this).slider('value')) + '').last().attr('colmValue');
             var tempTime = $('#quibSlider').slider('value');
             var movieScrubberVal = parseInt($(this).slider('value'));
             var quibScrbrStartClick = $('#quibSlider').slider('value');
-            $('#carouselOffset').css('height', '100%');
             $('#MovieScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/top_line.png') !important");
             $('#allScrubber').css('display', 'none');
+            $('#carouselOffset').css('height', '21%');
+            $(".DualSync").css('display', 'unset');
+            $(".Allsync").css('display', 'none')
             //$('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
             $('.quib-item').css('visibility', 'visible');
 
@@ -558,6 +565,10 @@ $(document).ready(function () {
             }
         },
         stop: function (e) {
+            $(".upcheck").css("display", 'none');
+            $(".upuncheck").css("display", "unset");
+            $(".btmuncheck").css("display", 'none');
+            $(".btmcheck").css("display", "unset");
             setslider = true;
             checkslider = true;
             isSliderSync = false;
