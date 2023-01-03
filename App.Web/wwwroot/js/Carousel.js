@@ -2,18 +2,17 @@
 var inc = 0;
 var itemDisplay = 4;
 var slider;
-var itemleft =0;
-var itemslide =3;
+var itemleft;
+var itemslide ;
 
 $(document).ready(function () {
     slider = $('.slider-width')[0];
-    //itemleft = $("#Test").length % itemDisplay;
-    //itemslide = Math.floor($("#Test").length / itemDisplay) - 1;
-   
-});
+ });
 
 
 $(document).on('click', '#next', function () {
+    itemleft = $(".quib-item-data").length % itemDisplay;
+    itemslide = Math.floor($(".quib-item-data").length / itemDisplay) - 1;
     if (inc !== itemslide + itemleft) {
         if (inc == itemslide) {
             inc = inc + itemleft;

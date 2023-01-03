@@ -369,7 +369,6 @@ $(document).ready(function () {
                 // Cant save blank quib
                 if ($("#txtComposeQuib").val().trim().length > 0 || $('#image').attr('src').length > 0) {
                     AddQuib().then(function (QuibId) {
-
                         goToByScroll($("input[value=" + QuibId + "][class='quibId']").parents('.mystream-wrapper'));
                         $('#txtComposeQuib').val('');
                         $('#txtComposeQuib').focus();

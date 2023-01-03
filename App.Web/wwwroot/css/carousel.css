@@ -18,8 +18,9 @@
     height: 200px;
     margin: 0 10px;
     color: #333;
-    background-color: cornsilk;
-   }
+    background-color:;
+   justify-content:center;
+}
 
 .btn {
     background: rgb(245 24 24);
@@ -79,8 +80,8 @@
 }
 .body-section {
     color: #333;
-    display: block !important;
-   }
+    display: block !important
+}
 .head-section{
     display:block !important;
 }
