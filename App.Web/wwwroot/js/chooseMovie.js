@@ -19,7 +19,14 @@ function StyleMovieList() {
                 leftPos = (($(this).width() + margin_right) * Col);
                 TotalHight = $(this).height() + margin_bottom;
                 topPos = -10;
+                margin_right = margin_right + 1.2;
             }
+            var id = localStorage.getItem("UserId");
+            if (leftPos > 0 && id.length != 0) {
+                topPos = topPos - 40;
+            }
+           
+          
             $(this).css('top', topPos + 'px')
             $(this).css('left', leftPos + 'px')
         } else {
@@ -31,7 +38,7 @@ function StyleMovieList() {
 
         }
     })
-
+   
     setTimeout(function () {
         deferred.resolve('success');
     }, 500);

@@ -115,7 +115,7 @@ namespace App.Web.Controllers.API
         [Route("UpdateQuibPostedDate")]
         public IQueryable<quibs> UpdateQuibPostedDate(int Id, string Body)
         {
-          return  _quibStreamService.UpdateQuibPostedDate(51671 , Body);
+          return  _quibStreamService.UpdateQuibPostedDate(Id , Body);
         }
     }
 }

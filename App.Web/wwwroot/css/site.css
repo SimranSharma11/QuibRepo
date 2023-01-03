@@ -617,17 +617,20 @@ input:focus {
 
 
 
-#btnMinus, #btnPlus {
+#btnMinus, #btnPlus  {
     float: left;
     cursor: pointer;
 }
 
 
-    #btnMinus img, #btnPlus img {
+    #btnMinus img, #btnPlus img  {
         width: 36px;
         height: 36px;
     }
-
+    .btnMinus img, .btnPlus img {
+        width: 36px;
+        height: 36px;
+    }
 
 .avatar-quibcomposer {
     width: 32px;

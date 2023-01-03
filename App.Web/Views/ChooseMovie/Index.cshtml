@@ -74,6 +74,13 @@
 
 <div class="container-fluid">
     <div class="row">
+         <div class="prev-arrows">
+                <span class=" left" aria-hidden="true" style="left: -5px;">
+                    <img src=@Url.Content("~/Images/left-arrow.png") />
+                </span>
+            </div>
+          
+        <div class="choose-movie-list">
         <div class="col-md-3 col-sm-3 col-lg-3" style="padding-left: 34px;">
             @if ((Context.User.Identity.IsAuthenticated))
             {
@@ -139,47 +146,35 @@
             {
                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-left: 6px;padding:0%;">
                     <div class="choose-movie-wrapper" style="padding: 0 -11px">
-                        <div class="choose-movie-list">
+                       @* <div class="choose-movie-list">*@
                             <div class="movie-container" id="MovieList" style="height: calc(100% - 68px);">
                                 @*Adding the list of movies here dynamically*@
-                            </div>
+                           @* </div>*@
                         </div>
                     </div>
-                    <div class="prev-arrows">
-                        <span class=" left" aria-hidden="true" style="left: -367px;">
-                            <img src=@Url.Content("~/Images/left-arrow.png") />
-                        </span>
-                    </div>
-                    <div class="next-arrows">
-                        <span class="right " aria-hidden="true" style="right: -13px;">
-                            <img src=@Url.Content("~/Images/right-arrow.png") />
-                        </span>
-                    </div>
+                   
                 </div>
             }
             @if (Context.User.Identity.IsAuthenticated)
             {
                 <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;padding:0%;">
                     <div class="choose-movie-wrapper" style="padding: 0 -11px">
-                        <div class="choose-movie-list">
+                      @*  <div class="choose-movie-list">*@
                             <div class="movie-container" id="MovieAfterLogin" style="height: calc(100% - 68px);">
                                 
-                            </div>
+                           @* </div>*@
                         </div>
                     </div>
-                    <div class="prev-arrows">
-                        <span class=" left" aria-hidden="true" style="left: -356px;">
-                            <img src=@Url.Content("~/Images/left-arrow.png") />
-                        </span>
-                    </div>
-                    <div class="next-arrows">
-                        <span class="right " aria-hidden="true" style="right: -13px;">
-                            <img src=@Url.Content("~/Images/right-arrow.png") />
-                        </span>
-                    </div>
+                  
                 </div>
             }
 
+        </div>
+         </div>
+        <div class="next-arrows">
+            <span class="right " aria-hidden="true" style="right: -2px;">
+                <img src=@Url.Content("~/Images/right-arrow.png") />
+            </span>
         </div>
     </div>
 </div>
