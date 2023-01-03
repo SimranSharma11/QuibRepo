@@ -153,7 +153,7 @@ $(document).ready(function () {
         $('.slider').css('top', '18px');
         $('#allScrubber').css('display', 'none');
         $('#allSlider').css('display', 'none');
-        $('#carouselOffset').css('height', '20%');
+        $('#carouselOffset').css('height', '18%');
         $('.Allsync').css('display', 'none');
         $('.DualSync').css('display', 'block');
         $('#movieSlider').css('display', 'block');
@@ -186,6 +186,29 @@ $(document).ready(function () {
             UpdateUIControls(false);
         }
     });
+
+    $('.btnPlus').on('click', function () {
+        if (totalTicks < selectedMovieLength) {
+            totalTicks++;
+            UpdateComposeTime($('.myStreamQuibTime').val());
+
+            // Param : IsQuibZero?
+            UpdateUIControls(false);
+        }
+    });
+
+    // Timer minus (-) button click of timer
+    $('.btnMinus').on('click', function () {
+        if (totalTicks > 1) {
+            totalTicks--;
+            UpdateComposeTime($('.myStreamQuibTime').val());
+
+            // Param : IsQuibZero?
+            UpdateUIControls(false);
+        }
+    });
+
+
 
     // Timeline - Resync button click
     $('.btn-resynquib').on('click', function () {
@@ -746,7 +769,6 @@ $(document).ready(function () {
     
     function showQuibsAndslide(that) {
         ShowQuibsAtThisTime($(that).slider('value').toString().toHHMMSS());
-        console.log(that);
         
         // Getting actual time based on slider position
         totalTicks = $(that).slider('value');
