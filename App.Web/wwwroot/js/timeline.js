@@ -134,7 +134,7 @@ $(document).ready(function () {
 
     // Timeline big circle (O) click at beginning of timeline
   
-    $('#btnQuibZero').on('click', function () {
+    $('#carouselOffset').on('click', function () {
         $('#carouselOffset').css('display', 'none');
         $('#carouselExpand').css('display', 'block');
         $('.caouselhide').css('display', 'block');
@@ -142,6 +142,15 @@ $(document).ready(function () {
         $('.quib-container').css('opacity', '26%');
         $('#hide').css('background-color', 'blue');
         $('.Allsync').css('height', '61px');
+    });
+    $('#carouselExpand').on('click', function () {
+        $('#carouselOffset').css('display', 'block');
+        $('#carouselExpand').css('display', 'none');
+        $('.caouselhide').css('display', 'none');
+        $('.quib-container').css('opacity', 'unset');
+        $('#hide').css('background-color', 'unset');
+        $('.Allsync').css('height', '61px');
+        $('#carouselOffset').css('height', '15%');
     });
     $('#allScrubber').on('click', function () {
       /*  $('#allScrubber').css('display', 'none');*/
@@ -187,26 +196,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.btnPlus').on('click', function () {
-        if (totalTicks < selectedMovieLength) {
-            totalTicks++;
-            UpdateComposeTime($('.myStreamQuibTime').val());
-
-            // Param : IsQuibZero?
-            UpdateUIControls(false);
-        }
-    });
-
-    // Timer minus (-) button click of timer
-    $('.btnMinus').on('click', function () {
-        if (totalTicks > 1) {
-            totalTicks--;
-            UpdateComposeTime($('.myStreamQuibTime').val());
-
-            // Param : IsQuibZero?
-            UpdateUIControls(false);
-        }
-    });
+    
 
 
 
@@ -671,10 +661,10 @@ $(document).ready(function () {
             },
 
             stop: function (e) {
-                $(".upcheck").css("display", 'unset');
-                $(".upuncheck").css("display", "none");
-                $(".btmuncheck").css("display", 'unset');
-                $(".btmcheck").css("display", "none");
+                $(".upcheck").css("display", 'none');
+                $(".upuncheck").css("display", "unset");
+                $(".btmuncheck").css("display", 'none');
+                $(".btmcheck").css("display", "unset");
                 checkslider = true;
                 var temp = $('.' + parseInt($(this).slider('value')) + '').last().attr('colmValue');
                 var tempTime = $('#quibSlider').slider('value');
@@ -855,10 +845,10 @@ $(document).ready(function () {
             }
         },
         stop: function (e) {
-            $(".upcheck").css("display", 'none');
-            $(".upuncheck").css("display", "unset");
-            $(".btmuncheck").css("display", 'none');
-            $(".btmcheck").css("display", "unset");
+            $(".upcheck").css("display", 'unset');
+            $(".upuncheck").css("display", "none");
+            $(".btmuncheck").css("display", 'unset');
+            $(".btmcheck").css("display", "none");
             setslider = true;
             checkslider = true;
             isSliderSync = false;

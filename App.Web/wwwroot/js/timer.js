@@ -54,6 +54,7 @@ function UpdateComposeTime(time) {
                 $('#BtnSave').html('QUIB ZERO');
             }
             else {
+                $('#MyStreamCount').css('display', 'unset');
                 if (ComposeQuibTime != null && ComposeQuibTime != undefined && ComposeQuibTime.length > 0)
                     time = ComposeQuibTime;
                 $('.mystream-time').css('top', '36%');
@@ -63,6 +64,8 @@ function UpdateComposeTime(time) {
         }
         else {
             $('.mystream-time').css('top', 'unset');
+            
+            $('#MyStreamCount').css('display', 'none');
             $('#BtnSave').html('SAVE');
         }
        

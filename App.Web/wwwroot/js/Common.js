@@ -15,8 +15,7 @@ function SetMovieThumbnail() {
 
             if (response != undefined && response != null) {
                 var object = JSON.parse(response);
-                console.log(response);
-                console.log(object);
+              
                 //KVW - use file path not base64
                 if (object != null && object[0].posterContent.length >= 100)
 

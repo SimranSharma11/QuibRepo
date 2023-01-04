@@ -48,5 +48,14 @@ namespace App.Services
             var updatequib = _appDbContext.quibs.FromSqlRaw("call UpdateQuibPostedDate("+ p_Id + ",'" + p_Body + "')");
             return updatequib;
         }
+
+        public void AddBump(int quibId, int UserId, int MovieId)
+        {
+            var p_UserId = UserId;
+            var p_QuibId = quibId;
+            var p_MovieId = MovieId;
+            var bump = _appDbContext.quibs.FromSqlRaw("call AddBump(" + p_UserId + ",'" + p_QuibId + ",'" + p_MovieId + "')");
+            
+        }
     }
 }

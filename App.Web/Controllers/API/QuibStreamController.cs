@@ -60,8 +60,9 @@ namespace App.Web.Controllers.API
         }
         [HttpGet]
         [Route("/GetQuibByUserIdAndMovieId")]
-        public List<App.Models.DataModels.QuibStream> GetQuibByUserIdAndMovieId(int MovieId, int UserId)
+        public List<App.Models.DataModels.QuibStream> GetQuibByUserIdAndMovieId(int MovieId, int UserId = 66)
         {
+            
             return _movieService.GetQuibByUserIdAndMovieId(MovieId, UserId);
 
         }
@@ -113,9 +114,16 @@ namespace App.Web.Controllers.API
         }
         [HttpPut]
         [Route("UpdateQuibPostedDate")]
-        public IQueryable<quibs> UpdateQuibPostedDate(int Id, string Body)
+        public IQueryable<quibs> UpdateQuibPostedDate(int QuibId, string Body)
         {
-          return  _quibStreamService.UpdateQuibPostedDate(Id , Body);
+          return  _quibStreamService.UpdateQuibPostedDate(QuibId, Body);
+        }
+
+        [HttpPost]
+        [Route("AddBump")]
+        public void AddBump(int quibId, int userId, int movieId)
+        {
+         _quibStreamService.AddBump(quibId, userId, movieId);
         }
     }
 }
