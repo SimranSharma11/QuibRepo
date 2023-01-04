@@ -12,5 +12,6 @@ namespace App.Services.Interfaces
         public IQueryable<quibs> AddQuib(quibs quib);
         public void DeleteQuibById(int Id);
         public IQueryable<quibs> UpdateQuibPostedDate(int Id,string Body);
+        public void AddBump(int quibId,int UserId,int MovieId);
     }
 }
