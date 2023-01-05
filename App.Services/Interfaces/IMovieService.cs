@@ -29,7 +29,7 @@ namespace App.Services.Interfaces
         public Movie GetMovieById(int id);
         public List<QuibStream> GetQuibsByMovieIdForInterval(int MovieId, bool QuibZero, string SelectedStream, int StartTime);
         public List<QuibStream> GetInitialQuibsByMovieId(int MovieId, bool QuibZero, string SelectStream);
-        public List<QuibStream> GetQuibByUserIdAndMovieId(int MovieId, int UserId);
+       
 
     } 
 }
