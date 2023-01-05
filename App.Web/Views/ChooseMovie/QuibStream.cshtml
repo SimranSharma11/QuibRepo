@@ -8,18 +8,17 @@
 <head>
     <title>Quib - Share what you know and love about great movies</title>
   <link href="~/Images/Q_favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/carousel.css" rel="stylesheet" />
     <link href="~/css/cropper.css" rel="stylesheet" />
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
       <link href="~/css/jquery-ui.min.css" rel="stylesheet"/>
      <script src="~/lib/jquery/dist/placeholder.js"></script>
+     <script src="~/js/swiper-bundle.min.js"></script>
+     <link href="~/css/swiper-bundle.min.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery-timer.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.touchSwipe.js"></script>
@@ -41,9 +40,7 @@
     <script src="~/js/site.js"></script>
     <script type="text/javascript">
         localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
-       
-       
-        function showLoadingGIF() {
+       function showLoadingGIF() {
             var deferred = $.Deferred();
             $('.popup_load').css('display', 'block');
 
@@ -52,9 +49,6 @@
             },100);
             return deferred.promise();
         }
-
-
-
         $(function () {
             $("#movieSlider").slider();
         });
@@ -259,12 +253,9 @@
                 isSliderSync = false;
                 if (sliderflag) {
                     isNavButtonClick = true;
-
                     // show all quibs
                     $('.quib-item').css('visibility', 'visible');
-
                     // slide right
-                    
                     scrollDefferdright().then(function () {
 
                         //VIEWPORT START
@@ -306,24 +297,17 @@
                 }, 300);
                 return deferred.promise();
             }
-
-            
-
-
             function slideLeft() {
 
                 isSliderSync = false;
                 if (sliderflag) {
                     isNavButtonClick = true;
-
                     // show all quibs
                     $('.quib-item').css('visibility', 'visible');
                  
                     // slide right
                     scrollDefferdleft().then(function () {
-
-
-                        //VIEWPORT START
+                    //VIEWPORT START
                         var cols_array = [];
                         $(".quib-item").withinviewport().each(function () {
                             cols_array.push(parseInt($(this).attr("colmvalue")));
@@ -549,21 +533,19 @@
             </div>
         </div>
     </div>
-
     <div class="container-fluid">
         <div class="caouselhide" style="display:none;width:100%;margin-bottom:10px">
-            <div class="slider-container" item-display-d="4">
-                <div class="slider-width">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
                     
                 </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
-            <button type="button" id="prev" style="margin-top:5px">Prev</button>
-            <button type="button" id="next" style="margin-top:5px">Next</button>
+            
         </div>
         
     </div>
- 
-
     <button style="background-color:dimgrey;color:black;display:none;" class="returnToQuib">Tap Here To Return To Quibs</button>
 
     <div class="container-fluid">
@@ -601,9 +583,6 @@
                 </div>
 
             </div>
-          @*  <div class="row mystream-footer" style="background-color: black; height: 38px; clear: both">
-                <button type="button" class="btn btn-default btn-burgandy" data-toggle="modal" data-target="#postall-quib-modal" style="background-color: white; padding: 2px 9px; font-size: 12px; float: right; margin-right: 17px; margin-top: 9px; min-width: 90px">Post All</button>
-            </div>*@
         </div>
 
         <div class="row">
@@ -753,18 +732,6 @@
 
                         </div>
                     </div>
-                    @*<div class="DualSyncmovie"> btn-resyncmovie
-                        <div class="btn-resynquib" title="Resync Quib">
-                            <a>
-                                <img src="~/Images/HalfQuibSync.jpg" style="height:4%;" />
-                            </a>
-                        </div>
-                        <div class="btn-resyncmovie" title="Resync Movie">
-                            <a>
-                                <img src="~/Images/otherHalfQuibSync.jpg" style="height:4%;" />
-                            </a>
-                        </div>
-                    </div>*@
                 </div>
 
             </div>
@@ -773,7 +740,7 @@
 
 
     @*MESSAGE POP-UPS*@
-    <div class="modal fade" id="guest-login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="guest-login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-custom">
@@ -949,10 +916,35 @@
     </div>
 
     <script type="text/javascript">
-$(document).ready(function() {
-    BindBumpClick();
-
-});
+        $(document).ready(function () {
+            BindBumpClick();
+        });
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 4,
+            spaceBetween: 0,
+            slidesPerGroup: 4,
+            autoplay: {
+                delay: 3000,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                   spaceBetween: 0,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 0,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 0,
+                },
+            },
+        });
     </script>
 </body>
 </html>
