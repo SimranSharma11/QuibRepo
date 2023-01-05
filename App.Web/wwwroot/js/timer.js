@@ -29,6 +29,7 @@ function StopTimer() {
     if (timer) {
         timer.stop();
     }
+   
 }
 
 // called every second

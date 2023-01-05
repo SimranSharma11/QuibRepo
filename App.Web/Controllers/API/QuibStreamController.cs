@@ -60,10 +60,10 @@ namespace App.Web.Controllers.API
         }
         [HttpGet]
         [Route("/GetQuibByUserIdAndMovieId")]
-        public List<App.Models.DataModels.QuibStream> GetQuibByUserIdAndMovieId(int MovieId, int UserId = 66)
+        public List<App.Models.DataModels.QuibStream> GetQuibByUserIdAndMovieId(int MovieId, string UserId)
         {
             
-            return _movieService.GetQuibByUserIdAndMovieId(MovieId, UserId);
+            return _quibStreamService.GetQuibByUserIdAndMovieId(MovieId, UserId);
 
         }
         [HttpPost]
@@ -76,7 +76,7 @@ namespace App.Web.Controllers.API
             quib.IsSeedQuib= isSeedQuib;    
             quib.SeedQuibType= isSeedQuibType;
             quib.MovieId = MovieId;
-            quib.UserId = 66;
+            quib.newUserId = UserId;
             quib.ParentId = ParentId;
             quib.IsQuibZero = Time == 0 ? true : false;
             quib.IsScreenshot= isScreenShot;    
@@ -124,6 +124,13 @@ namespace App.Web.Controllers.API
         public void AddBump(int quibId, int userId, int movieId)
         {
          _quibStreamService.AddBump(quibId, userId, movieId);
+        }
+
+        [HttpDelete]
+        [Route("DeleteBump")]
+        public void DeleteBump(int quibId, int userId, int movieId)
+        {
+            _quibStreamService.DeleteBump(quibId, userId, movieId);
         }
     }
 }

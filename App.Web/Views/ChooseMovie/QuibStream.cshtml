@@ -81,30 +81,10 @@
         function btnPlay()
         {
                 var that = $(this).find('#imgPlayPause');
-
                 enabledisableNoSleep(true);
-                if (IsQuibZeroOpen) {
-                    if ($('#txtComposeQuib').val().length > 0) {
-                        $('#save-quib-modal').modal('show');
-                    }
-                    else {
-                        resizemystream = true;
-                        openmystream = false;
-                        $('.my-stream-panel').fadeOut();
-                        isNavButtonClick = false;
-
-
-                        if ($('#txtComposeQuib').val().length > 0) {
-                            $('#save-quib-modal').modal('show');
-                        }
-                        else {
                             showLoadingGIF().then(function () {
-                                // Timer font size and text
-                                // Param : IsQuibZero?
-
                                 FormatTimer(false);
-
-                                IsQuibZeroOpen = false;
+                                 IsQuibZeroOpen = false;
 
                                 $('.popup_load').css('display', 'block');
 
@@ -121,30 +101,14 @@
                                //LoadAllQuibsQuibStream(initialQuibs);
                                LoadInitialQuibsQuibStreamforcarousel();
                                 LoadAllQuibsQuibStreamforcarousel(quibs);
-                             
+                    UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
 
-
-                                setTimeout(function () {
-                                 
-                                    UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
-
-                                    PlayMovie();
-
-                                    // My stream compose timer
-                                    $('.quib-compose-timer').formatTime();
-                                    $('.popup_load').css('display', 'none');
-                                }, 1000);
-                            });
-                        }
-
-                    }
-                }
-                else {
-                    var quibScrbrStartClick = $('#quibSlider').slider('value');
-                    IsIntervalTimeUP = false;
-                    isNavButtonClick = false;
                     PlayMovie();
-                   }
+
+                    // My stream compose timer
+                    $('.quib-compose-timer').formatTime();
+                    $('.popup_load').css('display', 'none');
+                            });
 
         } btnPlay();
             function PlayMovie() {
@@ -484,6 +448,19 @@
                     ('#save-quib-modal').modal('show');
             }
         }
+         function showhide () {
+            console.log($('#ShowHide').html());
+            var val =$('#ShowHide').html();
+            if (val == 'HIDE') {
+                $('.mystream-panel-content').css('display','none');
+                $('#ShowHide').html('SHOW');
+            }
+            else {
+                $('.mystream-panel-content').css('display', 'unset');
+                $('#ShowHide').html('HIDE');
+            }
+        }
+      
     </script>
  
 </head>
@@ -579,15 +556,17 @@
                     </span>
                     <div class="mystream-panel-header">
                         <div class="mystream-time" style="float: left;width: 40%; text-align: center; height: 28px;position:absolute;left:109px;">
-                            <button type="button" id="BtnSave" class="btn btn-default btn-burgandy timerbtn" style="margin: 0 auto; text-align: center; padding: 4px 12px; font-size: 14px;font-weight:700;">SAVE</button>
+                            <button type="button" id="BtnSave" class="btn btn-default btn-burgandy timerbtn" style="position:absolute;margin: 0 auto; text-align: center; padding: 4px 12px; font-size: 14px;font-weight:700;">SAVE</button>
                         </div>
                     </div>
                 </div>
                
                 <div style="background: #990000; padding-right: 3px;">
-                    <div class="mystream-txt">
+      <div class="mystream-txt">
 
-                        <div style="position: relative;">
+           <button id="ShowHide" class="btn btn-default btn-burgandy"onclick="showhide();" style="position:absolute;left:-23px;width:4px;">HIDE</button>
+                  <div style="position: relative;left:48px;width:32%;top:2px;">
+                
                             <span>My Stream </span>
                             <span id="MyStreamCount">18</span>
                         </div>

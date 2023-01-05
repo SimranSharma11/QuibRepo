@@ -873,7 +873,7 @@ function LoadAllQuibsQuibStream(quibs) {
                     "</ul>" +
                     "</div>" +
                     "</div>" +
-                    "<div class='quib-composer " + SeedquibClass + "'>" +
+                    "<div class='quib-composer quib-Seed " + SeedquibClass + "'>" +
                     body +
                     "</div>" +
                     bumpSign +
