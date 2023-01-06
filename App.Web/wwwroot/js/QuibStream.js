@@ -818,9 +818,7 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
                     "</div>" +
                     "<div class='star icon'>" +
-                    "<i class='fa-thin fa-star''></i>" +
-                    "<i class='fa-thin fa-star''></i>" +
-                    "<i class='fa-thin fa-star''></i>" +
+          
                     "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
@@ -862,9 +860,7 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<input type='text' class='form-control quib-compose-timer seedquibtimer'style='background-color:white !important;' value='" + time + "' readonly='true' />" +
                     "</div>" +
                     "<div class='star icon'>" +
-                    "<i class='fa-thin fa-star''></i>" +
-                    "<i class='fa-thin fa-star''></i>" +
-                    "<i class='fa-thin fa-star''></i>" +
+                   
                     "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
@@ -903,9 +899,7 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
                     "</div>" +
                     "<div class='star icon'>" +
-                    "<i class='fa-thin fa-star''></i>" +
-                    "<i class='fa-thin fa-star''></i>" +
-                    "<i class='fa-thin fa-star''></i>" +
+                    
                     "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     "<a class='img-bump'>" +
