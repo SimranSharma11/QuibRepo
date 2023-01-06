@@ -8,6 +8,7 @@
 <head>
     <title>Quib - Share what you know and love about great movies</title>
   <link href="~/Images/Q_favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
@@ -765,8 +766,9 @@
                 </div>
                 <input type="hidden" id="PostQuibId" />
                 <input type="hidden" id="PostQuibBody" />
+                <input type="hidden" id="PostQuibTime" />
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-custom" onclick="UpdateQuibPostedDate($('#PostQuibId').val(), $('#PostQuibBody').val())">Yes</button>
+                    <button type="button" class="btn btn-custom" onclick="UpdateQuibPostedDate($('#PostQuibId').val(), $('#PostQuibBody').val(),$('#PostQuibTime').val())">Yes</button>
                     <button type="button" class="btn btn-custom" data-dismiss="modal">No</button>
                 </div>
             </div>

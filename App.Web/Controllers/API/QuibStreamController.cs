@@ -114,14 +114,14 @@ namespace App.Web.Controllers.API
         }
         [HttpPut]
         [Route("UpdateQuibPostedDate")]
-        public IQueryable<quibs> UpdateQuibPostedDate(int QuibId, string Body)
+        public IQueryable<quibs> UpdateQuibPostedDate(int QuibId, string Body,int Time)
         {
-          return  _quibStreamService.UpdateQuibPostedDate(QuibId, Body);
+          return  _quibStreamService.UpdateQuibPostedDate(QuibId, Body, Time);
         }
 
         [HttpPost]
         [Route("AddBump")]
-        public void AddBump(int quibId, int userId, int movieId)
+        public void AddBump(int quibId, string userId, int movieId)
         {
          _quibStreamService.AddBump(quibId, userId, movieId);
         }
