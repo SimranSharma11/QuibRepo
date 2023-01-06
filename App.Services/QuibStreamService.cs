@@ -38,23 +38,24 @@ namespace App.Services
         {
             var @p_Id = Id;
             var query = "call DeleteQuibById(" + @p_Id + ")";
-            var deletequib = _appDbContext.quibs.FromSqlRaw("call DeleteQuibById(" + @p_Id + ")");
+            var deletequib = _appDbContext.quibs.FromSqlRaw("call DeleteQuibById(" + @p_Id + ");");
         }
         
-        public IQueryable<quibs> UpdateQuibPostedDate(int Id, string Body)
+        public IQueryable<quibs> UpdateQuibPostedDate(int Id, string Body, int Time)
         { 
         var p_Id = Id;  
         var p_Body = Body;
-            var updatequib = _appDbContext.quibs.FromSqlRaw("call UpdateQuibPostedDate("+ p_Id + ",'" + p_Body + "')");
+            var p_Time = Time;
+            var updatequib = _appDbContext.quibs.FromSqlRaw("call UpdateQuibPostedDate("+ p_Id + ",'" + p_Body  +"'," + p_Time + ");");
             return updatequib;
         }
 
-        public void AddBump(int quibId, int UserId, int MovieId)
+        public void AddBump(int quibId, string UserId, int MovieId)
         {
             var p_UserId = UserId;
             var p_QuibId = quibId;
             var p_MovieId = MovieId;
-            var bump = _appDbContext.quibs.FromSqlRaw("call AddBump(" + p_UserId + "," + p_QuibId + "," + p_MovieId + ")");
+            var bump = _appDbContext.quibs.FromSqlRaw("call AddBump('" + p_UserId + "'," + p_QuibId + "," + p_MovieId + ");") ;
             
         }
         public void DeleteBump(int quibId, int UserId, int MovieId)
@@ -62,7 +63,7 @@ namespace App.Services
             var p_UserId = UserId;
             var p_QuibId = quibId;
             var p_MovieId = MovieId;
-            var bump = _appDbContext.quibs.FromSqlRaw("call DeleteBump(" + p_UserId + "," + p_QuibId + "," + p_MovieId + ")");
+            var bump = _appDbContext.quibs.FromSqlRaw("call DeleteBump(" + p_UserId + "," + p_QuibId + "," + p_MovieId + ");");
         }
         public List<QuibStream> GetQuibByUserIdAndMovieId(int MovieId, string UserId)
         {

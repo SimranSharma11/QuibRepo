@@ -24,7 +24,7 @@ function increment() {
     seconds = seconds - 1;
    seconds = seconds.toString().toHHMMSS();
     console.log(seconds);  
-  
+    $('#mystreamtimer').val(seconds);
 }
 
 // MY STREAM - Delete quib
@@ -79,11 +79,11 @@ function ConfirmDeleteBumpQuibById(QuibId) {
 
 // Save quib from quib comose area
 // MY STREAM - Post quib
-function UpdateQuibPostedDate(QuibId, Body) {
+function UpdateQuibPostedDate(QuibId, Body,Time) {
     // loading popup
     setTimeout(function () {
         $.ajax({
-            url: localStorage.getItem('environment') + '/api/QuibStream/UpdateQuibPostedDate?QuibId=' + parseInt(QuibId) + '&Body=' + Body,
+            url: localStorage.getItem('environment') + '/api/QuibStream/UpdateQuibPostedDate?QuibId=' + parseInt(QuibId) + '&Body=' + Body + '&Time=' + parseInt(Time),
             type: 'Put',
             dataType: 'text',
             beforeSend: function () {
@@ -522,7 +522,7 @@ function AddQuib() {
         url: localStorage.getItem('environment') + '/api/QuibStream/AddQuib?body=' + body + '&UserId=' + UserId + '&ParentId=' + 3 + '&Time=' + seconds + '&isSeedQuib=' + IsSeedQuib + '&isSeedQuibType=' + SeedQuibType + '&MovieId=' + movieId + '&isScreenShot=' + IsScreenshot,
         type: 'POST',
         dataType: 'text',
-      
+       
         success: function (response) {
             if (response != undefined && response != null && response.length > 0) {
                 var SeedquibClass = "";
@@ -598,12 +598,12 @@ function AddQuib() {
                             objList.parents('.mystream-wrapper').after("<div class='mystream-wrapper'>" +
                                 "<input type='hidden' class='quibId' value='" + quibContent[0].id + "'>" +
                                 SeedSymbol +
-                                "<a class='btnMinus'>" +
-                                " <img src='/Images/minus.png'/>" +
+                                "<a class='btnMinus'style='padding-left:28%;'>" +
+                                " <img src='/Images/minus.png'onclick='increment();'/>" +
                                 "</a>" +
-                                "<input class='myStreamQuibTime mystream-time movie-timer' readonly='true' value='" + quibContent[0].time.toString().toHHMMSS() + "'/>" +
+                                "<input id='mystreamtimer' class='myStreamQuibTime mystream-time movie-timer' readonly='true' value='" + quibContent[0].time.toString().toHHMMSS() + "'/>" +
                                 "<a class='btnPlus'>" +
-                                " <img src='/Images/plus.png'/>" +
+                                " <img src='/Images/plus.png'onclick='decrement();'/>" +
                                 "</a>" +
                               
                                 contentTexarea +
@@ -629,12 +629,12 @@ function AddQuib() {
                         objList.parents('.mystream-wrapper').after("<div class='mystream-wrapper'>" +
                             "<input type='hidden' class='quibId' value='" + quibContent[0].id + "'>" +
                             SeedSymbol +
-                            "<a class='btnMinus'>" +
-                            " <img src='/Images/minus.png'/>" +
+                            "<a class='btnMinus'style='padding-left:28%;'>" +
+                            " <img src='/Images/minus.png'onclick='increment();'/>" +
                             "</a>" +
-                            "<input class='myStreamQuibTime mystream-time movie-timer' readonly='true' value='QUIB ZERO'/>" +
+                            "<input id='mystreamtimer' class='myStreamQuibTime mystream-time movie-timer' readonly='true' value='QUIB ZERO'/>" +
                             "<a class='btnPlus'>" +
-                            " <img src='/Images/plus.png'/>" +
+                            " <img src='/Images/plus.png'onclick='decrement();'/>" +
                             "</a>" +
                             contentTexarea +
                             "<div style='clear: both; margin: 4px 0; height: 16px'>" +
@@ -657,7 +657,7 @@ function AddQuib() {
                     $('#myStreamPanel').prepend("<div class='mystream-wrapper'>" +
                         "<input type='hidden' class='quibId' value='" + quibContent[0].id + "'>" +
                         SeedSymbol +
-                        "<a class='btnMinus'style='margin-left: 100px;'>"+
+                        "<a class='btnMinus'style='padding-left:28%;'>"+
                         "<img src='/Images/minus.png' onclick='increment();'/>" +
                          "</a>"+
                         "<input id='mystreamtimer'style='width: 64px; height: 20px; top: 36 %;' class='myStreamQuibTime mystream-time movie-timer' value='" + quibTimePrepend + "'/>" +
@@ -937,6 +937,10 @@ function PostQuib(QuibId) {
     if (QuibBody == undefined || QuibBody == null || QuibBody.length == 0)
         QuibBody = $('#img' + QuibId).attr('src');
     $('#PostQuibBody').val(QuibBody);
+    var hms = $('#mystreamtimer').val();
+    var a = hms.split(':');
+    var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+    $('#PostQuibTime').val(seconds);
     cancelUploadImage();
 }
 

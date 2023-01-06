@@ -817,6 +817,11 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<div class='quib-compose-timer-wrapper'>" +
                     "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
                     "</div>" +
+                    "<div class='star icon'>" +
+                    "<i class='fa-thin fa-star''></i>" +
+                    "<i class='fa-thin fa-star''></i>" +
+                    "<i class='fa-thin fa-star''></i>" +
+                    "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
                     //    "<img src='/Images/tag.png' />" +
@@ -856,6 +861,11 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<div class='quib-compose-timer-wrapper'>" +
                     "<input type='text' class='form-control quib-compose-timer seedquibtimer'style='background-color:white !important;' value='" + time + "' readonly='true' />" +
                     "</div>" +
+                    "<div class='star icon'>" +
+                    "<i class='fa-thin fa-star''></i>" +
+                    "<i class='fa-thin fa-star''></i>" +
+                    "<i class='fa-thin fa-star''></i>" +
+                    "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
                     //    "<img src='/Images/tag.png' />" +
@@ -891,6 +901,11 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
                     "<div class='quib-compose-timer-wrapper' style='top: 0;'>" +
                     "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
+                    "</div>" +
+                    "<div class='star icon'>" +
+                    "<i class='fa-thin fa-star''></i>" +
+                    "<i class='fa-thin fa-star''></i>" +
+                    "<i class='fa-thin fa-star''></i>" +
                     "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     "<a class='img-bump'>" +
@@ -1253,7 +1268,7 @@ function GetAllQuibsByParentId(ParentId) {
 
 // Bump button click only (not reply)
 function AddBump(quibId, movieId) {
-    var userid = 66;
+    var userid = localStorage.getItem('UserId');
     $.ajax({
         async: false,
         url: localStorage.getItem('environment') + '/api/QuibStream/AddBump?quibId=' + quibId + '&userId=' + userid + '&movieId=' + movieId,
