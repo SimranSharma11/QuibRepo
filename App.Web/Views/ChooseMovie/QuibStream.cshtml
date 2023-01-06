@@ -7,18 +7,18 @@
 <html>
 <head>
     <title>Quib - Share what you know and love about great movies</title>
-  <link href="~/Images/Q_favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Images/Q_favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/carousel.css" rel="stylesheet" />
     <link href="~/css/cropper.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-      <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
-      <link href="~/css/jquery-ui.min.css" rel="stylesheet"/>
-     <script src="~/lib/jquery/dist/placeholder.js"></script>
-     <script src="~/js/swiper-bundle.min.js"></script>
-     <link href="~/css/swiper-bundle.min.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/placeholder.js"></script>
+    <script src="~/js/swiper-bundle.min.js"></script>
+    <link href="~/css/swiper-bundle.min.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery-timer.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.touchSwipe.js"></script>
@@ -35,18 +35,18 @@
     <script src="~/js/TagMap.js"></script>
     <script src="~/js/Common.js"></script>
     <script src="~/js/Home.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>  
-  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
     <script src="~/js/site.js"></script>
     <script type="text/javascript">
         localStorage.setItem('MovieId', '@Context.Session.GetInt32("MovieId")');
-       function showLoadingGIF() {
+        function showLoadingGIF() {
             var deferred = $.Deferred();
             $('.popup_load').css('display', 'block');
 
             setTimeout(function () {
                 deferred.resolve();
-            },100);
+            }, 100);
             return deferred.promise();
         }
         $(function () {
@@ -56,10 +56,10 @@
         $(function () {
             $("#quibSlider").slider();
         });
-         $(function () {
+        $(function () {
             $("#allSlider").slider();
         });
-        
+
         var setbool = true;
         var sliderflag = true;
 
@@ -71,30 +71,29 @@
         }
 
         $(document).ready(function () {
-         
-        function btnPlay()
-        {
+
+            function btnPlay() {
                 var that = $(this).find('#imgPlayPause');
                 enabledisableNoSleep(true);
-                            showLoadingGIF().then(function () {
-                                FormatTimer(false);
-                                 IsQuibZeroOpen = false;
+                showLoadingGIF().then(function () {
+                    FormatTimer(false);
+                    IsQuibZeroOpen = false;
 
-                                $('.popup_load').css('display', 'block');
+                    $('.popup_load').css('display', 'block');
 
-                                // closing my stream panel
-                                $('.my-stream-panel').addClass('hide');
+                    // closing my stream panel
+                    $('.my-stream-panel').addClass('hide');
 
-                                // Param : IsQuibZero?
-                                UpdateUIControls(false);
+                    // Param : IsQuibZero?
+                    UpdateUIControls(false);
 
-                                $('#quibContainer').empty();
+                    $('#quibContainer').empty();
 
-                                LoadInitialQuibsQuibStream();
-                                LoadAllQuibsQuibStream(quibs);
-                               //LoadAllQuibsQuibStream(initialQuibs);
-                               LoadInitialQuibsQuibStreamforcarousel();
-                                LoadAllQuibsQuibStreamforcarousel(quibs);
+                    LoadInitialQuibsQuibStream();
+                    LoadAllQuibsQuibStream(quibs);
+                    //LoadAllQuibsQuibStream(initialQuibs);
+                    LoadInitialQuibsQuibStreamforcarousel();
+                    LoadAllQuibsQuibStreamforcarousel(quibs);
                     UpdateComposeTime((ConvertTimeToSeconds($('#movieTimer').val())).toString().toHHMMSS());
 
                     PlayMovie();
@@ -102,9 +101,9 @@
                     // My stream compose timer
                     $('.quib-compose-timer').formatTime();
                     $('.popup_load').css('display', 'none');
-                            });
+                });
 
-        } btnPlay();
+            } btnPlay();
             function PlayMovie() {
                 $('.movie-time-wrapper').css('margin-top', 0)
                 isRunning = !isRunning;
@@ -114,7 +113,7 @@
                         StartTimer();
                         $('#imgPlayPause').attr('src', imgPath + imgNamePause);
                         UpdateComposeTime($('#movieTimer').val());
-                        
+
                         UpdateUIControls(false);
 
                         isSliderSync = true;
@@ -122,8 +121,8 @@
                         $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom.png')");
 
                         // if user hit play button when movie is desync, we need to sync back and hide all quibs having greater time then movie timer
-                ClearQuibsAhead($('#movieSlider').slider('value'));
-                      
+                        ClearQuibsAhead($('#movieSlider').slider('value'));
+
                     }
                     else {
                         StopTimer();
@@ -135,7 +134,7 @@
 
             function ClearQuibsAhead(quibTime, quibScrbrStartClick) {
                 showLoadingGIF().then(function () {
-                    
+
                     $('.quib-item .quib-compose-timer').filter(function (index, val) {
                         if (parseInt(ConvertTimeToSeconds($(val).val())) > parseInt(quibTime)) {
                             $(val).parents('.quib-item').css('visibility', 'hidden');
@@ -236,7 +235,7 @@
                         $('#quibSlider').slider('value', time);
                         $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom_line.png')");
                     });
-                   
+
                 }
             }
 
@@ -268,10 +267,10 @@
                     isNavButtonClick = true;
                     // show all quibs
                     $('.quib-item').css('visibility', 'visible');
-                 
+
                     // slide right
                     scrollDefferdleft().then(function () {
-                    //VIEWPORT START
+                        //VIEWPORT START
                         var cols_array = [];
                         $(".quib-item").withinviewport().each(function () {
                             cols_array.push(parseInt($(this).attr("colmvalue")));
@@ -285,7 +284,7 @@
                         $('#quibSlider').slider('value', time);
                         $('#QuibScrubber').css('background-image', "url('" + localStorage.getItem('environment') + "/Images/bottom_line.png')");
                     });
-                    
+
                 }
             }
 
@@ -338,7 +337,7 @@
                 var prevcolPos = $('.HilightQuib').offset();
                 $('#quib-list').scrollLeft(totalScroll + (prevcolPos.left - offsetPos.left));
             }
-            
+
         });
 
         function ApplyStyleToQuibStream() {
@@ -358,9 +357,9 @@
 
                 var quibheight = $(this).height();
                 if (maxqheight < (quibheight + 50)) {
-                   
+
                     $(this).find(".inner1 .panel-body").css('height', maxqheight - 7 + 'px');
-                    $(this).find(".inner1 .panel-body").css({ "overflow-y": "auto","overflow": "auto","overflow-x": "hidden"});
+                    $(this).find(".inner1 .panel-body").css({ "overflow-y": "auto", "overflow": "auto", "overflow-x": "hidden" });
                 }
 
                 if (TotalHight > $(".quib-container").height()) {
@@ -375,13 +374,13 @@
                 $(this).css('top', topPos + 'px')
                 $(this).css('left', leftPos + 'px')
             });
-            
+
             setTimeout(function () {
                 $('.popup_load').css("display", "none");
             }, 500);
-               
+
         };
-           function ApplyStyleToQuibStreamforcarousel() {
+        function ApplyStyleToQuibStreamforcarousel() {
             $('.popup_load').css('display', 'block');
             var Col = 0;
             var TotalHight = 0;
@@ -398,9 +397,9 @@
 
                 var quibheight = $(this).height();
                 if (maxqheight < (quibheight + 50)) {
-                   
+
                     $(this).find(".inner1 .panel-body").css('height', maxqheight - 7 + 'px');
-                    $(this).find(".inner1 .panel-body").css({ "overflow-y": "auto","overflow": "auto","overflow-x": "hidden"});
+                    $(this).find(".inner1 .panel-body").css({ "overflow-y": "auto", "overflow": "auto", "overflow-x": "hidden" });
                 }
 
                 if (TotalHight > $(".quibsdata").height()) {
@@ -413,30 +412,30 @@
                 $(this).css('top', topPos + 'px')
                 $(this).css('left', leftPos + 'px')
             });
-            
+
             setTimeout(function () {
                 $('.popup_load').css("display", "none");
             }, 500);
-               
+
         };
         function HandleBackFunctionality() {
             if (window.event) //Internet Explorer
             {
-              if ($("#txtComposeQuib").val().trim().length > 0)  
-              return 'unload';
-                  //('#save-quib-modal').modal('show');
+                if ($("#txtComposeQuib").val().trim().length > 0)
+                    return 'unload';
+                //('#save-quib-modal').modal('show');
             }
             else //Other browsers for example Chrome
             {
-                if ($("#txtComposeQuib").val().trim().length > 0) 
+                if ($("#txtComposeQuib").val().trim().length > 0)
                     ('#save-quib-modal').modal('show');
             }
         }
-         function showhide () {
+        function showhide() {
             console.log($('#ShowHide').html());
-            var val =$('#ShowHide').html();
+            var val = $('#ShowHide').html();
             if (val == 'HIDE') {
-                $('.mystream-panel-content').css('display','none');
+                $('.mystream-panel-content').css('display', 'none');
                 $('#ShowHide').html('SHOW');
             }
             else {
@@ -444,15 +443,15 @@
                 $('#ShowHide').html('HIDE');
             }
         }
-      
+
     </script>
- 
+
 </head>
 
 <body onbeforeunload="HandleBackFunctionality()">
     @*loading overlay*@
     <div class="popup_load">
-        <div class="fade12" ></div>
+        <div class="fade12"></div>
         <div>
             <img src=@Url.Content("~/Images/loadingImg.gif") class="popup_busy" alt="Processing..." />
         </div>
@@ -465,7 +464,7 @@
                     <img src="~/Images/movie_posters/full_res/5_Pulp Fiction.jpg" height="48" width="34" class="MoviePosterThumb" style="margin-left: -6px;" />
                     <div class="movietitle"></div>
                 </div>
-              
+
             </div>
             <div class="col-md-4 col-lg-4 col-sm-4 " style="position: relative; text-align: center">
                 <div class="hidden-lg hidden-sm hidden-md" style="position: absolute; float: left; left: -22px; margin-top: -7px;">
@@ -476,9 +475,9 @@
                         <img src="~/Images/minus.png" />
                     </a>
                     <div class="movie-time-wrapper">
-                        <input id="movieTimer" type="text" class="form-control movie-timer" value="" readonly="readonly" title="write a quib"/>
+                        <input id="movieTimer" type="text" class="form-control movie-timer" value="" readonly="readonly" title="write a quib" />
                         <input id="quibTimer" type="text" class="form-control movie-timer" value="QUIB ZERO" readonly="readonly" style="display: none" />
-                     
+
                     </div>
                     <a id="btnPlus" style="display: none">
                         <img src="~/Images/plus.png" />
@@ -488,7 +487,7 @@
                     <img id="imgPlayPause" src="~/Images/play.png" width="29" height="36" />
                 </a>
             </div>
-           @* <div class="col-md-4 col-lg-3 col-sm-6 hidden-sm hidden-xs"></div>*@
+            @* <div class="col-md-4 col-lg-3 col-sm-6 hidden-sm hidden-xs"></div>*@
             <div class="col-md-2 col-lg-2 col-sm-2 hidden-sm hidden-xs">
                 <ul class="nav " style="float: right; margin-top: -9px; margin-right: -34px;">
                     @if (!(Context.User.Identity.IsAuthenticated))
@@ -510,157 +509,151 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="caouselhide" style="display:none;width:100%;margin-bottom:10px">
+        
+    @*carousel section start from here----*@
+        <div class="caouselhide" style="width:100%;margin-bottom:10px;display:none;">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
-            
         </div>
-        
-    </div>
-    <button style="background-color:dimgrey;color:black;display:none;" class="returnToQuib">Tap Here To Return To Quibs</button>
-
-    <div class="container-fluid">
-
-        @************My stream****************@
-
-        <div class="my-stream-panel col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <div class="row my-stream-panel-wrap" style="overflow-y: hidden; height: 100%; height: calc(100% - 10px);">
-                <div class="my-stream-compose" id="myStreamCompose">
-                    <textarea id="txtComposeQuib" placeholder="WRITE A QUIB"></textarea>
-                    <span class="close-stream" id="CloseStream">
-                        <img src="~/Images/close.png" />
-                    </span>
-                    <div class="mystream-panel-header">
-                        <div class="mystream-time" style="float: left;width: 40%; text-align: center; height: 28px;position:absolute;left:109px;">
-                            <button type="button" id="BtnSave" class="btn btn-default btn-burgandy timerbtn" style="position:absolute;margin: 0 auto; text-align: center; padding: 4px 12px; font-size: 14px;font-weight:700;">SAVE</button>
+        <div class="container-fluid">
+            @************My stream****************@
+            <div class="my-stream-panel col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="row my-stream-panel-wrap" style="overflow-y: hidden; height: 100%; height: calc(100% - 10px);">
+                    <div class="my-stream-compose" id="myStreamCompose">
+                        <textarea id="txtComposeQuib" placeholder="WRITE A QUIB"></textarea>
+                        <span class="close-stream" id="CloseStream">
+                            <img src="~/Images/close.png" />
+                        </span>
+                        <div class="mystream-panel-header">
+                            <div class="mystream-time" style="float: left;width: 40%; text-align: center; height: 28px;position:absolute;left:109px;">
+                                <button type="button" id="BtnSave" class="btn btn-default btn-burgandy timerbtn" style="position:absolute;margin: 0 auto; text-align: center; padding: 4px 12px; font-size: 14px;font-weight:700;">SAVE</button>
+                            </div>
                         </div>
                     </div>
+
+                    <div style="background: #990000; padding-right: 3px;">
+                        <div class="mystream-txt">
+
+                            <button id="ShowHide" class="btn btn-default btn-burgandy" onclick="showhide();" style="position:absolute;left:-23px;width:4px;">HIDE</button>
+                            <div style="position: relative;left:48px;width:32%;top:2px;">
+
+                                <span>My Stream </span>
+                                <span id="MyStreamCount">18</span>
+                            </div>
+                        </div>
+
+                        <div class="mystream-panel-content" style="height: calc(100% - 87px);">
+                            <div id="myStreamPanel" style="padding-bottom: 100%">
+                                @*LOADIG FROM MyStream.js*@
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-               
-                <div style="background: #990000; padding-right: 3px;">
-      <div class="mystream-txt">
-
-           <button id="ShowHide" class="btn btn-default btn-burgandy"onclick="showhide();" style="position:absolute;left:-23px;width:4px;">HIDE</button>
-                  <div style="position: relative;left:48px;width:32%;top:2px;">
-                
-                            <span>My Stream </span>
-                            <span id="MyStreamCount">18</span>
-                        </div>
-                    </div>
-                  
-                    <div class="mystream-panel-content" style="height: calc(100% - 87px);">
-                        <div id="myStreamPanel" style="padding-bottom: 100%">
-                            @*LOADIG FROM MyStream.js*@
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="hide">
-                <div class="row">
-                    <div class="quib-panel" style="position: relative; padding: 0 36px">
-                        <div class="quib-panel-group" style="overflow: hidden; position: relative;">
-                            <div id="quib-list" style="overflow: hidden; top: 0px; bottom: -18px; left: 0px; right: 0;">
-                                <div class="quib-container" id="quibContainer" style="height: calc(100% - 118px); visibility:hidden">
-                                   
+            <div class="row" style="z-index:0;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="hide">
+                    <div class="row">
+                        <div class="quib-panel" style="position: relative; padding: 0 36px;z-index:0;">
+                            <div class="quib-panel-group" style="overflow: hidden; position: relative;">
+                                <div id="quib-list" style="overflow: hidden; top: 0px; bottom: -18px; left: 0px; right: 0;">
+                                    <div class="quib-container" id="quibContainer" style="height: calc(100% - 118px); visibility:hidden">
+                                    </div>
+                                </div>
+                                <div class="prev-arrows" id="prevOpenCompose" style="margin-left: 336px;visibility:hidden;">
+                                    <span class=" left">
+                                        <img src=@Url.Content("~/Images/left-arrow.png") />
+                                    </span>
                                 </div>
                             </div>
-                            <div class="prev-arrows" id="prevOpenCompose"style="margin-left: 336px;visibility:hidden;">
-                            <span class=" left">
-                                <img src=@Url.Content("~/Images/left-arrow.png") />
-                            </span>
-                        </div>
-                        </div>
-                        <div class="prev-arrows">
-                            <span class=" left" style="left: 10px">
-                                <img src=@Url.Content("~/Images/left-arrow.png") />
-                            </span>
-                        </div>
-                        <div class="next-arrows">
-                            <span class="right " style="right: 10px">
-                                <img src=@Url.Content("~/Images/right-arrow.png") />
-                            </span>
-                        </div>
+                            <div class="prev-arrows">
+                                <span class=" left" style="left: 10px">
+                                    <img src=@Url.Content("~/Images/left-arrow.png") />
+                                </span>
+                            </div>
+                            <div class="next-arrows">
+                                <span class="right " style="right: 10px">
+                                    <img src=@Url.Content("~/Images/right-arrow.png") />
+                                </span>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="panel panel-default" id="rating-quib" style="">
-            <div id="divTags" class="panel-body" style="font-size: 12px">
-                <div class="col-md-6 col-sm-6 col-xs-6" style="padding: 0 5px;">
-                    <h5>This is quib zero is about</h5>
-                    <input type="checkbox" id="1" />
-                    People, Performance<br>
-                    <input type="checkbox" id="2" />
-                    Story, Dialogue<br>
-                    <input type="checkbox" id="3" />
-                    Directing, Movement<br>
-                    <input type="checkbox" id="4" />
-                    Cinematography, Editing<br>
-                    <input type="checkbox" id="5" />
-                    Music, Sound<br>
-                    <input type="checkbox" id="6" />
-                    Animation, Effects<br>
-                    <input type="checkbox" id="7" />
-                    Costume, Set, Location<br>
-                    <input type="checkbox" id="8" />
-                    Cameras, Film, Process<br>
-                </div>
-
-                <div class="col-md-6 col-sm-6 col-xs-6" style="padding: 0 5px;">
-                    <h5>This is quib zero </h5>
-                    <input type="checkbox" id="9" />
-                    Insightful<br>
-                    <input type="checkbox" id="10" />
-                    Funny<br>
-                    <input type="checkbox" id="11" />
-                    Harsh<br>
-                    <input type="checkbox" id="12" />
-                    R-Rated<br>
-                    <h5>Flag this quib zero as:</h5>
-                    <input type="checkbox" id="13" />
-                    Spoiler<br>
-                    <input type="checkbox" id="14" />
-                    Incorrect<br>
-                    <input type="checkbox" id="16" />
-                    Spam<br>
-                    <input type="checkbox" id="17" />
-                    Troll<br>
-                </div>
-
-                <div class="quib-rating col-md-12 " style="clear: both">
-                    <span style="float: left">Rate this quib zero:</span>
-                    <div class="quib-rating-img" style="float: left; font-size: 14px; margin-left: 20px">
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+            <div class="panel panel-default" id="rating-quib" style="">
+                <div id="divTags" class="panel-body" style="font-size: 12px">
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="padding: 0 5px;">
+                        <h5>This is quib zero is about</h5>
+                        <input type="checkbox" id="1" />
+                        People, Performance<br>
+                        <input type="checkbox" id="2" />
+                        Story, Dialogue<br>
+                        <input type="checkbox" id="3" />
+                        Directing, Movement<br>
+                        <input type="checkbox" id="4" />
+                        Cinematography, Editing<br>
+                        <input type="checkbox" id="5" />
+                        Music, Sound<br>
+                        <input type="checkbox" id="6" />
+                        Animation, Effects<br>
+                        <input type="checkbox" id="7" />
+                        Costume, Set, Location<br>
+                        <input type="checkbox" id="8" />
+                        Cameras, Film, Process<br>
                     </div>
-                    <button style="float: right" class="btn btn-default btn-stream" id="btnDone">Done</button>
-                </div>
 
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="padding: 0 5px;">
+                        <h5>This is quib zero </h5>
+                        <input type="checkbox" id="9" />
+                        Insightful<br>
+                        <input type="checkbox" id="10" />
+                        Funny<br>
+                        <input type="checkbox" id="11" />
+                        Harsh<br>
+                        <input type="checkbox" id="12" />
+                        R-Rated<br>
+                        <h5>Flag this quib zero as:</h5>
+                        <input type="checkbox" id="13" />
+                        Spoiler<br>
+                        <input type="checkbox" id="14" />
+                        Incorrect<br>
+                        <input type="checkbox" id="16" />
+                        Spam<br>
+                        <input type="checkbox" id="17" />
+                        Troll<br>
+                    </div>
+
+                    <div class="quib-rating col-md-12 " style="clear: both">
+                        <span style="float: left">Rate this quib zero:</span>
+                        <div class="quib-rating-img" style="float: left; font-size: 14px; margin-left: 20px">
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        </div>
+                        <button style="float: right" class="btn btn-default btn-stream" id="btnDone">Done</button>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
+    @*carousel section end here---*@
+
 
     <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 56px; text-align: center; border: 0; background-color: #FFFFCC">
         <div class="container-fluid">
             <div class="scrubber-wrapper" style="display: flex; justify-content: center; padding-top: 5px; background-color: #FFFFCC">
                 <div id="btnQuibZeroDiv" style="float: left;width:4%;">
                     <a id="btnQuibZero">
-                        <img id="carouselOffset" src="~/Images/CarouselButoonOffset.jpg"  style="mix-blend-mode: multiply;"/>
+                        <img id="carouselOffset" src="~/Images/CarouselButoonOffset.jpg" style="mix-blend-mode: multiply;" />
                         <img id="carouselExpand" src="~/Images/CaraouselExpand.jpg" style="mix-blend-mode: multiply;" />
 
                     </a>
@@ -679,20 +672,20 @@
                             <span id="MovieScrubber" class="ui-slider-handle ui-state-default ui-corner-all movieSlider-span" style=""></span>
                         </div>
                     </div>
-                   
+
                     <div class="quibSliderWrapper">
                         <div id="quibSlider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="height: 16px; border: none; background-color: #FFFFCC;display:none;">
                             <span id="QuibScrubber" class="ui-slider-handle ui-state-default ui-corner-all quibSlider-span"></span>
                         </div>
                     </div>
                 </div>
-                <div class="syncbtn"style="width: 4%;">
+                <div class="syncbtn" style="width: 4%;">
                     <div class="Allsync" style="width:100%;float: left; margin-left: 16px; padding-top: 2px;">
                         <img src="~/Images/AllSync.jpg" style="width:121%;height:100%;margin-top:-9%; mix-blend-mode: multiply;" />
                     </div>
                     <div class="DualSync">
                         <div class="btn-resynquib" title="Resync Movie">
-                      
+
                             <a>
                                 <img src="~/Images/upcheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="upcheck" />
                             </a>
@@ -703,7 +696,7 @@
 
                         <div class="btn-resyncmovie" title="Resync Quib">
                             <a>
-                                <img src="~/Images/btmuncheck.jpg" style="height:10%; mix-blend-mode: multiply;" class ="btmuncheck" />
+                                <img src="~/Images/btmuncheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="btmuncheck" />
                             </a>
                             <a>
                                 <img src="~/Images/btmcheck.jpg" style="height:10%; mix-blend-mode: multiply;" class="btmcheck" />
@@ -719,7 +712,7 @@
 
 
     @*MESSAGE POP-UPS*@
-    <div class="modal fade" id="guest-login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
+    <div class="modal fade" id="guest-login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-custom">
@@ -877,18 +870,18 @@
 
 
 
-     <div class="modal fade" id="follower-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="follower-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-custom">
                     <img src=@Url.Content("~/Images/logo.png") />
                 </div>
                 <div class="modal-body">
-                   You have successfully followed this person
+                    You have successfully followed this person
                 </div>
                 <input type="hidden" id="followerId">
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-custom"  data-dismiss="modal" >Ok</button>                   
+                    <button type="button" class="btn btn-custom" data-dismiss="modal">Ok</button>
                 </div>
             </div>
         </div>
@@ -912,7 +905,7 @@
             breakpoints: {
                 0: {
                     slidesPerView: 1,
-                   spaceBetween: 0,
+                    spaceBetween: 0,
                 },
                 768: {
                     slidesPerView: 3,

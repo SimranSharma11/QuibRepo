@@ -138,9 +138,9 @@ $(document).ready(function () {
         $('#carouselOffset').css('display', 'none');
         $('#carouselExpand').css('display', 'block');
         $('.caouselhide').css('display', 'block');
-        $('.close').css('display', 'block');
-        $('.DualSync').css('display', 'block');
-        $('.quib-container').css('opacity', '26%');
+        $('.caouselhide').css('z-index', '3');
+       $('.DualSync').css('display', 'block');
+        $('.quib-container').css('opacity', '0.4');
         $('#hide').css('background-color', 'blue');
         $('.Allsync').css('height', '61px');
     });
@@ -148,7 +148,7 @@ $(document).ready(function () {
         $('#carouselOffset').css('display', 'block');
         $('#carouselExpand').css('display', 'none');
         $('.caouselhide').css('display', 'none');
-        $('.close').css('display', 'none');
+        $('.caouselhide').css('z-index', '0');
         $('.quib-container').css('opacity', 'unset');
         $('#hide').css('background-color', 'unset');
         $('.Allsync').css('height', '61px');
