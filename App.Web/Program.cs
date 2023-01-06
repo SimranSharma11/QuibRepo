@@ -30,6 +30,7 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
    opt.TokenLifespan = TimeSpan.FromHours(10));
 builder.Services.AddTransient<IEmailSender, SendMail>();
 builder.Services.AddTransient<IMovieService, MovieService>();
+builder.Services.AddTransient<ICommunityService, CommunityService>();
 builder.Services.AddTransient<IAdminPanel, AdminPanel>();
 builder.Services.AddTransient<IQuibStreamService, QuibStreamService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
