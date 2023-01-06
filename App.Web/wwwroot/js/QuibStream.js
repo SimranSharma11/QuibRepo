@@ -550,10 +550,11 @@ function GotoProfile(userId) {
 
 //follow user -  ddl user avatar
 function FollowUser(followeeId) {
+    var FollowerId = localStorage.getItem('UserId');
+
     $.ajax({
         //async: false,
-        url: localStorage.getItem('environment') + 'Profile/AddCommunity',
-        data: { followeeId: followeeId },
+        url: localStorage.getItem('environment') + '/api/Community?FollowerId=' + FollowerId + '&FolloweeId=' + followeeId,
         type: 'POST',
         success: function (response) {
             if (JSON.parse(response)) {
