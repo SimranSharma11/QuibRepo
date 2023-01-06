@@ -816,10 +816,13 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
                     "<div class='quib-compose-timer-wrapper'>" +
                     "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
+                    "<div class='staricon'>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
                     "</div>" +
-                    "<div class='star icon'>" +
-          
                     "</div>" +
+                   
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
                     //    "<img src='/Images/tag.png' />" +
@@ -858,10 +861,13 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
                     "<div class='quib-compose-timer-wrapper'>" +
                     "<input type='text' class='form-control quib-compose-timer seedquibtimer'style='background-color:white !important;' value='" + time + "' readonly='true' />" +
+                    "<div class='staricon'style=' position: absolute; top: 30px; right: 12 %;'>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
                     "</div>" +
-                    "<div class='star icon'>" +
+                    "</div>" +
                    
-                    "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
                     //    "<img src='/Images/tag.png' />" +
@@ -897,10 +903,13 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
                     "<div class='quib-compose-timer-wrapper' style='top: 0;'>" +
                     "<input type='text' class='form-control quib-compose-timer' value='" + time + "' readonly='true' />" +
+                    "<div class='staricon'>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
+                    "<i class='fa fa-regular fa-star'></i>" +
                     "</div>" +
-                    "<div class='star icon'>" +
+                    "</div>" +
                     
-                    "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     "<a class='img-bump'>" +
                     "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +
