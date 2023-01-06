@@ -1023,7 +1023,7 @@ function LoadAllQuibsQuibStreamforcarousel(quibs){
                     "<li onclick='GotoQuibStack(" + object[obj].userId + "," + object[obj].movieId + ")'>See Stream</li>" +
                     "</ul>" +
                     " <div class='quib-comp-timer-wrapper'>" +
-                    "<input type='text' class='quib-comp-timer' value='" + time + "' readonly='true' />" +
+                    "<input type='text' class='quib-comp-timer quib-compose-timer' value='" + time + "' readonly='true' />" +
                     " </div>" +
                     " <div class='comp-side-header'> " +
                     "<a class='img-bump'>" +
@@ -1058,7 +1058,7 @@ function LoadAllQuibsQuibStreamforcarousel(quibs){
                     "<li onclick='GotoQuibStack(" + object[obj].userId + "," + object[obj].movieId + ")'>See Stream</li>" +
                     "</ul>" +
                     " <div class='quib-comp-timer-wrapper'>" +
-                    "<input type='text' class='quib-comp-timer' value='" + time + "' readonly='true' />" +
+                    "<input type='text' class='quib-comp-timer quib-compose-timer' value='" + time + "' readonly='true' />" +
                     " </div>" +
                     " <div class='comp-side-header'> " +
                     "<a class='img-bump'>" +
@@ -1093,7 +1093,7 @@ function LoadAllQuibsQuibStreamforcarousel(quibs){
                     "<li onclick='GotoQuibStack(" + object[obj].userId + "," + object[obj].movieId + ")'>See Stream</li>" +
                     "</ul>" +
                     " <div class='quib-comp-timer-wrapper'>" +
-                    "<input type='text' class='quib-comp-timer' value='" + time + "' readonly='true' />" +
+                    "<input type='text' class='quib-comp-timer quib-compose-timer' value='" + time + "' readonly='true' />" +
                     " </div>" +
                     " <div class='comp-side-header'> " +
                     "<a class='img-bump'>" +
