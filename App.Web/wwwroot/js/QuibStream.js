@@ -18,7 +18,7 @@ function SetMoviePoster() {
         method: "GET",
         success: function (response) {
             if (response != undefined && response != null) {
-                $(".movietitle").text(response.title);
+              //  $(".movietitle").text(response.title);
 
                 //KVW - use file path not base64
                 if (response.length != null)
@@ -181,7 +181,7 @@ $(document).ready(function () {
         else {
             if ($('.my-stream-panel').is(':hidden')) {
                 e.preventDefault();
-                window.location.href = localStorage.getItem('environment') + "Profile?userId=" + localStorage.getItem('UserId');
+                window.location.href = localStorage.getItem('environment') + '/Community';
             }
             else {
                 if ($('#txtComposeQuib').val().length > 0) {
@@ -822,8 +822,11 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<i class='fa fa-regular fa-star'></i>" +
                     "<i class='fa fa-regular fa-star'></i>" +
                     "</div>" +
+                    "<div class='shareicon'>" +
+                    "<i class='fa fa-regular fa-share'></i>" +
                     "</div>" +
-                   
+                    "</div>" +
+
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
                     //    "<img src='/Images/tag.png' />" +
@@ -850,7 +853,7 @@ function LoadAllQuibsQuibStream(quibs) {
                     "</div>" +
                     "</div>");
             }
-          else if (!object[obj].isSeedQuib) {
+            else if (!object[obj].isSeedQuib) {
                 $('#quibContainer').append("<div class='quib-item " + time + "'  time='Parent_" + time + "' style='visibility:hidden'> " +
                     "<div class='panel panel-default quib-item-inner inner1'>" +
                     "<div class='panel-body' style='padding: 0;background-color:#990000;color:white;'>" +
@@ -862,13 +865,16 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<span id='QuibId' class='hide'>" + object[obj].id + "</span>" +
                     "<div class='quib-compose-timer-wrapper'>" +
                     "<input type='text' class='form-control quib-compose-timer seedquibtimer'style='background-color:white !important;' value='" + time + "' readonly='true' />" +
-                    "<div class='staricon'style=' position: absolute; top: 30px; right: 12 %;'>" +
+                    "<div class='staricon'style=' position: absolute; top: 30px; right: 17 %;'>" +
                     "<i class='fa fa-regular fa-star'></i>" +
                     "<i class='fa fa-regular fa-star'></i>" +
                     "<i class='fa fa-regular fa-star'></i>" +
                     "</div>" +
+                    "<div class='shareicon'style=' position: absolute; top: 30px; right: 10 %;'>" +
+                    "<i class='fa fa-regular fa-share'></i>" +
                     "</div>" +
-                   
+                    "</div>" +
+
                     "<div class='compose-side-header' style='float: right'>" +
                     //"<a class='img-tag'>" +
                     //    "<img src='/Images/tag.png' />" +
@@ -910,7 +916,9 @@ function LoadAllQuibsQuibStream(quibs) {
                     "<i class='fa fa-regular fa-star'></i>" +
                     "</div>" +
                     "</div>" +
-                    
+                    "<div class='shareicon'>" +
+                    "<i class='fa fa-regular fa-share'></i>" +
+                    "</div>" +
                     "<div class='compose-side-header' style='float: right'>" +
                     "<a class='img-bump'>" +
                     "<img src='" + localStorage.getItem('environment') + "/Images/bump-red.png' />" +

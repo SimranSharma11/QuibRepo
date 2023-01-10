@@ -55,8 +55,14 @@ function SetUserAvatar() {
 }
 
 function BackClick() {
-    localStorage.setItem("IsBackBtnClicked", "true");
-    window.location.href = document.referrer;
+    if (localStorage.getItem('UserId').length != 0) {
+        localStorage.setItem("IsBackBtnClicked", "true");
+        window.location.href = document.referrer;
+    }
+    else {
+        localStorage.setItem("IsBackBtnClicked", "true");
+        window.location.href = localStorage.getItem('environment');
+    }
     //window.history.back();
 }
 

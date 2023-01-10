@@ -41,7 +41,7 @@ $(document).ready(function () {
         else {
             e.preventDefault();
             $('.popup_load').css("display", "block");
-            window.location.href = localStorage.getItem('environment') + "Profile?UserId=" + localStorage.getItem('UserId');
+            window.location.href = localStorage.getItem('environment') + "/Community";
 
             setTimeout(function () {
                 $('.popup_load').css("display", "none");

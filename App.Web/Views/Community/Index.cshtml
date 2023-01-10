@@ -1,592 +1,604 @@
-﻿@{
+﻿@model App.Models.DataModels.ApplicationUser
+@{
     Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quib - Share what you know and love about great movies</title>
+    <link href="Q_favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/cropper.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/Jquery1.10.js"></script>
+    <script src="~/lib/jquery/dist/jquery-1.9.1.js"></script>
+    <script src="~/lib/jquery/dist/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/lib/jquery/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery/dist/cropper.js"></script>
+    <script src="~/js/croppermain.js"></script>
+    <script src="~/js/Profile.js"></script>
+    <script src="~/lib/jquery/dist/bootstrap.js"></script>
+    <script src="~/js/Common.js"></script>
+    <script src="~/js/Home.js"></script>
+   
+</head>
 
-<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-<link href="~/css/site.css" rel="stylesheet" />
-
-
-<style type="text/css">
-
-</style>
-
-<script src="~/lib/jquery/dist/Jquery1.10.js"></script>
-<script src="~/js/Profile.js"></script>
-<script src="~/js/Common.js"></script>
-<script type="text/javascript">
-    var url = "@Context.Request.Host";
-    var userid = localStorage.getItem("UserId");
-    if (localStorage.getItem('environment') == null || localStorage.getItem('environment') == "" || localStorage.getItem('environment').length == 0)
-
-        localStorage.setItem('environment', 'https://' + url);
-    $(window).load(function () {
-
-        $('#community-quib').on('click', function () {
-
-            $('.quibber').show();
-            $('.Following,.Followers').hide();
-            $(this).addClass('active-list').siblings().removeClass();
-
-            var Col = 0;
-            var TotalHight = 0;
-            var margin_bottom = 10;
-            var margin_right = 10;
-            var leftPos = 0;
-
-            $(".profile-container1").children().each(function () {
-                TotalHight = TotalHight + margin_bottom + $(this).height();
-                var topPos = TotalHight - (margin_bottom + $(this).height());
-
-                if (TotalHight > $(".profile-container1").height()) {
-                    Col = Col + 1;
-                    leftPos = ($(this).width() + margin_right) * Col;
-                    TotalHight = $(this).height() + margin_bottom;
-                    topPos = 0;
-                }
-
-                $(this).css('top', topPos + 'px')
-                $(this).css('left', leftPos + 'px')
-
-            })
-
-        });
-
-
-        $('#community-followers').on('click', function () {
-            $('.Followers').show();
-            $('.Following,.quibber').hide();
-            $(this).addClass('active-list').siblings().removeClass();
-
-            var Col = 0;
-            var TotalHight = 0;
-            var margin_bottom = 10;
-            var margin_right = 10;
-            var leftPos = 0;
-
-            $(".profile-container2").children().each(function () {
-                TotalHight = TotalHight + margin_bottom + $(this).height();
-                var topPos = TotalHight - (margin_bottom + $(this).height());
-
-                if (TotalHight > $(".profile-container2").height()) {
-                    Col = Col + 1;
-                    leftPos = ($(this).width() + margin_right) * Col;
-                    TotalHight = $(this).height() + margin_bottom;
-                    topPos = 0;
-                }
-
-                $(this).css('top', topPos + 'px')
-                $(this).css('left', leftPos + 'px')
-
-            })
-
-        });
-
-        $('#community-following').on('click', function () {
-            $('.Following').show();
-            $('.Followers,.quibber').hide();
-            $(this).addClass('active-list').siblings().removeClass();
-
-            var Col = 0;
-            var TotalHight = 0;
-            var margin_bottom = 10;
-            var margin_right = 10;
-            var leftPos = 0;
-
-            $(".profile-container3").children().each(function () {
-                TotalHight = TotalHight + margin_bottom + $(this).height();
-                var topPos = TotalHight - (margin_bottom + $(this).height());
-
-                if (TotalHight > $(".profile-container3").height()) {
-                    Col = Col + 1;
-                    leftPos = ($(this).width() + margin_right) * Col;
-                    TotalHight = $(this).height() + margin_bottom;
-                    topPos = 0;
-                }
-
-                $(this).css('top', topPos + 'px')
-                $(this).css('left', leftPos + 'px')
-            })
-        });
-
-
-
-        $(function () {
-            var Col = 0;
-            var TotalHight = 0;
-            var margin_bottom = 10;
-            var margin_right = 10;
-            var leftPos = 0;
-
-            $(".profile-container1").children().each(function () {
-                TotalHight = TotalHight + margin_bottom + $(this).height();
-                var topPos = TotalHight - (margin_bottom + $(this).height());
-                if (TotalHight > $(".profile-container1").height()) {
-                    Col = Col + 1;
-                    leftPos = ($(this).width() + margin_right) * Col;
-                    TotalHight = $(this).height() + margin_bottom;
-                    topPos = 0;
-                }
-                $(this).css('top', topPos + 'px')
-                $(this).css('left', leftPos + 'px')
-
-            })
-
-        });
-
-        var scrollval = $('.quib-list').width();
-
-
-        $.fn.scrollBy = function (x) {
-            return this.animate({
-                scrollLeft: '+=' + x,
-
-            });
-        };
-        $('.right').click(function () {
-            $('.quib-list').stop().scrollBy(scrollval);
-        });
-        $('.left').click(function () {
-            $('.quib-list').stop().scrollBy(-scrollval, 0);
-        });
-    });
-
-</script>
-
-
-<nav class="navbar navbar-default navbar-custom" style="margin-bottom: -1px">
-    <div class="container-fluid">
+<body>
+    @*loading overlay*@
+    <div class="popup_load">
+        <div class="fade12"></div>
         <div>
-            <a class="navbar-brand" href="#" style="margin-top: -7px">
-                <span class="glyphicon glyphicon-menu-left" aria-hidden="true" style="font-size: 36px; color: #990000"></span>
-
-            </a>
+            <img src=@Url.Content("~/Images/loadingImg.gif") class="popup_busy" alt="Processing..." />
         </div>
-        <div class="navbar-left navbar-center" style="padding-top: 4px">
-            <span style="font-size: 30px">Quib Community</span>
-
-        </div>
-        <ul class="nav " style="margin-top: 10px; float: right">
-            <li>
-                <img src="~/Images/avatar.png" height="34" width="34" />
-            </li>
-        </ul>
-
     </div>
-    <!-- /.container-fluid -->
-</nav>
-<div class="container-fluid" style="padding-left: 10px;">
+    <nav class="navbar navbar-default navbar-custom" style="margin-bottom: 0px">
+        <div class="container-fluid" style="position: relative;">
+            <div>
+                <a class="profile-topbar-back">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true" style="font-size: 36px; color: #990000" onclick="BackClick()"></span>
+                </a>
+            </div>
+            <div class="navbar-left navbar-center" style="padding-top: 4px">
+                <span class="title-head-community"style="color:#990000">Quib Community</span>
+            </div>
+            <ul class="nav hidden-xs" style="top: 4px; position: absolute; right: 17px">
+                <li>
+                    <img src=@Url.Content("~/Images/avatar.png") height="48" width="48" id="ImgAvtrLogo" class="ImgAvtrLogoTopComm" />
+                </li>
+            </ul>
 
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+        </div>
+    </nav>
 
-            <div class="profile" style="background-color: #dcdcdc; padding: 0 2px 2px 2px; padding-top: 7px; padding-left: 5px; padding-right: 5px">
+    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px; height: calc(100% - 56px);">
+        <div class="hidden-xs" style="height: 100%">
+            <div>
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.AvatarBase32ImagePath)
+                @Html.HiddenFor(model => model.AvatarBase256ImagePath)
+            </div>
 
-                <div class="profile-img" style="float: left; width: 117px; height: 122px">
-                    <img src="~/Images/avatar.png" />
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 100%">
+                <div class="panel-wrap">
 
-                </div>
+                    <div class="profile" style="background-color: #dcdcdc; padding: 0 2px 2px 2px; padding-top: 7px; padding-left: 5px; padding-right: 5px">
+                        <div class="profile-img" style="float: left; width: 117px; height: 122px">
+                            <img src=@Url.Content("~/Images/avatar.png") class="ProfileAvatar" />
+                        </div>
+                        <div class="profile-details" style="height: 122px; padding-top: 0px; position: relative;">
+                            <address style="padding-top: -11px">
+                                <strong style="font-size: initial;">@Context.User.Identity.Name</strong>
+                            </address>
+                            <div class="profile-edit">
+                                <div style="float: right; margin-bottom: 4px;">
+                                    <button id="btnEditProfile" class="btn btn-default btn-burgandy " style="font-size: 12px; min-width: 70px !important; padding: 3px 8px 2px;">
+                                        Edit Profile
+                                    </button>
+                                </div>
+                                <div style="float: right;">
+                                    <button type="button" id="btnLogout" class="btn btn-default btn-burgandy " onclick="window.location.href='@Url.Action("Logout", "Login")'" style="font-size: 12px;min-width: 70px !important;margin-top:18px;padding: 3px 8px 2px;">
+                                        Log Out
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="profile-details" style="height: 122px; padding-top: 8px">
-                    <address>
-                        <strong>Batman</strong><br>
-                        <strong>Bruce Wayne</strong>
-                    </address>
-                    <div class="profile-edit" style="margin-top: 34px">
-                        <button type="submit" class="btn btn-default btn-burgandy" style="float: left; padding: 3px 12px">Edit Profile</button>
-                        <button type="submit" class="btn btn-default btn-burgandy" style="float: right; padding: 3px 12px" onclick="RedirectToLogout(event)>Logout</button>
+                        <address style="padding-top: -11px">
+
+                            <strong>@Html.DisplayFor(p => p.FirstName) @Html.DisplayFor(p => p.LastName)</strong>
+                        </address>
+
+                        <div class="profile-description" style="clear: both">
+                            @Html.DisplayFor(p => p.About)
+                        </div>
+                    </div>
+
+
+                    <div class="community-list" style="padding-top: 10px; background-color: #dcdcdc;">
+                        <ul class="list-group">
+                            <li style="position: relative;" class="community-quib" onclick="GetMoviesByUser()">
+                                <div style="position: absolute; right: 10px">
+                                    <span>Quibbed</span>
+                                    <span class="following-count cntQuibs"></span>
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                </div>
+                            </li>
+                            <li style="position: relative;" id="community-followers" onclick="GetFollowers()">
+                                <div style="position: absolute; right: 10px">
+                                    <span>Followers</span>
+                                    <span class="following-count cntFollowers"></span>
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                </div>
+                            </li>
+                            <li style="position: relative;" id="community-following" onclick="GetFollowees()">
+                                <div style="position: absolute; right: 10px">
+                                    <span>Following</span>
+                                    <span class="following-count cntFollowees"></span>
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-
-
-                <div class="profile-description" style="clear: both">
-                    Lorem ipsum dolor sit amet, sed id admodum persecuti repudiandae, alia error in nam. Ex quando cetero insolens sit, te nulla insolens cum. Vis te veniam offendit persequeris. Ius dicta expetenda quaerendum an. Eam putant sensibus ex. Oportere voluptatum honestatis ei mel, lorem nostrud lobortis ex vim. Nec esse maiorum cu, duo ea partem laoreet
-                    Lorem ipsum dolor sit amet, sed id admodum persecuti repudiandae, alia error in nam. Ex quando cetero insolens sit, te nulla insolens cum.
-                    Lorem ipsum dolor sit amet, sed id admodum persecuti repudiandae.
-                </div>
-            </div>
-            <div class="community-list" style="padding-top: 10px; background-color: #dcdcdc;">
-                <ul class="list-group">
-                    <li style="position: relative;" class="active-list" id="community-quib">
-                        <div style="position: absolute; right: 10px">
-                            <span>Quibbed</span>
-                            <span class="following-count">86</span>
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        </div>
-                    </li>
-                    <li style="position: relative;" id="community-followers">
-                        <div style="position: absolute; right: 10px">
-                            <span>Followers</span>
-                            <span class="following-count">86</span>
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        </div>
-                    </li>
-                    <li style="position: relative;" id="community-following">
-                        <div style="position: absolute; right: 10px">
-                            <span>Following</span>
-                            <span class="following-count">86</span>
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        </div>
-                    </li>
-
-                </ul>
             </div>
 
-        </div>
 
-
-        <div class="col-lg-9  col-md-8 col-sm-6 col-xs-12">
-            <div class="row">
-                <div class="quibber" style="display: none">
+            <div class="col-lg-9  col-md-8 col-sm-6 ">
+                <div class="quibber rightcontent">
                     <div class="side-header" style="padding: 10px 0px">
                         <div style="width: 40px"><span style="font-size: 22px">Quibbed</span></div>
-                        <div style="position: absolute; right: 12px; top: 14px;">
-                            <span class="glyphicon glyphicon-menu-left left" aria-hidden="true" style="font-size: 22px; color: #990000"></span>
-                            <span class="glyphicon glyphicon-menu-right right" aria-hidden="true" style="font-size: 22px; color: #990000"></span>
-
-                        </div>
                     </div>
-                    <div class="quib-list-group" style="overflow: hidden; position: relative;">
-                        <div class="quib-list" style="overflow: hidden; top: 0px; bottom: -18px; left: 0px; right: 0;">
-                            <div class="profile-container1">
-                                <div class="item">
-                                    <div class="quib-profile-header">
-                                        <img src="~/Images/jawsMoviePoster_33x48.png" />
-                                        <div class="quib-profile-details">
-                                            <div>Birdman</div>
-                                            <div>2015</div>
-                                            <div>San Francisco, CA 94107</div>
-
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="quib-profile-img">
-                                        <img src="~/Images/playQuib_01.png" />
-                                    </div>
-
-                                </div>
-                                <div class="item">
-                                    <span>Movie 02</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 03</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 04</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 05</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 06</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 07</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 08</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 09</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 010</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 011</span>
-                                </div>
-
-                                <div class="item">
-                                    <span>Movie 012</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 013</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 014</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 015</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 016</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 017</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 018</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 019</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 020</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 021</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 022</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 01</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 02</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 03</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 04</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 05</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 06</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 07</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 08</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 09</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 010</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 011</span>
-                                </div>
-
-                                <div class="item">
-                                    <span>Movie 012</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 013</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 014</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 015</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 016</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 017</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 018</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 019</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 020</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 021</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 022</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 01</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 02</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 03</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 04</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 05</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 06</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 07</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 08</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 09</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 010</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 011</span>
-                                </div>
-
-                                <div class="item">
-                                    <span>Movie 012</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 013</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 014</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 015</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 016</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 017</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 018</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 019</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 020</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 021</span>
-                                </div>
-                                <div class="item">
-                                    <span>Movie 022</span>
-                                </div>
+                    <div class="" style="overflow: hidden; padding: 0 15px 0 5px">
+                        <div class="quib-list" style="overflow: hidden;">
+                            <div class="profile-container1 MovieList">
+                                @*Adding dynamically the list of quibbed movies*@
                             </div>
                         </div>
                     </div>
+                    <div class="prev-arrows">
+                        <span class=" left" aria-hidden="true" style="left: -10px;">
+                            <img src=@Url.Content("~/Images/left-arrow.png") />
+                        </span>
+                    </div>
+                    <div class="next-arrows">
+                        <span class="right " aria-hidden="true" style="right: 2px;">
+                            <img src=@Url.Content("~/Images/right-arrow.png") />
+                        </span>
+                    </div>
                 </div>
 
-
-                <div class="Followers" style="display: none">
-
+                <div class="Followers rightcontent" style="display: none">
                     <div class="side-header" style="padding: 10px 0px">
                         <div style="width: 40px"><span style="font-size: 22px">Followers</span></div>
-                        <div style="position: absolute; right: 12px; top: 14px;">
-                            <span class="glyphicon glyphicon-menu-left left" aria-hidden="true" style="font-size: 22px; color: #990000"></span>
-                            <span class="glyphicon glyphicon-menu-right right" aria-hidden="true" style="font-size: 22px; color: #990000"></span>
-
-                        </div>
                     </div>
-                    <div class="quib-list-group" style="overflow: hidden; position: relative;">
-                        <div class="quib-list" style="overflow: hidden; position: absolute; top: 0px; bottom: -18px; left: 0px; right: 0; margin-right: 10px">
-                            <div class="profile-container2">
-                                <div class="follower-item">
-                                    <div class="follower-image">
-                                        <img src="~/Images/avatar.png" /><span>Dwayne </span>
-                                    </div>
-
-                                    <div class="follower-button">
-                                        <button type="submit" class="btn btn-default">Following</button>
-                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-
-
-
-
+                    <div class="" style="overflow: hidden; padding: 0 15px 0 5px">
+                        <div class="quib-list" style="overflow: hidden;">
+                            <div class="profile-container2 FollowerList ">
+                                @*Adding dynamically the list of followers*@
                             </div>
                         </div>
                     </div>
-
-
-
+                    <div class="prev-arrows">
+                        <span class=" left" aria-hidden="true" style="left: -10px;">
+                            <img src=@Url.Content("~/Images/left-arrow.png") />
+                        </span>
+                    </div>
+                    <div class="next-arrows">
+                        <span class="right " aria-hidden="true" style="right: 2px;">
+                            <img src=@Url.Content("~/Images/right-arrow.png") />
+                        </span>
+                    </div>
                 </div>
 
-                <div class="Following" style="display: none">
-
+                <div class="Following rightcontent" style="display: none">
                     <div class="side-header" style="padding: 10px 0px">
                         <div style="width: 40px"><span style="font-size: 22px">Following</span></div>
-                        <div style="position: absolute; right: 12px; top: 14px;">
-                            <span class="glyphicon glyphicon-menu-left left" aria-hidden="true" style="font-size: 22px; color: #990000"></span>
-                            <span class="glyphicon glyphicon-menu-right right" aria-hidden="true" style="font-size: 22px; color: #990000"></span>
-
+                    </div>
+                    <div class="" style="overflow: hidden; padding: 0 15px 0 5px">
+                        <div class="quib-list" style="overflow: hidden; top: 0px; bottom: -18px; left: 0px; right: 0;">
+                            <div class="profile-container3 FolloweeList ">
+                                @*Adding dynamically the list of followees*@
+                            </div>
                         </div>
                     </div>
-                    <div class="quib-list-group" style="overflow: hidden; position: relative;">
-                        <div class="quib-list" style="overflow: hidden; position: absolute; top: 0px; bottom: -18px; left: 0px; right: 0; margin-right: 10px">
-                            <div class="profile-container3">
-                                <div class="follower-item">
-                                    <div class="follower-image">
-                                        <img src="~/Images/avatar.png" /><span>Dwayne </span>
-                                    </div>
+                    <div class="prev-arrows">
+                        <span class=" left" aria-hidden="true" style="left: -10px;">
+                            <img src=@Url.Content("~/Images/left-arrow.png") />
+                        </span>
+                    </div>
+                    <div class="next-arrows">
+                        <span class="right " aria-hidden="true" style="right: 2px;">
+                            <img src=@Url.Content("~/Images/right-arrow.png") />
+                        </span>
+                    </div>
+                </div>
 
-                                    <div class="follower-button">
-                                        <button type="submit" class="btn btn-default">Unfollow</button>
-                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <div id="community-editprofile" class="edit-profile col-md-6 col-lg-5 col-sm-12 col-xs-12 FormProfile" style="margin-top: 20px; display: none">
+
+                    <form id="edit-profile-form-desktop" class="register-form edit-profile-form-desktop">
+
+                        @Html.HiddenFor(model => model.Email)
+                        @Html.HiddenFor(model => model.IsEnabled)
+                        @Html.HiddenFor(model => model.IsAdmin)
+
+                        <div class="form-group ">
+                            @Html.TextBoxFor(p => p.UserName, new { @maxlength = "22", @placeholder = "Display Name", @onblur = "return ValidateDisplayname()", @class = "form-control DisplayName", onkeypress = "hideErrorMessage(that);" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.UserName)</div>
+                            <div class="error-message" id="errorMessage"><span class="DisplaynameError"></span></div>
+                        </div>
+
+                      @*  <div class="form-group">
+                            @Html.PasswordFor(p => p.Password, new { @minlength = "8", @placeholder = "new password", @id = "password", @class = "form-control Password", data_val = "false" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.Password)</div>
+                            <div class="error-message" id="errorMessage"><span id="" class="PasswordError hide">Password and Confirm Password do not match!</span></div>
+                        </div>*@
+
+                      @*  <div class="form-group">
+                            @Html.PasswordFor(p => p.ConfirmPassword, new { @placeholder = "confirm new password", @class = "form-control ConfirmPassword", data_val = "false", id = "", @onblur = "ValidateConfirmPassword()" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.ConfirmPassword)</div>
+                        </div>
+*@
+                        <div class="form-group">
+                            @Html.TextBoxFor(p => p.FirstName, new { @maxlength = "15", @placeholder = "first name ", @class = "form-control FirstName", id = "FirstName" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.FirstName)</div>
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(p => p.LastName, new { @maxlength = "15", @placeholder = "last name", @class = "form-control LastName", id = "LastName" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.LastName)</div>
+                        </div>
+
+                        @Html.TextAreaFor(p => p.About, new { @maxlength = "2000", @placeholder = "personal statement...", @class = "form-control personal-statement About", id = "About", style = "height:140px ; resize:none;" })
+                        <div style="position: relative; right: 0; top: -13px; float: right;">
+                            <span class="charNum"></span> / 1000
+                        </div>
+
+
+
+                        <div class="form-group file-avatar" style="position:relative;">
+
+                            <div class="avatar-style">
+                                <img class="imgAvtr" src="~/Images/avatar.png" />
+                            </div>
+                            <div>
+                                <button type="button" class="btn choose-file-button" id="btnUploadImage" style="margin-right:2px;margin-left:2px;display:inline-block" onclick="UploadImage();">Upload New image</button>
+
+                                <input type="file" class="fileAvtr" id="inputImage" name="File" title="" style="opacity: 0; position: relative; left: 0px; width: 140px; top: -22px;" accept="image/*" />
+                            </div>
+                            <div>
+                                <button type="button" class="btn choose-file-button btnCancelUpload" id="btnCancelUpload" onclick="cancelUploadImage()" style="margin-bottom:10px;">Cancel New Image</button>
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group" style="min-width:100%;width:100px;">
+                                <img id="image" src="" alt="Picture" style="width:100px;height:50px max-width:100%;min-width:100%">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="clear: both; float: left; margin-top: 20px; width: 100%;">
+                            <button type="button" class="btn btn-default btn-burgandy btnDone " onclick="EditDone(true)">Save Changes</button>
+                            <button type="button" class="btn btn-default btn-burgandy" onclick="return HideEditProfile()">Cancel</button>
+                        </div>
+                        <div class="col-md-9 docs-buttons" style="display:none">
+                            <div class="btn-group btn-group-crop">
+                                <button type="button" class="btn btn-primary" id="32ImageBtn" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 32, &quot;height&quot;: 32 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 32, height: 32 })">
+                                        Crop 32&times;32
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" id="256ImageBtn" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 256, &quot;height&quot;: 256 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 256, height: 256 })">
+                                        Crop 256&times;256
+                                    </span>
+                                </button>
+                                @*<label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+                                <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+                                <span class="docs-tooltip" data-toggle="tooltip" title="Import image with Blob URLs">
+                                Upload Image
+                                <span class="fa fa-upload"></span>
+                                </span>
+                                </label>*@
+                            </div>
+                        </div>
+                        <input type="hidden" id="ImageString32" name="ImageString32">
+                        <input type="hidden" id="ImageFileType" name="ImageFileType" class="ImageFileType'">
+                        <input type="hidden" id="ImageString256" name="ImageString256"><!-- Show the cropped image in modal -->
+
+                        <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
+                                    </div>
+                                    <div class="modal-body"></div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
                                     </div>
                                 </div>
+                            </div>
+                        </div><!-- /.modal -->
+                    </form>
+                    @*}*@
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row hidden-md hidden-sm hidden-lg">
+            <div>
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.AvatarBase32ImagePath)
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 main-sm">
+                <div class="profile" style="background-color: #dcdcdc; padding: 0 2px 2px 2px; padding-top: 7px; padding-left: 5px; padding-right: 5px">
+                    <div class="profile-img" style="float: left; width: 117px; height: 122px">
+                        <img src=@Url.Content("~/Images/avatar.png") class="ProfileAvatar" />
+                    </div>
+                    <div class="profile-details" style="height: 122px; padding-top: 0px; position: relative;">
+                        <address style="padding-top: -11px">
+                            <strong>@Html.DisplayFor(p => p.UserName)</strong><br>
+                        </address>
+                        <div class="profile-edit">
+                            <div style="float: right; margin-bottom: 4px;">
+                                <button id="btnEditProfile-sm" class="btn btn-default btn-burgandy " style="font-size: 12px; min-width: 70px !important; padding: 3px 8px 2px;">
+                                    Edit Profile
+                                </button>
+                            </div>
+                            <div style="float: right;">
+                                <button type="button" class="btn btn-default btn-burgandy " onclick="RedirectToLogout(event)" style="font-size: 12px;min-width: 70px !important; margin-top:18px;padding: 3px 8px 2px;">
+                                    Log Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <address style="padding-top: -11px">
+
+                        <strong>@Html.DisplayFor(p => p.FirstName) @Html.DisplayFor(p => p.LastName)</strong>
+                    </address>
+
+                    <div class="profile-description" style="clear: both">
+
+                        @Html.DisplayFor(p => p.About)
+                    </div>
+                </div>
 
 
+                <div class="community-list" style="padding-top: 10px; background-color: #dcdcdc;">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne" onclick="GetMoviesByUser()">
+                                <h4 class="panel-title">
+                                    <span role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Quibbed
+                                    </span>
 
 
+                                    <span style="float: right">
+                                        <span style="float: left; margin-right: 10px" class="following-count cntQuibs"></span>
+                                        <span style="float: left" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </span>
+
+
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <div class="MovieList">
+                                        @*Adding dynamically the list of quibbed movies*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo" onclick="GetFollowers()">
+                                <h4 class="panel-title">
+                                    <span class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Followers
+                                    </span>
+
+
+                                    <span style="float: right">
+                                        <span style="float: left; margin-right: 10px" class="following-count cntFollowers"></span>
+                                        <span style="float: left" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </span>
+
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="FollowerList FolloweeListMOB"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree" onclick="GetFollowees()">
+                                <h4 class="panel-title">
+                                    <span class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Following
+                                    </span>
+                                    <span style="float: right">
+                                        <span style="float: left; margin-right: 10px" class="following-count cntFollowees"></span>
+                                        <span style="float: left" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    </span>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div class="FolloweeList FolloweeListMOB">
+                                        @*Adding dynamically the list of followees*@
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="edit-profile col-md-4 col-sm-6 col-xs-12">
-
-
-                    <form class="register-form edit-profile-form">
-                        <div class="form-group ">
-                            <input type="text" class="form-control " placeholder="">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="password" class="form-control " placeholder="Password">
-                        </div>
-
-                        <div class="form-group">
-
-                            <input type="password" class="form-control " placeholder="Confirm Password">
-                        </div>
-                        <div class="form-group">
-
-                            <input type="text" class="form-control " placeholder="first Name">
-                        </div>
-
-                        <div class="form-group">
-
-                            <input type="text" class="form-control " placeholder="last Name">
-                        </div>
-
-                        <textarea class="form-control personal-statement" placeholder="personal statement..."></textarea>
-                        <div class="form-group file-avatar">
-                            <div class="avatar-style">
-                                <img src="~/Images/avatar.png" />
-                            </div>
-                            <div style="display: inline; float: left; margin-top: 36px; margin-left: 15px;font-size:11px">
-                                <input type="button" class="btn choose-file-button" value="Upload new image" />
-                                <input type="file" style="opacity: 0; position: relative; left: -40px; width: 100px; top: -24px;" />
-
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-
-
-
             </div>
 
-        </div>
+            <div class="col-lg-9  col-md-8 col-sm-6 col-xs-12 side-sm" style="display: none">
 
+                <div class="edit-profile col-md-6 col-lg-4 col-sm-8 col-xs-12" style="margin-top: 20px;">
+
+                    @using (Html.BeginForm("EditUser", "Profile", FormMethod.Post, new { id = "", enctype = "multipart/form-data", @class = "register-form edit-profile-form-mobile FormProfile" }))
+                    {
+                        @Html.HiddenFor(model => model.Email)
+                        @Html.HiddenFor(model => model.IsEnabled)
+                        @Html.HiddenFor(model => model.IsAdmin)
+
+                        <div class="form-group ">
+                            @*<input type="text" name="DisplayName" autocomplete="off" style="display: none;"/>*@
+                            @Html.TextBoxFor(p => p.UserName, new { @maxlength = "22", @placeholder = "Display Name", @onblur = "return ValidateDisplayname()", @class = "form-control DisplayName" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.UserName)</div>
+                            <div class="error-message" id="errorMessage"><span class="DisplaynameError"></span></div>
+                        </div>
+
+                        @*<div class="form-group">
+                         
+                            @Html.PasswordFor(p => p.Password, new { @minlength = "8", @id = "Mpassword", @placeholder = "new password", @class = "form-control Password", data_val = "false" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.Password)</div>
+                            <div class="error-message" id="errorMessage"><span class=" PasswordError hide">Password and Confirm Password do not match!</span></div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.PasswordFor(p => p.ConfirmPassword, new { @placeholder = "confirm new password", @class = "form-control", data_val = "false", id = "ConfirmPassword", @onblur = "ValidateConfirmPasswordM()" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.ConfirmPassword)</div>
+                        </div>*@
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(p => p.FirstName, new { @maxlength = "15", @placeholder = "first name ", @class = "form-control FirstName", id = "" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.FirstName)</div>
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(p => p.LastName, new { @maxlength = "15", @placeholder = "last name", @class = "form-control LastName", id = "" })
+                            <div class="error-message" id="errorMessage">@Html.ValidationMessageFor(p => p.LastName)</div>
+                        </div>
+
+                        @Html.TextAreaFor(p => p.About, new { @maxlength = "2000", @placeholder = "personal statement...", @class = "form-control personal-statement About", id = "", style = "height:140px ; resize:none;" })
+                        <div style="position: relative; right: 0; top: -13px; float: right;">
+                            <span class="charNum"></span> / 1000
+                        </div>
+
+                        <div class="form-group file-avatar" style="position:relative">
+                            <div class="avatar-style">
+                                <img class="imgAvtr" src="~/Images/avatar.png" />
+                            </div>
+                            @*<div style="position: absolute; left: 70px; top: 38px;  font-size: 11px">
+                        <button type="button" class="btn choose-file-button" value="" id="btnUploadImages" accept="image/*"> Upload new image</button>
+
+                        <input type="file" class="fileAvtr" name="File" id="inputImages" title="" style="opacity: 0; position: relative; left: 0px; width: 140px; top: -22px;" accept="image/*" />
+                        </div>
+                        </div>*@
+                            <div>
+                                <button type="button" class="btn choose-file-button" id="btnUploadImages" onclick="UploadImageSM();" style=" margin-right:2px;display:inline-block">Upload New image</button>
+
+                                <input type="file" class="fileAvtr" id="inputImages" name="File" title="" style="opacity: 0; position: relative; left: 0px; width: 140px; top: -22px;" accept="image/*" />
+                            </div>
+                            <div>
+                                <button type="button" class="btn choose-file-button btnCancelUpload" id="btnCancelUpload" onclick="cancelUploadImageSM()" style="margin-bottom:10px;">Cancel New Image</button>
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group" style="min-width:100%;width:100px;">
+                                <img id="images" src="" alt="Picture" style="width:100px;height:50px max-width:100%;min-width:100%">
+                            </div>
+                        </div>
+                        <div class="form-group" style="clear: both; float: left; margin-top: 20px; width: 100%;">
+                            <button type="button" class="btn btn-default btn-burgandy btnDone" onclick="EditDone(false)">Save Changes</button>
+                            <button type="button" class="btn btn-default btn-burgandy" onclick="return HideEditProfilesm()">Cancel</button>
+                        </div>
+
+                        <div class="col-md-9 docs-buttonss" style="display:none">
+                            <div class="btn-group btn-group-crop">
+                                <button type="button" class="btn btn-primary" id="32ImageBtns" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 32, &quot;height&quot;: 32 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 32, height: 32 })">
+                                        Crop 32&times;32
+                                    </span>
+                                </button>
+                                <button type="button" class="btn btn-primary" id="256ImageBtns" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 256, &quot;height&quot;: 256 }">
+                                    <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 256, height: 256 })">
+                                        Crop 256&times;256
+                                    </span>
+                                </button>
+                                @*<label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+                            <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+                            <span class="docs-tooltip" data-toggle="tooltip" title="Import image with Blob URLs">
+                            Upload Image
+                            <span class="fa fa-upload"></span>
+                            </span>
+                            </label>*@
+                            </div>
+                        </div>
+                        <input type="hidden" id="ImageFileTypes" name="ImageFileType" class="ImageFileType'">
+                        <input type="hidden" id="ImageString32" name="ImageString32" class="ImageString32">
+                        <input type="hidden" id="ImageString256" name="ImageString256" class="ImageString256">
+
+                        <!-- Show the cropped image in modal -->
+
+                        <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
+                                    </div>
+                                    <div class="modal-body"></div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <a class="btn btn-primary" id="downloads" href="javascript:void(0);" download="cropped.jpg">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="modal fade" id="required-password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <img src=@Url.Content("~/Images/logo.png") />
+                </div>
+                <div class="modal-body">
+                    Please enter current password to save changes
+                    <input type="password" id="ReqPassword" />
+                    <div><span id="passwordErr" class="hide" style="color: red">Incorrect Password!</span></div>
+                </div>
+                <input type="hidden" id="IsDesktop" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom" id="btnPostAll" onclick="ValidatePassword($('#ReqPassword').val())">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal fade" id="avatar-size-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <img src=@Url.Content("~/Images/logo.png") />
+                </div>
+                <div class="modal-body">
+                    Please choose an image smaller than 2 mb. Thanks!
+                </div>
+                <input type="hidden" id="BumpQuibId" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom" id="btnPostAll" onclick="$('#avatar-size-modal').modal('hide')">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-</div>
+    <div class="modal fade" id="unfollow-succesfull" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <img src=@Url.Content("~/Images/logo.png") />
+                </div>
+                <div class="modal-body">
+                    Unfollow successful
+                </div>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

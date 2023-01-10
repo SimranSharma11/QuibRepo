@@ -22,6 +22,10 @@
         if ("@Context.User.Identity.IsAuthenticated" === "True") {
         localStorage.setItem("UserId", "@Context.Session.GetString("user_id")");
         }
+        else
+        {
+            localStorage.setItem("UserId", "");
+        }
     </script>
     <style>
         .quib-profile-header {

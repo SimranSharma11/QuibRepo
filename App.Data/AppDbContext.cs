@@ -18,7 +18,8 @@ namespace App.Data
             : base(options)
         {
         }
-     
+        public DbSet<community> communitys { get; set; }
+        public DbSet<AspNetUsers> list { get; set; }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<RecentQuibs> recentquibs { get; set; }
         public DbSet<MostActiveQuibs> MostActiveQuibs { get; set; }

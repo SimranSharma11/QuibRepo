@@ -3,8 +3,8 @@ var IsValidPassword = true;
 var model;
 
 $('document').ready(function () {
-    $("#edit-profile-form-desktop")[0].reset();
-    $("#edit-profile-form-mobile")[0].reset();
+    /*$("#edit-profile-form-desktop")[0].reset();*/
+/*    $("#edit-profile-form-mobile")[0].reset();*/
 
     //Disable autocomplete throughout the page
     $('input:text,input:password,form').attr('autocomplete', 'off');
@@ -25,7 +25,7 @@ $('document').ready(function () {
 
     });
     $('#ImgAvtrLogo').on("click", function (e) {
-        window.location.href = localStorage.getItem('environment') + "Profile?userId=" + localStorage.getItem('UserId');
+        window.location.href = localStorage.getItem('environment') + '/Community';
     });
     $("#btnEditProfile-sm").on('click', function () {
         $(".side-sm").show();
@@ -111,13 +111,14 @@ $('document').ready(function () {
 });
 
 $(window).load(function () {
-    $("#edit-profile-form-desktop")[0].reset();
-    $("#edit-profile-form-mobile")[0].reset();
-    //User can't edit the profile of others, when user goes to see profile of others, so hide 'Edit Profile' and 'Logout' 
+    //$("#edit-profile-form-desktop")[0].reset();
+    //$("#edit-profile-form-mobile")[0].reset();
+    //User can't edit the profile of others, when user goes to see profile of others, so hide 'Edit Profile' and 'Logout'
     //and always set avatar of logged in user only at the upper-right-corner.
+    
     if (localStorage.getItem('UserId') != localStorage.getItem('ProfileUserId')) {
-        $('#btnEditProfile').hide();
-        $('#btnLogout').hide();
+        //$('#btnEditProfile').hide();
+       // $('#btnLogout').hide();
         $('.btn-Qsm').show();
         $('#btnEditProfile-sm').hide();
         $('#btnLogout-sm').hide();
@@ -301,11 +302,11 @@ function LoadQuibbedMovies(movies) {
         if (movies.hasOwnProperty(obj)) {
             $(".MovieList").append("<div class='item'>" +
                                             "<div class='quib-profile-header'>" +
-                                                "<img src='" + object[obj].PosterContentThumb + "'/>" +
+                                                "<img src='" + object[obj].posterContentThumb + "'/>" +
                                                 "<div class='quib-profile-details'>" +
-                                                    "<div>" + object[obj].Title + "</div>" +
-                                                    "<div>" + object[obj].ReleaseYear + "</div>" +
-                                                    "<div>" + object[obj].Director + "</div>" +
+                                                    "<div>" + object[obj].title + "</div>" +
+                                                    "<div>" + object[obj].releaseYear + "</div>" +
+                                                    "<div>" + object[obj].director + "</div>" +
                                                 "</div>" +
                                             "</div>" +
                                         "</div>");
@@ -329,8 +330,8 @@ function LoadFollowers(users) {
             if (users.hasOwnProperty(obj)) {
                 //Anish Modified
                 var followerAvatarBase32ImagePath = "/Images/user32/AvatarBase32.png"
-                if (object[obj].AvatarBase32ImagePath != null)
-                    followerAvatarBase32ImagePath = object[obj].AvatarBase32ImagePath;
+                if (object[obj].avatarBase32ImagePath != null)
+                    followerAvatarBase32ImagePath = object[obj].avatarBase32ImagePath;
 
                 $(".FollowerList").append("<div class='follower-item'>" +
                                         "<div class='follower-image' >" +
@@ -338,7 +339,7 @@ function LoadFollowers(users) {
                                             "<img src='" + followerAvatarBase32ImagePath + "' id='FwrAvtr' height='34' width='34'/>" +
 
                                         "</div>" +
-                                         "<span class='follower-name'>" + object[obj].DisplayName + "</span>" +
+                                         "<span class='follower-name'>" + object[obj].userName + "</span>" +
                                         "<div class='follower-button'>" +
                                             "<button type='submit' class='btn btn-default'>Following</button>" +
                                             "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span>" +
@@ -362,8 +363,8 @@ function LoadFollowees(users) {
     for (var obj in object) {
         if (users.hasOwnProperty(obj)) {
             var followeeAvatarBase32ImagePath = "/Images/user32/AvatarBase32.png"
-            if (object[obj].AvatarBase32ImagePath != null)
-                followeeAvatarBase32ImagePath = object[obj].AvatarBase32ImagePath;
+            if (object[obj].avatarBase32ImagePath != null)
+                followeeAvatarBase32ImagePath = object[obj].avatarBase32ImagePath;
 
             $(".FolloweeList").append("<div class='follower-item'>" +
                                     "<div class='follower-image' >" +
@@ -371,10 +372,10 @@ function LoadFollowees(users) {
                                         //"<img src='data:image/jpeg;base64," + object[obj].AvatarBase64Thumb + "' id='FwrAvtr'/>" +
                                         "<img src='" + followeeAvatarBase32ImagePath + "' id='FwrAvtr' />" +
                                           //anish modified end
-                                    "</div >" +
-                                    "<span class='follower-name'>" + object[obj].DisplayName + "</span>" +
+                "</div >" +
+                "<span class='follower-name'>" + object[obj].userName + "</span>" +
                                     "<div class='follower-button'>" +
-                                        "<button type='submit' class='btn btn-default' onclick='UnfollowUser(" + object[obj].Id + ")'>Unfollow</button>" +
+                                        "<button type='submit' class='btn btn-default' onclick='UnfollowUser(" + object[obj].id + ")'>Unfollow</button>" +
                                         "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span>" +
                                     "</div>" +
                                 "</div>'");
@@ -391,11 +392,12 @@ function GetMoviesByUser() {
     $(".community-quib").addClass("active-list");
     $("#community-following").removeClass("active-list");
     $("#community-followers").removeClass("active-list");
+    var UserId = localStorage.getItem("UserId");
     $.ajax({
         async: false,
-        url: localStorage.getItem('environment') + 'Profile/GetMoviesByUserId',
+        url: localStorage.getItem('environment') + '/api/Community/GetMovieByUserId?UserId=' + UserId,
         dataType: 'text',
-        data: { userId: $("#Id").val() },
+        method: "GET",
         success: function (response) {
             if (response != undefined && response != null) {
                 LoadQuibbedMovies(response);
@@ -414,12 +416,12 @@ function GetFollowers() {
     $('#community-editprofile').addClass("active-list");
 
     $("#community-followers").addClass("active-list");
-
+    var userId = localStorage.getItem("UserId");
     $.ajax({
         //async: false,
-        url: localStorage.getItem('environment') + 'Profile/GetFollowersByUserId',
+        url: localStorage.getItem('environment') + '/api/Community/GetFollowerId?UserId=' + userId,
         dataType: 'text',
-        data: { userId: $("#Id").val() },
+        method:'Get',
         success: function (response) {
             if (response != undefined && response != null) {
                 LoadFollowers(response);
@@ -438,12 +440,12 @@ function GetFollowees() {
     $("#community-followers").removeClass("active-list");
 
     $("#community-following").addClass("active-list");
-
+    var userId = localStorage.getItem("UserId");
     $.ajax({
         //async: false,
-        url: localStorage.getItem('environment') + 'Profile/GetFolloweesByUserId',
+        url: localStorage.getItem('environment') + '/api/Community/GetFolloweeIdByUserId?UserId=' + userId,
         dataType: 'text',
-        data: { userId: $("#Id").val() },
+      method:'get',
         success: function (response) {
             if (response != undefined && response != null) {
                 LoadFollowees(response);
@@ -590,8 +592,9 @@ function ValidateDisplaynameM() {
 }
 
 function GetUserById() {
+    var userid = localStorage.getItem("UserId");
     $.ajax({
-        url: localStorage.getItem('environment') + 'Profile/GetUserById',
+        url: localStorage.getItem('environment') + '/api/Community/GetUserById?UserId=' + userid,
         type: 'GET',
         dataType: 'json',
         success: function (response) {

@@ -33,7 +33,6 @@ namespace App.Models.DataModels
         public bool IsSeedQuib { get; set; }
         public string? SeedQuibType { get; set; }
         public bool IsScreenshot { get; set; } = false;
-      
-    
+        public string newUserId { get; set; }
 }
 }

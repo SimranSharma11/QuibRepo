@@ -18,7 +18,11 @@
 }
 .staricon {
 position:absolute;
-right:12%;
+right:17%;
+}
+.shareicon {
+    position: absolute;
+    right: 10%;
 }
 .seedquibtimer {
     margin: 12%;
@@ -2209,9 +2213,11 @@ body, html {
 }
 
 .movietitle {
-    margin-top: -33px;
-    margin-left: 39px;
+    color:yellow;
+    margin-left: 100px;
     font-size: large;
+    margin-top:4%;
+    font-weight:bold;
 }
 .bottom-align {
     margin-bottom: 10px;

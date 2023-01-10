@@ -465,8 +465,19 @@
         <div class="header-align" style="">
             <div class="col-md-6 col-lg-6 col-sm-6 hidden-xs">
                 <div class="top-poster">
-                    <img src="~/Images/movie_posters/full_res/5_Pulp Fiction.jpg" height="48" width="34" class="MoviePosterThumb" style="margin-left: -6px;" />
-                    <div class="movietitle"></div>
+                  @*  <img src="~/Images/movie_posters/full_res/5_Pulp Fiction.jpg" height="48" width="34" class="MoviePosterThumb" style="margin-left: -6px;" />*@
+                  @*  <div class="movietitle"></div>*@
+                        <a class="top-btnBack">
+                    <span id="backChooseMovie" class="glyphicon glyphicon-menu-left" aria-hidden="true" style="font-size: 36px; color: #990000" onclick="BackClick()"></span>
+                   </a>
+                   @if(Context.User.Identity.IsAuthenticated)
+                    {
+                        <div class='movietitle'> QUIBSTREAM BY @Context.User.Identity.Name </div>
+                    }
+                    else
+                    {
+                        <div class="movietitle"> QUIBSTREAM </div>
+                    }
                 </div>
 
             </div>

@@ -252,7 +252,7 @@ $(document).ready(function () {
 
     // Timer Play button click
     
-    $('.btnPlay').on('click', function () {
+    $('.btnPlay').on('click', function (e) {
        
             var that = $(this).find('#imgPlayPause');
 
@@ -322,7 +322,7 @@ $(document).ready(function () {
                 //    ClearOnlyQuibsAhead($('#movieSlider').slider('value'));
                 //}
             }
-        
+        e.stopImmediatePropagation();
     });
 
     // Toggle timer button click to toggle between running time and remaining time
